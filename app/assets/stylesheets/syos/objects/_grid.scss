@@ -1,0 +1,9 @@
+.syos-grid {
+  display: grid;
+  grid-auto-flow: dense;
+  grid-gap: $syos-space-3;
+}
+
+.syos-grid--2 {
+  grid-template-columns: repeat(2, 1fr);
+}

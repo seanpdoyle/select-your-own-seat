@@ -1,0 +1,7 @@
+.visually-hidden {
+  @include visually-hidden;
+}
+
+.not-visually-hidden {
+  @include not-visually-hidden;
+}

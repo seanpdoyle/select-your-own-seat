@@ -1,0 +1,67 @@
+.syos-floor-nav {
+  position: relative;
+}
+
+.syos-floor-nav--with-map {
+  @include breakpoint($breakpoint-xl) {
+    min-width: 15rem;
+  }
+
+  &.is-expanded {
+    max-width: 20rem;
+    width: 50%;
+  }
+}
+
+.syos-floor-nav__header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.syos-floor-nav__toggle-button {
+  margin-left: $syos-space-3;
+
+  @include breakpoint($breakpoint-xl) {
+    display: none;
+  }
+}
+
+.syos-floor-nav__diagram-wrapper {
+  display: none;
+  margin-top: $syos-space-2;
+  position: relative;
+  width: 100%;
+
+  @include breakpoint($breakpoint-xl) {
+    display: block;
+  }
+
+  .syos-floor-nav--with-map & {
+    height: 0;
+    padding-bottom: 75%;
+  }
+
+  .is-expanded & {
+    display: block;
+  }
+}
+
+.syos-floor-nav__diagram {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.syos-floor-nav__diagram-floor {
+  color: $gray-medium;
+
+  &:hover,
+  &.active {
+    color: $highlight-color;
+  }
+}

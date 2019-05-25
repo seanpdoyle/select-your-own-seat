@@ -1,0 +1,31 @@
+$_syos-loader-overlay-backdrop-color: rgba(0, 0, 0, 0.7);
+
+@keyframes syos-rotating {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.syos-loader-overlay {
+  align-items: center;
+  background-color: $_syos-loader-overlay-backdrop-color;
+  bottom: 0;
+  display: none;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  &.is-loading {
+    display: flex;
+  }
+}
+
+.syos-loader-overlay__loader {
+  animation: syos-rotating 750ms linear infinite;
+}

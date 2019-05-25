@@ -1,0 +1,72 @@
+// typography
+$text-color: $gray-dark;
+$text-color-alt: $white;
+$text-color-subtle: lighten($text-color, 30%);
+
+$heading-color: $gray-dark;
+$heading-color-alt: $white;
+
+$link-color: $purple;
+$link-color-hover: darken($link-color, 15%);
+$link-color-alt: $magenta;
+$link-color-alt-hover: darken($link-color-alt, 15%);
+
+$link-bg-color: $purple-light;
+$link-bg-color-hover: darken($link-bg-color, 15%);
+$link-color-bg-subtle: $link-bg-color;
+
+$highlight-color: $turquoise;
+$highlight-color-hover: darken($turquoise, 10%);
+
+// layout
+$body-color: $gray-dark;
+$body-color-alt: $white;
+$body-color-subtle: $gray-light;
+
+$border-color: $gray-medium;
+$border-color-dark: $gray-dark;
+
+// components
+$button-background-color: $purple;
+$button-background-color-hover: darken($button-background-color, 10%);
+$button-text-color: $white;
+$button-text-color-hover: $white;
+
+$site-header-background-color: $gray-dark;
+$site-header-text-color: $text-color-alt;
+$site-header-text-color-hover: darken($site-header-text-color, 15%);
+
+html {
+  // typography
+  --text-color: #{$text-color};
+  --text-color-alt: #{$text-color-alt};
+  --text-color-subtle: #{$text-color-subtle};
+
+  --heading-color: #{$heading-color};
+  --heading-color-alt: #{$heading-color-alt};
+
+  --link-color: #{$link-color};
+  --link-color-hover: #{$link-color-hover};
+  --link-color-alt: #{$link-color-alt};
+  --link-color-alt-hover: #{$link-color-alt-hover};
+
+  --highlight-color: #{$highlight-color};
+
+  // layout
+  --body-color: #{$body-color};
+  --body-color-alt: #{$body-color-alt};
+  --body-color-subtle: #{$body-color-subtle};
+
+  --border-color: #{$border-color};
+  --border-color-dark: #{$border-color-dark};
+
+  // components
+  --button-background-color: #{$button-background-color};
+  --button-background-color-hover: #{$button-background-color-hover};
+  --button-text-color: #{$button-text-color};
+  --button-text-color-hover: #{$button-text-color-hover};
+
+  --site-header-background-color: #{$site-header-background-color};
+  --site-header-text-color: #{$site-header-text-color};
+  --site-header-text-color-hover: #{$site-header-text-color-hover};
+}

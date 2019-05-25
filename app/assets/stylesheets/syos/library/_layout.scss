@@ -1,0 +1,19 @@
+$syos-base-space-value: 8px;
+
+$syos-space-values: (
+  0,
+  $syos-base-space-value / 2,
+  $syos-base-space-value,
+  $syos-base-space-value * 2,
+  $syos-base-space-value * 3,
+  $syos-base-space-value * 4,
+  $syos-base-space-value * 5,
+);
+
+$syos-space-0: nth($syos-space-values, 1);
+$syos-space-1: nth($syos-space-values, 2);
+$syos-space-2: nth($syos-space-values, 3);
+$syos-space-3: nth($syos-space-values, 4);
+$syos-space-4: nth($syos-space-values, 5);
+$syos-space-5: nth($syos-space-values, 6);
+$syos-space-6: nth($syos-space-values, 7);

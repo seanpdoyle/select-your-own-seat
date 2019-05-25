@@ -1,0 +1,101 @@
+$_syos-frame-sidebar-width: 25%;
+$_syos-frame-interior-padding: $syos-space-4;
+$_syos-frame-interior-padding-small-viewport: $syos-space-2;
+$_syos-frame-z-map: 10;
+$_syos-frame-z-map-overlay: 30;
+$_syos-frame-z-map-overlay-above: 40;
+$_syos-frame-z-map-overlay-below: 20;
+
+.syos-frame {
+  background-color: $body-color-alt;
+  display: flex;
+  flex: 1;
+
+  @supports (display: grid) {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 65vh 1fr;
+
+    @media only screen and (min-width: 960px), only screen and (orientation: landscape) {
+      grid-template-columns: 1fr $_syos-frame-sidebar-width;
+      grid-template-rows: 1fr;
+    }
+  }
+
+  @include supports-custom-properties {
+    background-color: var(--body-color-alt, #{$body-color-alt});
+  }
+}
+
+.syos-frame__map {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  z-index: $_syos-frame-z-map;
+}
+
+.syos-frame__map-overlay {
+  z-index: $_syos-frame-z-map-overlay;
+}
+
+.syos-frame__sidebar {
+  background-color: $body-color-subtle;
+  flex: 0 0 $_syos-frame-sidebar-width;
+  padding: $_syos-frame-interior-padding;
+
+  @include supports-custom-properties {
+    background-color: var(--background-color-subtle, #{$body-color-subtle});
+  }
+}
+
+.syos-frame__legend {
+  background-color: #fff;
+  border: 1px solid $border-color;
+  bottom: $_syos-frame-interior-padding-small-viewport;
+  display: inline-block;
+  left: $_syos-frame-interior-padding-small-viewport;
+  padding: $syos-space-3;
+  position: absolute;
+  z-index: $_syos-frame-z-map-overlay-below;
+
+  @include breakpoint($breakpoint-xl) {
+    bottom: $_syos-frame-interior-padding;
+    left: $_syos-frame-interior-padding;
+  }
+
+  @include supports-custom-properties {
+    border-color: var(--border-color, #{$border-color});
+  }
+}
+
+.syos-frame__floor-nav {
+  background-color: #fff;
+  border: 1px solid $border-color;
+  bottom: $_syos-frame-interior-padding-small-viewport;
+  display: inline-block;
+  padding: $syos-space-3;
+  position: absolute;
+  right: $_syos-frame-interior-padding-small-viewport;
+  z-index: $_syos-frame-z-map-overlay-above;
+
+  @include breakpoint($breakpoint-xl) {
+    bottom: $_syos-frame-interior-padding;
+    right: $_syos-frame-interior-padding;
+  }
+
+  @include supports-custom-properties {
+    border-color: var(--border-color, #{$border-color});
+  }
+}
+
+.syos-frame__map-zoom {
+  position: absolute;
+  right: $_syos-frame-interior-padding-small-viewport;
+  top: $_syos-frame-interior-padding-small-viewport;
+  z-index: $_syos-frame-z-map-overlay-below;
+
+  @include breakpoint($breakpoint-xl) {
+    right: $_syos-frame-interior-padding;
+    top: $_syos-frame-interior-padding;
+  }
+}
