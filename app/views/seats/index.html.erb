@@ -71,6 +71,26 @@
           </thead>
 
           <tbody>
+            <% Current.cart.seats.each do |seat| %>
+              <tr>
+                <td>
+                  <%= seat.row_number %>
+                </td>
+                <td class="syos-table__cell--numerals">
+                  <%= number_to_currency(seat.section.price / 100.0) %>
+                </td>
+                <td class="syos-u-text-align-right">
+                  <button class="syos-button syos-button--transparent">
+                    <%= inline_svg_tag(
+                      "icons/x-circle.svg",
+                      aria: true,
+                      class: "syos-icon",
+                      title: "Remove",
+                    ) %>
+                  </button>
+                </td>
+              </tr>
+            <% end %>
           </tbody>
         </table>
       </div>
