@@ -1,0 +1,23 @@
+.syos-site-header {
+  color: $site-header-text-color;
+  padding: $syos-space-3;
+
+  @include supports-custom-properties {
+    color: var(--site-header-text-color, #{$site-header-text-color});
+  }
+}
+
+.syos-site-header__title {
+  color: $text-color-alt;
+  font-size: 24px;
+  margin: 0 0 $syos-space-1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  width: 100%;
+  word-wrap: normal;
+
+  @include supports-custom-properties {
+    color: var(--text-color-alt, #{$text-color-alt});
+  }
+}

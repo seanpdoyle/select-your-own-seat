@@ -1,0 +1,23 @@
+.syos-control-zoom {
+  background-color: $body-color-alt;
+  border: 1px solid $border-color;
+  display: flex;
+  flex-direction: column;
+
+  @include supports-custom-properties {
+    background-color: var(--body-color-alt, #{$body-color-alt});
+    border-color: var(--border-color, #{$border-color});
+  }
+}
+
+.syos-control-zoom__button {
+  padding: $syos-space-2;
+
+  & + & {
+    border-top: 1px solid $border-color;
+
+    @include supports-custom-properties {
+      border-top-color: var(--border-color, #{$border-color});
+    }
+  }
+}

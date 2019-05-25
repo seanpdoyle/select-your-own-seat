@@ -1,0 +1,56 @@
+.syos-button {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: $button-background-color;
+  border: 0;
+  border-radius: 2px;
+  color: $button-text-color;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 1em;
+  padding: 0.5em 1em;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.2s ease;
+  white-space: nowrap;
+
+  @include supports-custom-properties {
+    background-color: var(--button-background-color, #{$button-background-color});
+    color: var(--button-text-color, #{$button-text-color});
+  }
+
+  &:hover,
+  &:focus {
+    background-color: $button-background-color-hover;
+    color: $button-text-color-hover;
+
+    @include supports-custom-properties {
+      background-color: var(--button-background-color-hover, #{$button-background-color-hover});
+      color: var(--button-text-color-hover, #{$button-text-color-hover});
+    }
+  }
+}
+
+.syos-button--transparent {
+  background: none;
+  border: none;
+  color: $text-color-subtle;
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+
+  &:hover,
+  &:focus {
+    background: none;
+    border: none;
+    color: $text-color;
+  }
+}
+
+.syos-button--wide {
+  @include breakpoint($breakpoint-l) {
+    padding-left: 2em;
+    padding-right: 2em;
+  }
+}

@@ -1,0 +1,87 @@
+@mixin is-selected {
+  background-color: $active-bg-color;
+  color: $text-color;
+}
+
+@mixin accessibility-icon-color {
+  fill: $background-color;
+}
+
+@mixin visually-hidden {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
+@mixin not-visually-hidden {
+  border: inherit;
+  clip: inherit;
+  height: inherit;
+  margin: inherit;
+  overflow: inherit;
+  padding: inherit;
+  position: inherit;
+  width: inherit;
+}
+
+@mixin reset-list {
+  margin-left: 0;
+  margin-top: 0;
+  li {
+    list-style-type: none;
+  }
+}
+
+@mixin reset-link {
+  @include link;
+  background-color: initial;
+  border: 0 none;
+  font-size: 1em;
+  padding: 0;
+}
+
+@mixin inline-list {
+  margin-bottom: 1.5em;
+
+  li {
+    display: inline;
+    margin-right: 0.25em;
+
+    &:last-of-type {
+      margin-right: 0;
+    }
+  }
+}
+
+@mixin bordered-box {
+  background-color: $background-color;
+  border: 1px solid $border-color;
+  padding: 1em;
+}
+
+// remove the "spinner" from number fields
+@mixin remove-spinners {
+  appearance: none;
+  -moz-appearance: textfield;
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+  }
+}
+
+@mixin content-padding {
+  padding: 1em;
+
+  @include breakpoint($breakpoint-nav) {
+    padding: 2em;
+  }
+
+  @include breakpoint($breakpoint-xl) {
+    padding: 2em 4.25em;
+  }
+}

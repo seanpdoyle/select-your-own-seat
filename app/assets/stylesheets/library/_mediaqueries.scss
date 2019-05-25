@@ -1,0 +1,19 @@
+@include breakpoint-set("to ems",true);
+
+$breakpoint-xxs: 280px, "no-query" true; // it's ok to put px values in here if you've set "to ems" to "true"!
+$breakpoint-xs: 400px, "no-query" true;
+$breakpoint-s: 500px, "no-query" true;
+$breakpoint-m: 600px, "no-query" true;
+$breakpoint-tablesaw: 600px;
+$breakpoint-l: 700px, "no-query" true;
+$breakpoint-nav: 750px, "no-query" true;
+$breakpoint-nav-plus: 830px, "no-query" true;
+$breakpoint-xl: 960px, "no-query" true;
+$breakpoint-xxl: 1100px, "no-query" true;
+$breakpoint-xxxl: 1500px, "no-query" true;
+
+// vertical media queries
+$breakpoint-v-s: min-height 670px, "no-query" true;
+
+// media query for hi-resolution displays
+$breakpoint-hi-res: 2 device-pixel-ratio;

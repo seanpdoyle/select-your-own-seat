@@ -1,0 +1,12 @@
+html,
+body {
+  height: 100%;
+}
+
+html {
+  background-color: $body-color;
+
+  @include supports-custom-properties {
+    background-color: var(--body-color, #{$body-color});
+  }
+}
