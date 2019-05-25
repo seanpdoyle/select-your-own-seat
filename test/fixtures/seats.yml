@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  section: one
+  row: MyString
+  number: MyString
+  x: 1
+  'y': 1
+
+two:
+  section: two
+  row: MyString
+  number: MyString
+  x: 1
+  'y': 1
