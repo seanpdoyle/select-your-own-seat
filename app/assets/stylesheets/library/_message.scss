@@ -1,0 +1,19 @@
+@mixin message {
+  border: 1px solid;
+  margin: .5em 0;
+  padding: .5em;
+}
+
+@mixin error-message {
+  @include message;
+  background-color: #FFF6F2;
+  border-color: #ce4c4c;
+  color: #ce4c4c;
+}
+
+@mixin success-message {
+  @include message;
+  background-color: #c8f2f4;
+  border-color: #5ed9de;
+  color: #40878A;
+}

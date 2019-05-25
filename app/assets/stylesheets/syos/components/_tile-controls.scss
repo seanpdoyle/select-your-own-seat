@@ -1,0 +1,70 @@
+.syos-tile-controls {
+  display: grid;
+  grid-auto-flow: column;
+  grid-gap: $syos-space-2;
+  justify-items: stretch;
+}
+
+.syos-tile-controls__icon {
+  margin-right: $syos-space-2;
+}
+
+.syos-tile-controls__icon--selected {
+  display: none;
+}
+
+.syos-tile-controls__input {
+  opacity: 0;
+  position: absolute;
+
+  &:focus + .syos-tile-controls__control {
+    outline: $highlight-color solid 3px;
+    outline-offset: 2px;
+
+    @include supports-custom-properties {
+      outline-color: var(--highlight-color, #{$highlight-color});
+    }
+  }
+
+  &:checked + .syos-tile-controls__control {
+    box-shadow: inset 0 0 0 3px $border-color-dark;
+    cursor: default;
+
+    @include supports-custom-properties {
+      box-shadow: inset 0 0 0 3px var(--border-color-dark, #{$border-color-dark});
+    }
+
+    .syos-tile-controls__icon--unselected {
+      display: none;
+    }
+
+    .syos-tile-controls__icon--selected {
+      display: block;
+    }
+  }
+}
+
+.syos-tile-controls__control {
+  align-items: center;
+  box-shadow: inset 0 0 0 1px $border-color;
+  cursor: pointer;
+  display: flex;
+  font-size: 14px;
+  font-weight: bold;
+  justify-content: center;
+  padding: $syos-space-3;
+  text-align: center;
+  transition: box-shadow 200ms ease;
+
+  @include supports-custom-properties {
+    box-shadow: inset 0 0 0 1px var(--border-color, #{$border-color});
+  }
+
+  &:hover {
+    box-shadow: inset 0 0 0 2px $border-color-dark;
+
+    @include supports-custom-properties {
+      box-shadow: inset 0 0 0 2px var(--border-color-dark, #{$border-color-dark});
+    }
+  }
+}

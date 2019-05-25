@@ -1,0 +1,5 @@
+@mixin supports-custom-properties {
+  @supports (color: var(--test)) {
+    @content;
+  }
+}

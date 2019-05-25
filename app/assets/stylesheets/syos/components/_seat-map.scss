@@ -1,0 +1,22 @@
+.syos-seat-map {
+  bottom: 0;
+  height: 100%;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 100%;
+}
+
+.syos-seat-map__annotation-text {
+  color: $text-color-subtle;
+  font-size: 24px;
+
+  &.stage {
+    font-size: 36px;
+  }
+
+  @include supports-custom-properties {
+    background-color: var(--text-color-subtle, #{$text-color-subtle});
+  }
+}

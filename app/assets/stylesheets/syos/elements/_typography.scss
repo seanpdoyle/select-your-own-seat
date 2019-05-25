@@ -1,0 +1,48 @@
+body {
+  color: $text-color;
+  font-family: $font-family;
+
+  @include supports-custom-properties {
+    color: var(--text-color, #{$text-color});
+    font-family: var(--font-family, #{$font-family});
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: $heading-color;
+  font-size: 20px;
+  font-weight: 700;
+
+  @include supports-custom-properties {
+    color: var(--heading-color, #{$heading-color});
+  }
+}
+
+a {
+  color: $link-color;
+
+  @include supports-custom-properties {
+    color: var(--link-color, #{$link-color});
+  }
+
+  &.active {
+    font-weight: 700;
+  }
+}
+
+hr {
+  border-bottom: 1px solid $border-color;
+  border-left: 0;
+  border-right: 0;
+  border-top: 0;
+  margin: 0;
+
+  @include supports-custom-properties {
+    border-bottom-color: var(--border-color, #{$border-color});
+  }
+}

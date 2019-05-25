@@ -1,0 +1,23 @@
+.syos-change-date__button {
+  color: $site-header-text-color;
+
+  @include supports-custom-properties {
+    color: var(--site-header-text-color, #{$site-header-text-color});
+  }
+
+  &:hover {
+    color: $site-header-text-color-hover;
+
+    @include supports-custom-properties {
+      color: var(--site-header-text-color-hover, #{$site-header-text-color-hover});
+    }
+  }
+}
+
+.syos-change-date__performance-note {
+  font-style: italic;
+
+  p:last-of-type {
+    margin-bottom: 0;
+  }
+}

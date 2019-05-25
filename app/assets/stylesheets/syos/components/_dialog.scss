@@ -1,0 +1,72 @@
+$_syos-dialog-max-height: 95vh;
+$_syos-dialog-max-width: 36em;
+$_syos-dialog-backdrop-color: rgba(0, 0, 0, 0.7);
+$_syos-dialog-background-color: #fff;
+$_syos-dialog-exterior-space: $syos-space-4;
+$_syos-dialog-interior-space: $syos-space-4;
+$_syos-dialog-interior-space-squished: $syos-space-3;
+$_syos-dialog-interior-space-extra: $syos-space-6;
+$_syos-dialog-z-map-overlay-above: 10;
+
+.syos-dialog {
+  background-color: $_syos-dialog-background-color;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 0 1px rgba(#000, 0.2), 0 8px 24px rgba(#000, 0.3);
+  left: calc(50% - #{$_syos-dialog-exterior-space});
+  margin: $_syos-dialog-exterior-space;
+  max-height: $_syos-dialog-max-height;
+  max-width: $_syos-dialog-max-width;
+  overflow-y: auto;
+  padding: 0;
+  position: fixed;
+  top: calc(50% - #{$_syos-dialog-exterior-space});
+  transform: translate(-50%, -50%);
+  z-index: $_syos-dialog-z-map-overlay-above;
+}
+
+.syos-dialog::backdrop {
+  background-color: $_syos-dialog-backdrop-color;
+}
+
+// `::backdrop` polyfill
+.syos-dialog + .backdrop {
+  background-color: $_syos-dialog-backdrop-color;
+}
+
+.syos-dialog__header {
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  padding: $_syos-dialog-interior-space-squished $_syos-dialog-interior-space;
+
+  @include supports-custom-properties {
+    border-bottom-color: var(--border-color, #{$border-color});
+  }
+}
+
+.syos-dialog__body {
+  padding: $_syos-dialog-interior-space;
+}
+
+.syos-dialog__footer {
+  border-top: 1px solid $border-color;
+  padding: $_syos-dialog-interior-space-squished $_syos-dialog-interior-space;
+
+  @include supports-custom-properties {
+    border-top-color: var(--border-color, #{$border-color});
+  }
+}
+
+.syos-dialog--extra-padded {
+  .syos-dialog__header,
+  .syos-dialog__body,
+  .syos-dialog__footer {
+    padding: $_syos-dialog-interior-space-extra;
+  }
+}
+
+.syos-dialog__title {
+  flex: 1;
+  font-size: 20px;
+  margin: 0;
+}
