@@ -45,33 +45,56 @@
       </div>
 
       <div class="syos-frame__sidebar">
-        <h2 class="syos-u-margin-bottom-2">
-          Your seat selections
-        </h2>
+        <div id="cart-summary">
+          <h2 class="syos-u-margin-bottom-2">
+            Your seat selections
+          </h2>
 
-        <p class="syos-u-font-size-small syos-u-margin-bottom-2">
-          Seats are not reserved until added to the cart.
-        </p>
+          <p class="syos-u-font-size-small syos-u-margin-bottom-2">
+            Seats are not reserved until added to the cart.
+          </p>
 
-        <table class="syos-table">
-          <thead>
-            <tr>
-              <th>
-                Seat
-              </th>
+          <table class="syos-table">
+            <thead>
+              <tr>
+                <th>
+                  Seat
+                </th>
 
-              <th class="syos-table__cell--numerals">
-                Price
-              </th>
+                <th class="syos-table__cell--numerals">
+                  Price
+                </th>
 
-              <th class="visually-hidden">
-                Remove
-              </th>
-            </tr>
-          </thead>
+                <th class="visually-hidden">
+                  Remove
+                </th>
+              </tr>
+            </thead>
 
-          <tbody></tbody>
-        </table>
+            <tbody>
+              <% Current.seat_selections.each do |seat_selection| %>
+                <tr>
+                  <td>
+                    <%= seat_selection.seat.row_number %>
+                  </td>
+                  <td class="syos-table__cell--numerals">
+                    <%= number_to_currency(seat_selection.seat.section.price / 100.0) %>
+                  </td>
+                  <td class="syos-u-text-align-right">
+                    <button class="syos-button syos-button--transparent">
+                      <%= inline_svg(
+                        "icons/x-circle.svg",
+                        aria: true,
+                        class: "syos-icon",
+                        title: "Remove",
+                      ) %>
+                    </button>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
     </section>
   </main>

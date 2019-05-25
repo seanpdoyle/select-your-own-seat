@@ -57,11 +57,11 @@
       </div>
 
       <div class="syos-inline-stack__item">
-        <button
-          class="syos-button"
-        >
-          Select
-        </button>
+        <%= button_to(
+          "Select",
+          seat_selections_path(seat),
+          class: "syos-button",
+        ) %>
       </div>
     </div>
   </footer>
