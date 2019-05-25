@@ -1,0 +1,5 @@
+$font-family: "azo-sans-web", system-ui, "Helvetica", sans-serif;
+
+html {
+  --font-family: #{$font-family};
+}

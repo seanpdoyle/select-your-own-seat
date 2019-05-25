@@ -1,0 +1,17 @@
+.syos-toggle-button {
+  &[aria-checked="false"] {
+    .syos-toggle-button__icon-unchecked {
+      display: none;
+    }
+  }
+
+  &[aria-checked="true"] {
+    .syos-toggle-button__icon-checked {
+      display: none;
+    }
+
+    .syos-toggle-button__icon-unchecked {
+      display: block;
+    }
+  }
+}

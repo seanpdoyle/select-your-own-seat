@@ -1,0 +1,19 @@
+$_margin-properties: (
+  "margin-top",
+  "margin-right",
+  "margin-bottom",
+  "margin-left",
+);
+
+@for $i from 1 through length($syos-space-values) {
+  $size: #{nth($syos-space-values, $i)};
+  $scale: #{$i - 1};
+
+  @for $property from 1 through length($_margin-properties) {
+    $property: #{nth($_margin-properties, $property)};
+
+    .syos-u-#{$property}-#{$scale} {
+      #{$property}: $size !important;
+    }
+  }
+}

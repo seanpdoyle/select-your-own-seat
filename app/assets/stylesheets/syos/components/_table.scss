@@ -1,0 +1,61 @@
+.syos-table {
+  margin: 0 0 $syos-space-3;
+  text-align: left;
+  width: 100%;
+
+  th {
+    font-weight: 700;
+  }
+
+  thead {
+    border: none;
+    color: $text-color;
+    vertical-align: bottom;
+
+    @include supports-custom-properties {
+      color: var(--text-color, #{$text-color});
+    }
+
+    tr {
+      border-bottom: 1px solid $border-color;
+
+      @include supports-custom-properties {
+        border-bottom-color: var(--border-color, #{$border-color});
+      }
+    }
+
+    th {
+      padding: $syos-space-1 $syos-space-2 $syos-space-1 0;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+
+  tbody {
+    vertical-align: top;
+
+    tr {
+      border-bottom: 1px solid $border-color;
+
+      @include supports-custom-properties {
+        border-bottom-color: var(--border-color, #{$border-color});
+      }
+    }
+
+    th,
+    td {
+      padding: $syos-space-2 $syos-space-2 $syos-space-2 0;
+
+      &:last-child {
+        padding-right: 0;
+      }
+    }
+  }
+}
+
+.syos-table__cell--numerals {
+  font-variant: tabular-nums;
+  text-align: right;
+}

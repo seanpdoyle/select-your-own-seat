@@ -1,0 +1,21 @@
+$font-family: "proxima-nova", system-ui, "Helvetica", sans-serif;
+
+$white: #fff;
+
+$purple: #544f63;
+$purple-medium: #928aaa;
+$purple-light: #dddaef;
+
+html {
+  --font-family: #{$font-family};
+
+  --body-color: #{$purple};
+
+  --link-color: #{$purple};
+  --link-color-hover: #{$purple-medium};
+
+  --button-background-color: #{$purple-light};
+  --button-background-color-hover: #{$purple-medium};
+  --button-text-color: #{$purple-medium};
+  --button-text-color-hover: #{$white};
+}

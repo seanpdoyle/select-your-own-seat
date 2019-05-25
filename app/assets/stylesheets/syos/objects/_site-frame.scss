@@ -1,0 +1,18 @@
+.syos-site-frame {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.syos-site-frame__header {
+  flex: 0 0 10vh;
+
+  @include breakpoint($breakpoint-xl) {
+    flex-basis: auto;
+  }
+}
+
+.syos-site-frame__main {
+  display: flex;
+  flex: 1;
+}

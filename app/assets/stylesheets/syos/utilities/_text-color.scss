@@ -1,0 +1,15 @@
+.syos-u-text-color-subtle {
+  color: $text-color-subtle;
+
+  @include supports-custom-properties {
+    color: var(--text-color-subtle, #{$text-color-subtle});
+  }
+}
+
+.syos-u-text-color-highlight {
+  color: $highlight-color;
+
+  @include supports-custom-properties {
+    color: var(--highlight-color, #{$highlight-color});
+  }
+}
