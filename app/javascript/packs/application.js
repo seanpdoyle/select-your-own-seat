@@ -15,3 +15,10 @@ require("turbolinks").start()
 // const imagePath = (name) => images(name, true)
 
 import "controllers"
+
+document.addEventListener("turbolinks:load", () => {
+  document.querySelectorAll("dialog[open]").forEach(dialog => {
+    dialog.open = false
+    dialog.showModal()
+  })
+})

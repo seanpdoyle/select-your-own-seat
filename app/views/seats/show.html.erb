@@ -1,0 +1,79 @@
+<%= render(layout: "seats/frame", locals: local_assigns) do %>
+  <header class="syos-dialog__header">
+    <h2 class="syos-dialog__title">
+      Confirm seat selection
+    </h2>
+
+    <form method="dialog">
+      <button
+        class="syos-button syos-button--transparent"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          width="24"
+          height="24"
+          class="syos-icon syos-icon--large"
+          title="Close modal"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <line x1="15" y1="9" x2="9" y2="15"></line>
+          <line x1="9" y1="9" x2="15" y2="15"></line>
+        </svg>
+      </button>
+    </form>
+  </header>
+
+  <section class="syos-dialog__body">
+    <dl class="syos-grid syos-grid--2">
+      <div>
+        <dt>
+          Section
+        </dt>
+
+        <dd class="syos-u-font-size-large">
+          <%= seat.section.name %>
+        </dd>
+      </div>
+
+      <div>
+        <dt>
+          Seat
+        </dt>
+
+        <dd class="syos-u-font-size-large">
+          <%= seat.row_number %>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer class="syos-dialog__footer syos-block-stack syos-block-stack--bordered syos-block-stack--large">
+    <div class="syos-inline-stack syos-inline-stack--inline syos-block-stack__item">
+      <div class="syos-inline-stack__item">
+        <p class="syos-u-margin-bottom-0">
+          <%= seat.section.name %>
+        </p>
+      </div>
+
+      <div class="syos-inline-stack__item syos-inline-stack__item--push-start">
+        <p class="syos-u-margin-bottom-0">
+          <strong><%= number_to_currency(seat.section.price / 100.0) %></strong>
+        </p>
+      </div>
+
+      <div class="syos-inline-stack__item">
+        <button
+          class="syos-button"
+        >
+          Select
+        </button>
+      </div>
+    </div>
+  </footer>
+<% end %>
