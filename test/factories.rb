@@ -19,6 +19,9 @@ FactoryBot.define do
     price { 10_00 }
   end
 
+  factory :cart do
+  end
+
   factory :seat do
     association :section
 
@@ -26,5 +29,10 @@ FactoryBot.define do
     row { "AA" }
     x { 0 }
     y { 0 }
+  end
+
+  factory :seat_selection do
+    association(:cart)
+    association(:seat)
   end
 end
