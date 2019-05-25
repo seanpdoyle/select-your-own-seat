@@ -13,5 +13,9 @@
     <div class="syos-site-frame">
       <%= yield %>
     </div>
+
+    <% if content_for?(:dialog) %>
+      <%= yield(:dialog) %>
+    <% end %>
   </body>
 </html>
