@@ -5,6 +5,7 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "4.2.2",
     "breakpoint-sass": "2.7.1",
+    "dialog-polyfill": "^0.5.0",
     "stimulus": "^1.1.1",
     "turbolinks": "^5.2.0"
   },

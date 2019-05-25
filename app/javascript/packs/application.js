@@ -15,3 +15,16 @@ require("turbolinks").start()
 // const imagePath = (name) => images(name, true)
 
 import "controllers"
+
+import dialogPolyfill from "dialog-polyfill"
+
+document.addEventListener("turbolinks:load", () => {
+  for (const dialog of document.querySelectorAll("dialog")) {
+    dialogPolyfill.registerDialog(dialog)
+
+    if (dialog.hasAttribute("open")) {
+      dialog.open = false
+      dialog.showModal()
+    }
+  }
+})
