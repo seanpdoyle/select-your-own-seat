@@ -10,10 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_25_141044) do
+ActiveRecord::Schema.define(version: 2019_05_25_190937) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "carts", force: :cascade do |t|
+    t.string "token", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["token"], name: "index_carts_on_token", unique: true
+  end
 
   create_table "floors", force: :cascade do |t|
     t.string "name"
@@ -23,6 +30,16 @@ ActiveRecord::Schema.define(version: 2019_05_25_141044) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["slug"], name: "index_floors_on_slug"
     t.index ["venue_id"], name: "index_floors_on_venue_id"
+  end
+
+  create_table "seat_selections", force: :cascade do |t|
+    t.bigint "seat_id", null: false
+    t.bigint "cart_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["cart_id"], name: "index_seat_selections_on_cart_id"
+    t.index ["seat_id", "cart_id"], name: "index_seat_selections_on_seat_id_and_cart_id", unique: true
+    t.index ["seat_id"], name: "index_seat_selections_on_seat_id"
   end
 
   create_table "seats", force: :cascade do |t|
@@ -58,6 +75,8 @@ ActiveRecord::Schema.define(version: 2019_05_25_141044) do
   end
 
   add_foreign_key "floors", "venues"
+  add_foreign_key "seat_selections", "carts"
+  add_foreign_key "seat_selections", "seats"
   add_foreign_key "seats", "sections"
   add_foreign_key "sections", "floors"
 end
