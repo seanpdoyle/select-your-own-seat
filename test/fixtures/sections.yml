@@ -1,13 +1,37 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  name: MyString
-  slug: MyString
-  floor: one
-  price: 
+orchestra_left:
+  name: "Orchestra Left"
+  slug: "orchestra_left"
+  floor: orchestra
+  price: 1000
 
-two:
-  name: MyString
-  slug: MyString
-  floor: two
-  price: 
+orchestra_center:
+  name: "Orchestra Center"
+  slug: "orchestra_center"
+  floor: orchestra
+  price: 1500
+
+orchestra_right:
+  name: "Orchestra Right"
+  slug: "orchestra_right"
+  floor: orchestra
+  price: 1000
+
+balcony_left:
+  name: "Balcony Left"
+  slug: "balcony_left"
+  floor: balcony
+  price: 500
+
+balcony_center:
+  name: "Balcony Center"
+  slug: "balcony_center"
+  floor: balcony
+  price: 1000
+
+balcony_right:
+  name: "Balcony Right"
+  slug: "balcony_right"
+  floor: balcony
+  price: 500
