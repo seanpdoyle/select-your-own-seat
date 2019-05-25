@@ -23,16 +23,21 @@
           <% sections.each do |section| %>
             <g>
               <% section.seats.each do |seat| %>
-                <svg
-                  width="12px"
-                  height="12px"
-                  viewBox="0 0 24 24"
-                  x="<%= seat.x %>"
-                  y="<%= seat.y %>"
+                <a
+                  href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
+                  aria-label="<%= seat.row_number %>"
                 >
-                  <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
-                  <circle fill="#ffffff" r="6" cx="12" cy="12"></circle>
-                </svg>
+                  <svg
+                    width="12px"
+                    height="12px"
+                    viewBox="0 0 24 24"
+                    x="<%= seat.x %>"
+                    y="<%= seat.y %>"
+                  >
+                    <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
+                    <circle fill="#ffffff" r="6" cx="12" cy="12"></circle>
+                  </svg>
+                </a>
               <% end %>
             </g>
           <% end %>
