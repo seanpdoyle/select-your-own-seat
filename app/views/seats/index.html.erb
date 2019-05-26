@@ -82,14 +82,18 @@
                   <%= number_to_currency(seat.section.price / 100.0) %>
                 </td>
                 <td class="syos-u-text-align-right">
-                  <button class="syos-button syos-button--transparent">
+                  <%= button_to(
+                    seat_selection_path(seat),
+                    class: "syos-button syos-button--transparent",
+                    method: :delete,
+                  ) do %>
                     <%= inline_svg_tag(
                       "icons/x-circle.svg",
                       aria: true,
                       class: "syos-icon",
                       title: "Remove",
                     ) %>
-                  </button>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
