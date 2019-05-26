@@ -12,6 +12,7 @@ class VisitorSelectsSeatTest < ApplicationSystemTestCase
 
     within("#cart-summary") do
       assert_text "$10.00"
+      assert_text section.name
     end
   end
 end
