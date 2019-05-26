@@ -19,4 +19,15 @@ class SelectionsControllerTest < ActionDispatch::IntegrationTest
 
     assert_equal cart.seats.ids, [seat.id]
   end
+
+  test "#destroy when a Seat is already selected" do
+    seat_selection = create(:seat_selection)
+    cart = seat_selection.cart
+    seat = seat_selection.seat
+    cookies[:cart_token] = cart.token
+
+    delete seat_selection_path(seat, seat_selection)
+
+    assert_equal cart.seats.ids, []
+  end
 end
