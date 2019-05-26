@@ -12,8 +12,4 @@ class VisitorViewsSeatsTest < ApplicationSystemTestCase
 
     assert_text("$10.00")
   end
-
-  def click_on_seat(row_number)
-    find(%{[aria-label*="#{row_number}"]}).click
-  end
 end
