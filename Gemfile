@@ -19,6 +19,7 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'active_link_to'
 gem 'inline_svg'
 
 # Reduces boot times through caching; required in config/boot.rb
