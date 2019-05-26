@@ -26,7 +26,7 @@ class SelectionsControllerTest < ActionDispatch::IntegrationTest
     seat = seat_selection.seat
     cookies[:cart_token] = cart.token
 
-    delete seat_selection_path(seat, seat_selection)
+    delete seat_selection_path(seat)
 
     assert_equal cart.seats.ids, []
   end
