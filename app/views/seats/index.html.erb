@@ -29,6 +29,15 @@
             <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
             <circle fill="#ffffff" r="6" cx="12" cy="12"></circle>
           </symbol>
+
+          <symbol
+            id="seat-icon-selected"
+            width="24"
+            height="24"
+            viewbox="0 0 24 24"
+          >
+            <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
+          </symbol>
         </svg>
 
         <g>
@@ -40,7 +49,11 @@
                   aria-label="<%= seat.row_number %>"
                 >
                   <use
-                    xlink:href="#seat-icon-unselected"
+                    <% if Current.cart.include?(seat) %>
+                      xlink:href="#seat-icon-selected"
+                    <% else %>
+                      xlink:href="#seat-icon-unselected"
+                    <% end %>
                     width="12px"
                     height="12px"
                     x="<%= seat.x %>"
