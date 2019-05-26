@@ -9,6 +9,28 @@
     class="syos-frame"
   >
     <div class="syos-frame__map">
+      <nav class="syos-frame__floor-nav syos-floor-nav">
+        <div class="syos-floor-nav__header">
+          <p class="syos-u-margin-bottom-3 syos-u-font-weight-bold">
+            Floors
+          </p>
+        </div>
+
+        <div class="syos-floor-nav__diagram-wrapper">
+          <ul class="syos-block-stack">
+            <% venue.floors.each do |floor| %>
+              <li class="syos-block-stack__item">
+                <%= active_link_to(
+                  venue_floor_seats_path(venue, floor),
+                ) do %>
+                  <%= floor.name %>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </nav>
+
       <div class="syos-frame__legend" aria-hidden="true">
         <p class="syos-u-margin-bottom-3 syos-u-font-weight-bold">
           Legend
@@ -143,7 +165,7 @@
             <% Current.seat_selections.each do |seat_selection| %>
               <tr>
                 <td>
-                  <%= seat_selection.seat.row_number %>
+                  <%= seat_selection.seat.section.name %>, <%= seat_selection.seat.row_number %>
                 </td>
                 <td class="syos-table__cell--numerals">
                   <%= number_to_currency(seat_selection.seat.section.price / 100.0) %>
