@@ -57,11 +57,20 @@
       </div>
 
       <div class="syos-inline-stack__item">
-        <%= button_to(
-          "Select",
-          seat_selections_path(seat),
-          class: "syos-button",
-        ) %>
+        <% if Current.cart.include?(seat) %>
+          <%= button_to(
+            "Remove",
+            seat_selection_path(seat),
+            method: :delete,
+            class: "syos-button",
+          ) %>
+        <% else %>
+          <%= button_to(
+            "Select",
+            seat_selections_path(seat),
+            class: "syos-button",
+          ) %>
+        <% end %>
       </div>
     </div>
   </footer>
