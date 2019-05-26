@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
   def ensure_cart_exists
     cart_token = cookies[:cart_token]
 
-    Current.cart ||= Cart.create_or_find_by(token: cart_token)
+    Current.cart ||= Cart.includes(seats: [:section]).create_or_find_by(
+      token: cart_token,
+    )
 
     cookies[:cart_token] ||= Current.cart.token
   end
