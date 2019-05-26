@@ -4,11 +4,18 @@ FactoryBot.define do
     slug { "benedum_center" }
   end
 
-  factory :orchestra, class: "Floor" do
+  factory :floor do
     association :venue, factory: [:benedum_center]
 
-    name { "Orchestra" }
-    slug { "orchestra" }
+    factory :balcony do
+      name { "Balcony" }
+      slug { "balcony" }
+    end
+
+    factory :orchestra do
+      name { "Orchestra" }
+      slug { "orchestra" }
+    end
   end
 
   factory :section do
