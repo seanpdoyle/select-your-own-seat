@@ -4,9 +4,11 @@ import svgPanZoom from "svg-pan-zoom"
 export default class extends Controller {
   static targets = [
     "map",
+    "zoomControls",
   ]
 
   connect() {
+    this.zoomControlsTarget.hidden = false
     this.map = svgPanZoom(this.mapTarget, {
       zoomEnabled: false,
       zoomScaleSensitivity: 0.75,
