@@ -1,6 +1,9 @@
 <%= tag.dialog(
   class: "syos-dialog",
   open: true,
+  "data-controller": "dialog",
+  "data-action": "cancel->dialog#cancel",
+  "data-redirect-to-url": redirect_to_url,
 ) do %>
   <%= yield %>
 <% end %>
