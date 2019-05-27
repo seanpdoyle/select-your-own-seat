@@ -7,6 +7,7 @@
 <main class="syos-site-frame__main">
   <section
     class="syos-frame"
+    data-controller="seats"
   >
     <div class="syos-frame__map">
       <nav class="syos-frame__floor-nav syos-floor-nav">
@@ -84,6 +85,7 @@
         width="1600px"
         height="1600px"
         viewBox="0 0 1600 1600"
+        data-target="seats.map"
       >
         <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
 
@@ -108,36 +110,38 @@
           </symbol>
         </svg>
 
-        <% sections.each do |section| %>
-          <g
-            <% if params.fetch(:maximum, Float::INFINITY).to_f >= section.price %>
-              opacity="1.0"
-            <% else %>
-              opacity="0.3"
-              aria-hidden="true"
-            <% end %>
-          >
-            <% section.seats.each do |seat| %>
-              <a
-                href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
-                aria-label="<%= seat.row_number %>"
-              >
-                <use
-                  <% if Current.cart.include?(seat) %>
-                    xlink:href="#seat-icon-selected"
-                  <% else %>
-                    xlink:href="#seat-icon-unselected"
-                  <% end %>
-                  width="12px"
-                  height="12px"
-                  x="<%= seat.x %>"
-                  y="<%= seat.y %>"
+        <g id="map-viewport">
+          <% sections.each do |section| %>
+            <g
+              <% if params.fetch(:maximum, Float::INFINITY).to_f >= section.price %>
+                opacity="1.0"
+              <% else %>
+                opacity="0.3"
+                aria-hidden="true"
+              <% end %>
+            >
+              <% section.seats.each do |seat| %>
+                <a
+                  href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
+                  aria-label="<%= seat.row_number %>"
                 >
-                </use>
-              </a>
-            <% end %>
-          </g>
-        <% end %>
+                  <use
+                    <% if Current.cart.include?(seat) %>
+                      xlink:href="#seat-icon-selected"
+                    <% else %>
+                      xlink:href="#seat-icon-unselected"
+                    <% end %>
+                    width="12px"
+                    height="12px"
+                    x="<%= seat.x %>"
+                    y="<%= seat.y %>"
+                  >
+                  </use>
+                </a>
+              <% end %>
+            </g>
+          <% end %>
+        </g>
       </svg>
     </div>
 
