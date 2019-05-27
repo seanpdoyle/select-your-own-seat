@@ -70,7 +70,7 @@ export default class extends Controller {
 
   filterSeats({ currentTarget }) {
     const price = currentTarget.value
-    const maximum = Number(price)
+    const maximum = Number(price || Infinity)
 
     this.sectionTargets.
       filter(section => Number(section.dataset.price) > maximum).
