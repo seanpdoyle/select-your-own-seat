@@ -322,6 +322,9 @@
   <% if frame_contents.present? %>
     <dialog
       class="syos-dialog"
+      data-controller="dialog"
+      data-action="cancel->dialog#cancel"
+      data-redirect-to-url="<%= venue_floor_seats_path(venue, floor) %>"
       open
     >
       <%= frame_contents %>
