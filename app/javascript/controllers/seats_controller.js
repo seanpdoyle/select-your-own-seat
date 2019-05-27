@@ -6,6 +6,7 @@ export default class extends Controller {
     "loadingOverlay",
     "map",
     "seat",
+    "section",
     "selection",
   ]
 
@@ -66,5 +67,28 @@ export default class extends Controller {
         seat.setAttribute("xlink:href", unselectedIcon)
       }
     })
+  }
+
+  filterSeats({ currentTarget }) {
+    const price = currentTarget.value
+    const maximum = Number(price)
+
+    this.sectionTargets.
+      filter(section => Number(section.dataset.price) > maximum).
+      forEach(section => {
+        const { excludedOpacity } = section.dataset
+
+        section.setAttribute("opacity", excludedOpacity)
+        section.setAttribute("aria-hidden", true)
+      })
+
+    this.sectionTargets.
+      filter(section => Number(section.dataset.price) <= maximum).
+      forEach(section => {
+        const { includedOpacity } = section.dataset
+
+        section.setAttribute("opacity", includedOpacity)
+        section.removeAttribute("aria-hidden")
+      })
   }
 }
