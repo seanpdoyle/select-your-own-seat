@@ -164,6 +164,10 @@
                   height="12px"
                   x="<%= seat.x %>"
                   y="<%= seat.y %>"
+                  data-target="seats.seat"
+                  data-seat-id="<%= seat.id %>"
+                  data-selected-icon="#seat-icon-selected"
+                  data-unselected-icon="#seat-icon-unselected"
                 >
                 </use>
               </a>
@@ -290,7 +294,10 @@
 
           <tbody>
             <% Current.cart.seats.each do |seat| %>
-              <tr>
+              <tr
+                data-target="seats.selection"
+                data-seat-id="<%= seat.id %>"
+              >
                 <td>
                   <%= seat.section.name %>, <%= seat.row_number %>
                 </td>
@@ -302,6 +309,8 @@
                     seat_selection_path(seat),
                     class: "syos-button syos-button--transparent",
                     method: :delete,
+                    remote: true,
+                    form: { "data-action" => "ajax:complete->seats#selectSeats" },
                   ) do %>
                     <%= inline_svg_tag(
                       "icons/x-circle.svg",
