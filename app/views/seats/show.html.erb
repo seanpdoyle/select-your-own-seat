@@ -63,12 +63,16 @@
             seat_selection_path(seat),
             method: :delete,
             class: "syos-button",
+            remote: true,
+            form_html: { "data-action" => "ajax:complete->seats#selectSeats" },
           ) %>
         <% else %>
           <%= button_to(
             "Select",
             seat_selections_path(seat),
             class: "syos-button",
+            remote: true,
+            form_html: { "data-action" => "ajax:complete->seats#selectSeats" },
           ) %>
         <% end %>
       </div>
