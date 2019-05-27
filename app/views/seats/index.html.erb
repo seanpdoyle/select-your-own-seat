@@ -143,6 +143,32 @@
           <% end %>
         </g>
       </svg>
+
+      <div class="syos-frame__map-zoom syos-control-zoom">
+        <button
+          class="syos-button syos-button--transparent syos-control-zoom__button"
+          type="button"
+        >
+          <%= inline_svg_tag(
+            "icons/plus.svg",
+            aria: true,
+            class: "syos-icon",
+            title: "zoom in",
+          ) %>
+        </button>
+
+        <button
+          class="syos-button syos-button--transparent syos-control-zoom__button"
+          type="button"
+        >
+          <%= inline_svg_tag(
+            "icons/minus.svg",
+            aria: true,
+            class: "syos-icon",
+            title: "zoom out",
+          ) %>
+        </button>
+      </div>
     </div>
 
     <div class="syos-frame__sidebar">
