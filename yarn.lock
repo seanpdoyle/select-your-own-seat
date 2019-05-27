@@ -6396,6 +6396,11 @@ supports-color@^6.1.0:
   dependencies:
     has-flag "^3.0.0"
 
+svg-pan-zoom@^3.6.0:
+  version "3.6.0"
+  resolved "https://registry.yarnpkg.com/svg-pan-zoom/-/svg-pan-zoom-3.6.0.tgz#31d8137d7e079e8f059effd85c7605b0567b6e4b"
+  integrity sha512-ZBEL2z/n/W2fLLFzn3NTQgd+7QEfbrKvKmu29U3qvMflmJgLaWkwKbOzWJYESFidTiGYMHkijAKmY6m64moyYg==
+
 svgo@^1.0.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/svgo/-/svgo-1.2.2.tgz#0253d34eccf2aed4ad4f283e11ee75198f9d7316"
