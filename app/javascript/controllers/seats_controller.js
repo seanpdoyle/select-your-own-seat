@@ -5,6 +5,8 @@ export default class extends Controller {
   static targets = [
     "loadingOverlay",
     "map",
+    "seat",
+    "selection",
   ]
 
   connect() {
@@ -17,6 +19,7 @@ export default class extends Controller {
       minZoom: 1.0,
       maxZoom: 8,
     })
+    this.selectSeats()
   }
 
   disconnect() {
@@ -49,5 +52,19 @@ export default class extends Controller {
 
   loadingFinished() {
     this.loadingOverlayTarget.classList.remove("is-loading")
+  }
+
+  selectSeats() {
+    const selectedIds = this.selectionTargets.map(seat => seat.dataset.seatId)
+
+    this.seatTargets.forEach(seat => {
+      const { seatId, selectedIcon, unselectedIcon } = seat.dataset
+
+      if (selectedIds.includes(seatId)) {
+        seat.setAttribute("xlink:href", selectedIcon)
+      } else {
+        seat.setAttribute("xlink:href", unselectedIcon)
+      }
+    })
   }
 }
