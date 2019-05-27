@@ -19,7 +19,13 @@ export default class extends Controller {
   }
 
   disconnect() {
-    this.map.destroy()
+    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
+      this.map.destroy()
+    }
+  }
+
+  discardMap() {
+    this.mapTarget.removeAttribute("data-turbolinks-permanent")
   }
 
   zoomIn() {
