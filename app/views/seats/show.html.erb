@@ -4,18 +4,17 @@
       Confirm seat selection
     </h2>
 
-    <form method="dialog">
-      <button
-        class="syos-button syos-button--transparent"
-      >
-        <%= inline_svg(
-          "icons/x-circle.svg",
-          aria: true,
-          class: "syos-icon syos-icon--large",
-          title: "Close modal",
-        ) %>
-      </button>
-    </form>
+    <%= link_to(
+      venue_floor_seats_path(venue, floor),
+      class: "syos-button syos-button--transparent",
+    ) do %>
+      <%= inline_svg(
+        "icons/x-circle.svg",
+        aria: true,
+        class: "syos-icon syos-icon--large",
+        title: "Close modal",
+      ) %>
+    <% end %>
   </header>
 
   <section class="syos-dialog__body">
