@@ -2,24 +2,23 @@
 <%= render(template: "seats/index", locals: local_assigns) %>
 <% end %>
 
-<%= render("seats/dialog") do %>
+<%= render("seats/dialog", redirect_to_url: venue_floor_seats_path(venue, floor)) do %>
   <header class="syos-dialog__header">
     <h2 class="syos-dialog__title">
       Confirm seat selection
     </h2>
 
-    <form method="dialog">
-      <button
-        class="syos-button syos-button--transparent"
-      >
-        <%= inline_svg_tag(
-          "icons/x-circle.svg",
-          aria: true,
-          class: "syos-icon syos-icon--large",
-          title: "Close modal",
-        ) %>
-      </button>
-    </form>
+    <%= link_to(
+      venue_floor_seats_path(venue, floor),
+      class: "syos-button syos-button--transparent",
+    ) do %>
+      <%= inline_svg_tag(
+        "icons/x-circle.svg",
+        aria: true,
+        class: "syos-icon syos-icon--large",
+        title: "Close modal",
+      ) %>
+    <% end %>
   </header>
 
   <section class="syos-dialog__body">
