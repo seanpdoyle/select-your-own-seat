@@ -137,6 +137,50 @@
     </div>
 
     <div class="syos-frame__sidebar">
+      <form>
+        <fieldset class="syos-u-margin-bottom-6">
+          <legend class="syos-u-margin-bottom-2 syos-inline-stack">
+            <h2 class="syos-inline-stack__item">
+              Filter by max price
+            </h2>
+
+            <input class="syos-button syos-button--transparent" type="reset" value="Clear Filters">
+          </legend>
+
+          <div class="syos-tile-controls">
+            <% [5_00, 10_00, 15_00, nil].each_cons(2) do |maximum, next_maximum| %>
+              <input
+                id="filter-<%= maximum %>"
+                class="syos-tile-controls__input"
+                type="radio"
+                name="maximum"
+                value="<%= maximum %>"
+                <% if next_maximum.nil? %>
+                  checked
+                <% end %>
+              >
+              <label class="syos-tile-controls__control" for="filter-<%= maximum %>">
+                <%= inline_svg_tag(
+                  "icons/circle.svg",
+                  aria_hidden: true,
+                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--unselected",
+                ) %>
+
+                <%= inline_svg_tag(
+                  "icons/check-circle.svg",
+                  aria_hidden: true,
+                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--selected",
+                ) %>
+
+                <%= number_to_currency(maximum / 100.0) %>
+              </label>
+            <% end %>
+          </div>
+
+          <input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters">
+        </fieldset>
+      </form>
+
       <div id="cart-summary">
         <h2 class="syos-u-margin-bottom-2">
           Your seat selections
