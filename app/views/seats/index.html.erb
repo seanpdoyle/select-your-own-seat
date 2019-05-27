@@ -7,6 +7,7 @@
 <main class="syos-site-frame__main">
   <section
     class="syos-frame"
+    data-controller="seats"
   >
     <div class="syos-frame__map">
       <nav class="syos-frame__floor-nav syos-floor-nav">
@@ -84,6 +85,7 @@
         width="1600px"
         height="1600px"
         viewBox="0 0 1600 1600"
+        data-target="seats.map"
       >
         <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
 
@@ -108,7 +110,7 @@
           </symbol>
         </svg>
 
-        <g>
+        <g id="map-viewport">
           <% sections.each do |section| %>
             <g
               <% if params.fetch(:maximum, Float::INFINITY).to_f >= section.price %>
