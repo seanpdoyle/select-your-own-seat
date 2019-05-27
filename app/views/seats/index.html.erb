@@ -192,7 +192,10 @@
         method: :get,
         local: true,
         html: {
-          "data-action": "input->price-filter#apply",
+          "data-action": "
+            input->price-filter#apply
+            reset->price-filter#apply
+          ",
         },
       ) do |form| %>
         <fieldset class="syos-u-margin-bottom-6">
