@@ -27,6 +27,7 @@
               <li class="syos-block-stack__item">
                 <%= active_link_to(
                   venue_floor_seats_path(venue, floor),
+                  "data-action" => "turbolinks:click->seats#discardMap",
                 ) do %>
                   <%= floor.name %>
                 <% end %>
@@ -83,6 +84,7 @@
       </div>
 
       <svg
+        id="map"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         class="syos-seat-map"
@@ -90,6 +92,7 @@
         height="1600px"
         viewBox="0 0 1600 1600"
         data-target="seats.map"
+        data-turbolinks-permanent
       >
         <style>
           <% floor.price_ranges.each do |price_range| %>
