@@ -205,6 +205,7 @@
         url: venue_floor_seats_path(venue, floor),
         method: :get,
         local: true,
+        html: { "data-action" => "reset->seats#filterSeats" },
       ) do |form| %>
         <fieldset class="syos-u-margin-bottom-6">
           <legend class="syos-u-margin-bottom-2 syos-inline-stack">
@@ -315,3 +316,4 @@
     </div>
   </section>
 </main>
+
