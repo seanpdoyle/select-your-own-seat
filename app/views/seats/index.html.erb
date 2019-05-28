@@ -83,6 +83,16 @@
         </ul>
       </div>
 
+      <div
+        class="syos-frame__map-overlay syos-loader-overlay is-loading"
+        aria-hidden="true"
+        >
+        <%= inline_svg_tag(
+          "icons/loader.svg",
+          class: "syos-icon syos-icon--xlarge syos-loader-overlay__loader",
+        ) %>
+      </div>
+
       <svg
         id="map"
         xmlns="http://www.w3.org/2000/svg"
