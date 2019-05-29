@@ -80,7 +80,12 @@
       </div>
 
       <div
-        class="syos-frame__map-overlay syos-loader-overlay is-loading"
+        class="syos-frame__map-overlay syos-loader-overlay"
+        data-target="seats.loadingOverlay"
+        data-action="
+          turbolinks:request-start@document->seats#loadingStarted
+          turbolinks:load@document->seats#loadingFinished
+        "
         aria-hidden="true"
         >
         <%= inline_svg_tag(
@@ -294,3 +299,4 @@
     </div>
   </section>
 </main>
+

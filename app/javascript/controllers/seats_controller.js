@@ -3,6 +3,7 @@ import svgPanZoom from "svg-pan-zoom"
 
 export default class extends Controller {
   static targets = [
+    "loadingOverlay",
     "map",
   ]
 
@@ -19,7 +20,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
+    if (this.isDiscardingMap) {
       this.map.destroy()
     }
   }
@@ -28,11 +29,25 @@ export default class extends Controller {
     this.mapTarget.removeAttribute("data-turbolinks-permanent")
   }
 
+  get isDiscardingMap() {
+    return !this.mapTarget.hasAttribute("data-turbolinks-permanent")
+  }
+
   zoomIn() {
     this.map.zoomIn()
   }
 
   zoomOut() {
     this.map.zoomOut()
+  }
+
+  loadingStarted() {
+    if (this.isDiscardingMap) {
+      this.loadingOverlayTarget.classList.add("is-loading")
+    }
+  }
+
+  loadingFinished() {
+    this.loadingOverlayTarget.classList.remove("is-loading")
   }
 }
