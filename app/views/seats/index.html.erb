@@ -109,7 +109,14 @@
         </svg>
 
         <% sections.each do |section| %>
-          <g>
+          <g
+            <% if params.fetch(:maximum, Float::INFINITY).to_f >= section.price %>
+              opacity="1.0"
+            <% else %>
+              opacity="0.3"
+              aria-hidden="true"
+            <% end %>
+          >
             <% section.seats.each do |seat| %>
               <a
                 href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
@@ -135,7 +142,11 @@
     </div>
 
     <div class="syos-frame__sidebar">
-      <form>
+      <%= form_with(
+        url: venue_floor_seats_path(venue, floor),
+        method: :get,
+        local: true,
+      ) do |form| %>
         <fieldset class="syos-u-margin-bottom-6">
           <legend class="syos-u-margin-bottom-2 syos-inline-stack">
             <h2 class="syos-inline-stack__item">
@@ -153,7 +164,8 @@
                 type="radio"
                 name="maximum"
                 value="<%= maximum %>"
-                <% if next_maximum.nil? %>
+                <% if params[:maximum].to_i == maximum ||
+                    [params[:maximum], next_maximum].none? %>
                   checked
                 <% end %>
               >
@@ -177,7 +189,7 @@
 
           <input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters">
         </fieldset>
-      </form>
+      <% end %>
 
       <div id="cart-summary">
         <h2 class="syos-u-margin-bottom-2">
