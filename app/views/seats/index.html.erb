@@ -84,7 +84,20 @@
         width="1600px"
         height="1600px"
         viewBox="0 0 1600 1600"
+        data-price-filter-maximum="<%= params[:maximum] %>"
       >
+        <style>
+          <% floor.price_ranges.each do |price_range| %>
+            [data-price-filter-maximum="<%= price_range.min %>"] [data-price-filter-matches] {
+              opacity: 0.3;
+            }
+
+            [data-price-filter-maximum="<%= price_range.min %>"] [data-price-filter-matches~="<%= price_range.min %>"] {
+              opacity: 1.0;
+            }
+          <% end %>
+        </style>
+
         <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
 
         <svg style="display: none;">
@@ -109,7 +122,9 @@
         </svg>
 
         <% sections.each do |section| %>
-          <g>
+          <g
+            data-price-filter-matches="<%= floor.price_ranges.map(&:min).select { |min| section.price <= min }.join(" ") %>"
+          >
             <% section.seats.each do |seat| %>
               <a
                 href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
@@ -135,7 +150,11 @@
     </div>
 
     <div class="syos-frame__sidebar">
-      <form>
+      <%= form_with(
+        url: venue_floor_seats_path(venue, floor),
+        method: :get,
+        local: true,
+      ) do |form| %>
         <fieldset class="syos-u-margin-bottom-6">
           <legend class="syos-u-margin-bottom-2 syos-inline-stack">
             <h2 class="syos-inline-stack__item">
@@ -153,6 +172,9 @@
                 type="radio"
                 name="maximum"
                 value="<%= price_range.min %>"
+                <% if price_range.cover?(params.fetch(:maximum, Float::INFINITY).to_f) %>
+                  checked
+                <% end %>
               >
               <label class="syos-tile-controls__control" for="filter-<%= price_range.min %>">
                 <%= inline_svg_tag(
@@ -174,7 +196,7 @@
 
           <input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters">
         </fieldset>
-      </form>
+      <% end %>
 
       <div id="cart-summary">
         <h2 class="syos-u-margin-bottom-2">
