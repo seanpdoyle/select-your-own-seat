@@ -71,6 +71,15 @@ export default class extends Controller {
   filterSeats({ currentTarget }) {
     const price = currentTarget.value
     const maximum = Number(price || Infinity)
+    const currentUrl = new URL(document.location)
+
+    if (maximum !== Infinity) {
+      currentUrl.searchParams.set("maximum", maximum)
+      history.pushState({ maximum }, "", currentUrl)
+    } else {
+      currentUrl.searchParams.delete("maximum")
+      history.replaceState({}, "", currentUrl)
+    }
 
     this.sectionTargets.
       filter(section => Number(section.dataset.price) > maximum).
