@@ -8,9 +8,11 @@ export default class extends Controller {
     "seat",
     "section",
     "selection",
+    "zoomControls",
   ]
 
   connect() {
+    this.zoomControlsTarget.hidden = false
     this.map = svgPanZoom(this.mapTarget, {
       viewportSelector: "#map-viewport",
       center: true,
