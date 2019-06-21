@@ -20,4 +20,12 @@ export default class extends Controller {
   disconnect() {
     this.map.destroy()
   }
+
+  zoomIn() {
+    this.map.zoomIn()
+  }
+
+  zoomOut() {
+    this.map.zoomOut()
+  }
 }
