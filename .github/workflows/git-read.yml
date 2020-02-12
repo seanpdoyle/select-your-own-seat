@@ -1,0 +1,50 @@
+name: git-read
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - uses: actions/checkout@v2
+        with:
+          repository: "seanpdoyle/git-read"
+          path: "git-read"
+
+      - uses: actions/cache@v1
+        with:
+          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: ${{ runner.os }}-gems-
+          path: vendor/bundle
+
+      - uses: actions/setup-ruby@v1
+        with:
+          ruby-version: "2.6.5"
+          run: bundle config path vendor/bundle
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+
+      - name: Build documentation from Git History
+        run: |
+          cd $GITHUB_WORKSPACE/git-read
+          ./script/install
+          ./bin/git-read \
+            --verbose \
+            --git-dir $GITHUB_WORKSPACE \
+            --output-dir $GITHUB_WORKSPACE/build/
+
+      - name: Deploy
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.PERSONAL_TOKEN }}
+          commit_message: ${{ github.event.head_commit.message }}
+          publish_dir: build/
