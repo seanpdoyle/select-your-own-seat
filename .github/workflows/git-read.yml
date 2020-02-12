@@ -1,0 +1,27 @@
+name: git-read
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    - uses: actions/checkout@v2
+      with:
+        repository: "seanpdoyle/git-read"
+        path: "git-read"
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: "2.6.5"
+    - name: Build documentation from Git History
+      run: |
+        $GITHUB_WORKSPACE/git-read/bin/git-read --git-dir ./ --build-dir ./build
+    - name: Deploy
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        personal_token: ${{ secrets.PERSONAL_TOKEN }}
+        commit_message: ${{ github.event.head_commit.message }}
+        publish_dir: ./build
