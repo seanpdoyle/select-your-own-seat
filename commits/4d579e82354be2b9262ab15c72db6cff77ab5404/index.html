@@ -1,0 +1,326 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Unselect a Seat from the `<dialog>`
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" data-turbolinks-track="reload" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" data-turbolinks-track="reload" />
+    <script src="../../main.js" data-turbolinks-track="reload"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">Table of Contents</summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../3514cbb739509632b5f20a6e2f4a9eedb0cecdd2/">Initial Commit
+</a>
+          <a href="../3f76aace9765680e654754d716599a1dfcf63af2/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../073d2a413f4d02b826e56d3f275e25477359b3e7/">Create `git-read` GitHub Action
+</a>
+          <a href="../32c895c35262627d6988dbb19d68a3e2761ff33d/">Add Database Models
+</a>
+          <a href="../d33ae5a28f9da9e0bdba419fc711c44abd8db30f/">Establish Database Records
+</a>
+          <a href="../6d42900b800b0fdf393e4b6a9e7a8ad764a86cc4/">Output of `rails webpacker:install`
+</a>
+          <a href="../aca6876bb5be2ba4677891c8f6c8a20dcd2b0cca/">Install StimulusJS through Webpacker
+</a>
+          <a href="../cdf2783b4d6971cb15ecfa92135d43dffeae3b94/">Copies CSS Rules from Source Project</a>
+          <a href="../4465bd265b1d4bcfdc065d85278eab85a8746606/">Introduce Seats Page Frame
+</a>
+          <a href="../51c3f35ee74ff17b63f3f1515a20c568094bf421/">Render Seats for a Venue in an SVG
+</a>
+          <a href="../5f65b33731c239c289c653d9dbd98855b9953229/">Extract the `seats&#x2F;frame` partial
+</a>
+          <a href="../cbaee5ec4acc383b38a0e6a7554607e629b8021c/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../223e7f19f7a01eaea6086a7eca1d32645c321b90/">Add `seats#show` route and action
+</a>
+          <a href="../0b33a534dfdac2e0fcd1c9cc30a79c2ff72ff2a2/">Add `inline_svg` gem
+</a>
+          <a href="../a20b353f9049808049e2d15093e9cfe068b1018d/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../f647f72c255c200424c5e8a5b2ac7c4835db8453/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="./" aria-current="page">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../adc726f17e511ad00a12b91f7f6686799dd81aa6/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../18189a55f4e11077be7aa00ab7c201f4bc9ae562/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../35ddc654124f6efd9c17f08ac4abc17a80d634b2/">Switch floors from map
+</a>
+          <a href="../72d3978ad9befbe9cb412cc62bbf19fe1326f8a8/">Address N+1 SQL queries causing performance issues
+</a>
+          <a href="../16fd0c895c4219927d2a819b40c1dc31ed92d2c8/">Filter Seats based on their Price
+</a>
+          <a href="../e189be60cfc2aba9b42bac12482630921be9c3d9/">Implement Server-Side Price Filtering
+</a>
+          <a href="../44922038ff169d06a5fc4fd436bc45435f1aa70a/">Add panning and zooming to SVG map element
+</a>
+          <a href="../f6b0f8ab99e812137c4a889a7c24b0637522dc26/">Add map zoom controls to `seats&#x2F;frame` partial
+</a>
+          <a href="../f43e9b9b81dc9eb2fab653ddb8f3600869d08d16/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../dcf28d6581f4760dd8b37ed5734d61e87c5fe20a/">Persist map across page loads
+</a>
+          <a href="../087dfc5d3aa2557b10592fb97f3d135f499becf7/">Introduce a Loading Indicator
+</a>
+          <a href="../ed3d3ed14ec9da75f6964b291e3447acad1ee72b/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../800b4573d799c890d7331b25a1798903cc8a319f/">Opt out of preview caching
+</a>
+          <a href="../2cda6e42c6f5e8471aa46af02d2911d9c7b2cc35/">Progressively enhance Selection State
+</a>
+          <a href="../122d583c8242c62f8264a4c38bcf721786f44d43/">Progressively enhance price filtering
+</a>
+          <a href="../5daa8757ab2bdd1ba0c8b504c8b6aa01fc2985a7/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../e316ceebacc260f599e0ec238497ae1c405478e5/">Manage filter query parameters with push state
+</a>
+          <a href="../626cb68d0acb2885258ff4780c5c26c5b13a0656/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../c341b0da3fa387324e71a64f0285b1767cf16382/">Hide elements that require JavaScript
+</a>
+          <a href="../9e5b97699be0f9dbdc92d85a2809dfcf5523aa61/">Execute System Tests without JavaScript
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header class="navigation">
+
+<a href="../f647f72c255c200424c5e8a5b2ac7c4835db8453/">              &#8592; Previous
+</a>
+<a href="../adc726f17e511ad00a12b91f7f6686799dd81aa6/">              Next &#8594;
+</a>      </header>
+
+      <article class="commit">
+        <h1>Unselect a Seat from the <code>&lt;dialog&gt;</code></h1>
+
+<p>When viewing the details for a <code>Seat</code> that is already included in the
+visitor&rsquo;s <code>Cart</code>, present them with a button to remove it.</p>
+
+<p>In order to support the removal of a Seat without looking up the
+intermediary <code>SeatSelection</code> record, modify the <code>resources
+:seat_selections</code> route declaration&rsquo;s <code>destroy</code> action to be a singular
+resource instead.</p>
+
+<p>This means that instead of handling <code>DELETE
+/seats/:seat_id/selections/:id</code> requests, the <code>selections#destroy</code>
+controller action will handle <code>DELETE /seats/:seat_id/selections</code>
+requests, determining the correct <code>SeatSelection</code> record based on the
+context from the <code>Current.cart</code> and the <code>params[:seat_id]</code>.</p>
+
+
+
+              <details open>
+  <summary>app/models/cart.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/cart.rb b/app/models/cart.rb
+index 62b78c9..d8604bc 100644
+</span><span class="gd">--- a/app/models/cart.rb
+</span><span class="gi">+++ b/app/models/cart.rb
+</span><span class="p">@@ -3,4 +3,8 @@</span> class Cart &lt; ApplicationRecord
+ 
+   has_many :seat_selections
+   has_many :seats, through: :seat_selections
+<span class="gi">+
++  def include?(seat)
++    seats.ids.include?(seat.id)
++  end
+</span> end
+</code></pre></div></details>
+
+              <details open>
+  <summary>app/views/seats/_frame.html.erb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/_frame.html.erb b/app/views/seats/_frame.html.erb
+index d25232d..49adfe5 100644
+</span><span class="gd">--- a/app/views/seats/_frame.html.erb
+</span><span class="gi">+++ b/app/views/seats/_frame.html.erb
+</span><span class="p">@@ -82,7 +82,7 @@</span>
+                   &lt;/td&gt;
+                   &lt;td class="syos-u-text-align-right"&gt;
+                     &lt;%= button_to(
+<span class="gd">-                      seat_selection_path(seat_selection.seat, seat_selection),
+</span><span class="gi">+                      seat_selection_path(seat_selection.seat),
+</span>                       class: "syos-button syos-button--transparent",
+                       method: :delete,
+                     ) do %&gt;
+</code></pre></div></details>
+
+              <details open>
+  <summary>app/views/seats/show.html.erb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
+index 507d309..21eadc8 100644
+</span><span class="gd">--- a/app/views/seats/show.html.erb
+</span><span class="gi">+++ b/app/views/seats/show.html.erb
+</span><span class="p">@@ -57,11 +57,20 @@</span>
+       &lt;/div&gt;
+ 
+       &lt;div class="syos-inline-stack__item"&gt;
+<span class="gd">-        &lt;%= button_to(
+-          "Select",
+-          seat_selections_path(seat),
+-          class: "syos-button",
+-        ) %&gt;
+</span><span class="gi">+        &lt;% if Current.cart.include?(seat) %&gt;
++          &lt;%= button_to(
++            "Remove",
++            seat_selection_path(seat),
++            method: :delete,
++            class: "syos-button",
++          ) %&gt;
++        &lt;% else %&gt;
++          &lt;%= button_to(
++            "Select",
++            seat_selections_path(seat),
++            class: "syos-button",
++          ) %&gt;
++        &lt;% end %&gt;
+</span>       &lt;/div&gt;
+     &lt;/div&gt;
+   &lt;/footer&gt;
+</code></pre></div></details>
+
+              <details open>
+  <summary>config/routes.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index 3f39c83..8ff545e 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -7,7 +7,8 @@</span> Rails.application.routes.draw do
+   end
+ 
+   resources :seats, only: [] do
+<span class="gd">-    resources :selections, only: [:create, :destroy]
+</span><span class="gi">+    resources :selections, only: [:create]
++    resource :selection, only: [:destroy]
+</span>   end
+ 
+   root to: redirect("/venues/benedum_center/floors/orchestra/seats")
+</code></pre></div></details>
+
+              <details open>
+  <summary>test/application_system_test_case.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/application_system_test_case.rb b/test/application_system_test_case.rb
+index d19212a..6d85d7a 100644
+</span><span class="gd">--- a/test/application_system_test_case.rb
+</span><span class="gi">+++ b/test/application_system_test_case.rb
+</span><span class="p">@@ -2,4 +2,8 @@</span> require "test_helper"
+ 
+ class ApplicationSystemTestCase &lt; ActionDispatch::SystemTestCase
+   driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+<span class="gi">+
++  def click_on_seat(row_number)
++    find(%{[aria-label*="#{row_number}"]}).click
++  end
+</span> end
+</code></pre></div></details>
+
+              <details open>
+  <summary>test/controllers/selections_controller_test.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/selections_controller_test.rb b/test/controllers/selections_controller_test.rb
+index 76b31c9..2f59574 100644
+</span><span class="gd">--- a/test/controllers/selections_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/selections_controller_test.rb
+</span><span class="p">@@ -26,7 +26,7 @@</span> class SelectionsControllerTest &lt; ActionDispatch::IntegrationTest
+     seat = seat_selection.seat
+     cookies[:cart_token] = cart.token
+ 
+<span class="gd">-    delete seat_selection_path(seat, seat_selection)
+</span><span class="gi">+    delete seat_selection_path(seat)
+</span> 
+     assert_equal cart.seats.ids, []
+   end
+</code></pre></div></details>
+
+              <details open>
+  <summary>test/models/cart_test.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/cart_test.rb b/test/models/cart_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..e98e76f
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/models/cart_test.rb
+</span><span class="p">@@ -0,0 +1,22 @@</span>
+<span class="gi">+require "test_helper"
++
++class CartTest &lt; ActiveSupport::TestCase
++  test "#include? returns true when a seat is selected" do
++    seat_selection = create(:seat_selection)
++    seat = seat_selection.seat
++    cart = seat_selection.cart
++
++    included = cart.include?(seat)
++
++    assert included, "cart includes selected seat"
++  end
++
++  test "#include? returns false when a seat is not yet selected" do
++    seat = create(:seat)
++    cart = create(:cart)
++
++    included = cart.include?(seat)
++
++    refute included, "cart includes selected seat"
++  end
++end
+</span></code></pre></div></details>
+
+              <details open>
+  <summary>test/system/visitor_unselects_seat_test.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_unselects_seat_test.rb b/test/system/visitor_unselects_seat_test.rb
+index bfb6a23..439bbb5 100644
+</span><span class="gd">--- a/test/system/visitor_unselects_seat_test.rb
+</span><span class="gi">+++ b/test/system/visitor_unselects_seat_test.rb
+</span><span class="p">@@ -15,4 +15,21 @@</span> class VisitorUnselectsSeatTest &lt; ApplicationSystemTestCase
+       assert_no_text "$10.00"
+     end
+   end
+<span class="gi">+
++  test "from the details dialog of an already selected seat" do
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    section = create(:section, floor: floor, price: 10_00)
++    seat = create(:seat, row: "AA", number: "101", section: section)
++
++    visit "/venues/benedum_center/floors/orchestra/seats"
++    click_on_seat "AA-101"
++    click_on "Select"
++    click_on_seat "AA-101"
++    within("dialog") { click_on "Remove" }
++
++    within "#cart-summary" do
++      assert_no_text "$10.00"
++    end
++  end
+</span> end
+</code></pre></div></details>
+
+              <details open>
+  <summary>test/system/visitor_views_seats_test.rb</summary>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_views_seats_test.rb b/test/system/visitor_views_seats_test.rb
+index 6678b42..4461a43 100644
+</span><span class="gd">--- a/test/system/visitor_views_seats_test.rb
+</span><span class="gi">+++ b/test/system/visitor_views_seats_test.rb
+</span><span class="p">@@ -12,8 +12,4 @@</span> class VisitorViewsSeatsTest &lt; ApplicationSystemTestCase
+ 
+     assert_text("$10.00")
+   end
+<span class="gd">-
+-  def click_on_seat(row_number)
+-    find(%{[aria-label*="#{row_number}"]}).click
+-  end
+</span> end
+</code></pre></div></details>
+
+      </article>
+    </main>
+  </body>
+</html>
