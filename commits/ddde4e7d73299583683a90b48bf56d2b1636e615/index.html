@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `inline_svg` gem
+    <title>Persist map across page loads
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -39,7 +39,7 @@
 </a>
           <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
 </a>
-          <a href="./" aria-current="page">Add `inline_svg` gem
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
 </a>
           <a href="../723ecc2de8487a1703890edb45f376c15efda730/">Add a Seat Selection to Shopping Cart
 </a>
@@ -65,7 +65,7 @@
 </a>
           <a href="../8da04a48d9fe70155eb13eac79154916328a2b03/">Add behavior to Zoom In and Zoom Out buttons
 </a>
-          <a href="../ddde4e7d73299583683a90b48bf56d2b1636e615/">Persist map across page loads
+          <a href="./" aria-current="page">Persist map across page loads
 </a>
           <a href="../903c340982b8faa0b5595926d9a374241baddbad/">Introduce a Loading Indicator
 </a>
@@ -97,151 +97,117 @@
 
         <nav class="navigation">
 
-<a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">              &#8592; Previous
+<a href="../8da04a48d9fe70155eb13eac79154916328a2b03/">              &#8592; Previous
 </a>
-<a href="../723ecc2de8487a1703890edb45f376c15efda730/">              Next &#8594;
+<a href="../903c340982b8faa0b5595926d9a374241baddbad/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>inline_svg</code> gem</h1>
+          <h1>Persist map across page loads</h1>
 
-<p>Extract the <code>&lt;svg&gt;</code> element that served as our <code>&lt;dialog&gt;</code> element&rsquo;s
-&ldquo;Close modal&rdquo; button.</p>
+<p>The <code>&lt;svg&gt;</code> element that serves as the <code>seats#index</code> and <code>seats#show</code>
+seat map includes more than 1,000 elements per floor. Parsing,
+rendering, and discarding the DOM Nodes that represent the map takes
+time and could be wasteful.</p>
 
-<p>Store the <code>.svg</code> file in <code>app/assets/images/icons</code>, making it available
-to the <a href="https://github.com/jamesmartin/inline_svg/tree/v1.7.1#usage"><code>inline_svg_tag</code>-provided helper</a>.</p>
+<p>Additionally, now that the application is capable of panning and
+zooming, it&rsquo;s important to preserve that state as our users interact
+with the map, so that they&rsquo;re not surprised or disrupted.</p>
+
+<p>This commit annotates the <code>&lt;svg&gt;</code> element that includes the page&rsquo;s seat
+map elements with <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#persisting-elements-across-page-loads"><code>data-turbolinks-permanent</code></a> to persist it
+across page loads. In order to persist the element across page loads, it
+requires an <code>id</code> attribute, so declare it as <code>&quot;map&quot;</code>.</p>
+
+<p>There is an exception to this optimization: navigating between the
+floors of our venue. When switching floors, preserving the map&rsquo;s current
+zoom and pan <em>would be a surprise</em>.</p>
+
+<p>When navigating to a separate <code>Floor</code> in a <code>Venue</code>,
+the clicked <code>&lt;a&gt;</code> element will fire a <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#full-list-of-events"><code>turbolinks:click</code></a> event.</p>
+
+<p>This commit decorates the <code>&lt;a&gt;</code> elements with <a href="https://stimulusjs.org/reference/actions"><code>data-action</code>
+attributes</a> that route the events to the <code>seats#discardMap</code>
+function. The <code>discardMap</code> function removes the
+<code>data-turbolinks-permanent</code> attribute, preventing it from being retained
+during the imminent page transition.</p>
+
+<p>The presence or absence of the <code>data-turbolinks-permanent</code> attribute
+represents whether or not the <code>seats</code> controller should discard the map.</p>
+
+<p>Therefore <em>do not</em> destroy the map when navigating between pages <em>while
+the map is being retained</em>.</p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id="Gemfile"
+  id="app/javascript/controllers/seats_controller.js"
   open
 >
   <summary>
-    Gemfile
+    app/javascript/controllers/seats_controller.js
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 0472bb4..b1127cd 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -19,6 +19,7 @@</span> gem 'turbolinks', '~&gt; 5'
- gem 'jbuilder', '~&gt; 2.7'
- # Use Active Model has_secure_password
- # gem 'bcrypt', '~&gt; 3.1.7'
-<span class="gi">+gem 'inline_svg'
-</span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index d20a0f2..f60125a 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -19,7 +19,13 @@</span> export default class extends Controller {
+   }
+ 
+   disconnect() {
+<span class="gd">-    this.map.destroy()
+</span><span class="gi">+    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
++      this.map.destroy()
++    }
++  }
++
++  discardMap() {
++    this.mapTarget.removeAttribute("data-turbolinks-permanent")
+</span>   }
+ 
+   zoomIn() {
 </code></pre></div></details>
 
               <details
-  id="Gemfile.lock"
+  id="app/views/seats/index.html.erb"
   open
 >
   <summary>
-    Gemfile.lock
+    app/views/seats/index.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 6d80f68..810305a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -82,6 +82,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    inline_svg (1.7.1)
-+      activesupport (&gt;= 3.0)
-+      nokogiri (&gt;= 1.6)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -206,6 +209,7 @@</span> DEPENDENCIES
-   byebug
-   capybara (&gt;= 2.15)
-   factory_bot (~&gt; 5.0.0)
-<span class="gi">+  inline_svg
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   pg (&gt;= 0.18, &lt; 2.0)
-</code></pre></div></details>
-
-              <details
-  id="app/assets/images/icons/x-circle.svg"
-  open
->
-  <summary>
-    app/assets/images/icons/x-circle.svg
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/x-circle.svg b/app/assets/images/icons/x-circle.svg
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..aa8969e
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/app/assets/images/icons/x-circle.svg
-</span><span class="p">@@ -0,0 +1,15 @@</span>
-<span class="gi">+&lt;svg
-+  xmlns="http://www.w3.org/2000/svg"
-+  viewBox="0 0 24 24"
-+  width="24"
-+  height="24"
-+  fill="none"
-+  stroke="currentColor"
-+  stroke-width="2"
-+  stroke-linecap="round"
-+  stroke-linejoin="round"
-+&gt;
-+  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
-+  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
-+  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
-+&lt;/svg&gt;
-</span></code></pre></div></details>
-
-              <details
-  id="app/views/seats/show.html.erb"
-  open
->
-  <summary>
-    app/views/seats/show.html.erb
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
-index db8733b..214e057 100644
-</span><span class="gd">--- a/app/views/seats/show.html.erb
-</span><span class="gi">+++ b/app/views/seats/show.html.erb
-</span><span class="p">@@ -10,23 +10,12 @@</span>
-       &lt;button
-         class="syos-button syos-button--transparent"
-       &gt;
-<span class="gd">-        &lt;svg
--          xmlns="http://www.w3.org/2000/svg"
--          viewBox="0 0 24 24"
--          width="24"
--          height="24"
--          class="syos-icon syos-icon--large"
--          title="Close modal"
--          fill="none"
--          stroke="currentColor"
--          stroke-width="2"
--          stroke-linecap="round"
--          stroke-linejoin="round"
--        &gt;
--          &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
--          &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
--          &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
--        &lt;/svg&gt;
-</span><span class="gi">+        &lt;%= inline_svg_tag(
-+          "icons/x-circle.svg",
-+          aria: true,
-+          class: "syos-icon syos-icon--large",
-+          title: "Close modal",
-+        ) %&gt;
-</span>       &lt;/button&gt;
-     &lt;/form&gt;
-   &lt;/header&gt;
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 1c3d8ed..fa66960 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -23,6 +23,7 @@</span>
+               &lt;li class="syos-block-stack__item"&gt;
+                 &lt;%= active_link_to(
+                   venue_floor_seats_path(venue, floor),
+<span class="gi">+                  "data-action" =&gt; "turbolinks:click-&gt;seats#discardMap",
+</span>                 ) do %&gt;
+                   &lt;%= floor.name %&gt;
+                 &lt;% end %&gt;
+<span class="p">@@ -79,6 +80,8 @@</span>
+       &lt;/div&gt;
+ 
+       &lt;svg
+<span class="gi">+        id="map"
++        data-target="seats.map"
+</span>         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         class="syos-seat-map"
+<span class="p">@@ -86,6 +89,7 @@</span>
+         height="1600px"
+         viewBox="0 0 1600 1600"
+         data-target="seats.map"
+<span class="gi">+        data-turbolinks-permanent
+</span>       &gt;
+         &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
+ 
 </code></pre></div></details>
 
           </aside>

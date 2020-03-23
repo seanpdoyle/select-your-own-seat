@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `inline_svg` gem
+    <title>Execute System Tests without JavaScript
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -39,7 +39,7 @@
 </a>
           <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
 </a>
-          <a href="./" aria-current="page">Add `inline_svg` gem
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
 </a>
           <a href="../723ecc2de8487a1703890edb45f376c15efda730/">Add a Seat Selection to Shopping Cart
 </a>
@@ -85,7 +85,7 @@
 </a>
           <a href="../626e34d14a15719f44a7c3ef0770b3ba62b43ebc/">Hide elements that require JavaScript
 </a>
-          <a href="../2dfa978377f7eb357af0c85c04ae6d3d3099bf31/">Execute System Tests without JavaScript
+          <a href="./" aria-current="page">Execute System Tests without JavaScript
 </a>
           <a href="../8d1bcddb5148b49e6d944d516235091fd7a00224/">Create `git-read` GitHub Action
 </a>
@@ -97,151 +97,49 @@
 
         <nav class="navigation">
 
-<a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">              &#8592; Previous
+<a href="../626e34d14a15719f44a7c3ef0770b3ba62b43ebc/">              &#8592; Previous
 </a>
-<a href="../723ecc2de8487a1703890edb45f376c15efda730/">              Next &#8594;
+<a href="../8d1bcddb5148b49e6d944d516235091fd7a00224/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>inline_svg</code> gem</h1>
+          <h1>Execute System Tests without JavaScript</h1>
 
-<p>Extract the <code>&lt;svg&gt;</code> element that served as our <code>&lt;dialog&gt;</code> element&rsquo;s
-&ldquo;Close modal&rdquo; button.</p>
+<p>Configure the <code>test/system</code> test harness to drive files.</p>
 
-<p>Store the <code>.svg</code> file in <code>app/assets/images/icons</code>, making it available
-to the <a href="https://github.com/jamesmartin/inline_svg/tree/v1.7.1#usage"><code>inline_svg_tag</code>-provided helper</a>.</p>
+<p>Rack-driven tests are significantly faster to set up and execute, and
+more closely mimic the end-user experience for a JavaScript-disabled
+runtime.</p>
+
+<p>In a production application, the System Test suite could be a mixture of
+Selenium-driven and Rack-driven tests. Striking a good balance between
+the two is an exercise left up to the teams managing the application.</p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id="Gemfile"
+  id="test/application_system_test_case.rb"
   open
 >
   <summary>
-    Gemfile
+    test/application_system_test_case.rb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 0472bb4..b1127cd 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -19,6 +19,7 @@</span> gem 'turbolinks', '~&gt; 5'
- gem 'jbuilder', '~&gt; 2.7'
- # Use Active Model has_secure_password
- # gem 'bcrypt', '~&gt; 3.1.7'
-<span class="gi">+gem 'inline_svg'
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/application_system_test_case.rb b/test/application_system_test_case.rb
+index 6d85d7a..07d6cb9 100644
+</span><span class="gd">--- a/test/application_system_test_case.rb
+</span><span class="gi">+++ b/test/application_system_test_case.rb
+</span><span class="p">@@ -1,7 +1,7 @@</span>
+ require "test_helper"
+ 
+ class ApplicationSystemTestCase &lt; ActionDispatch::SystemTestCase
+<span class="gd">-  driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
+</span><span class="gi">+  driven_by :rack_test
 </span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
-</code></pre></div></details>
-
-              <details
-  id="Gemfile.lock"
-  open
->
-  <summary>
-    Gemfile.lock
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 6d80f68..810305a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -82,6 +82,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    inline_svg (1.7.1)
-+      activesupport (&gt;= 3.0)
-+      nokogiri (&gt;= 1.6)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -206,6 +209,7 @@</span> DEPENDENCIES
-   byebug
-   capybara (&gt;= 2.15)
-   factory_bot (~&gt; 5.0.0)
-<span class="gi">+  inline_svg
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   pg (&gt;= 0.18, &lt; 2.0)
-</code></pre></div></details>
-
-              <details
-  id="app/assets/images/icons/x-circle.svg"
-  open
->
-  <summary>
-    app/assets/images/icons/x-circle.svg
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/x-circle.svg b/app/assets/images/icons/x-circle.svg
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..aa8969e
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/app/assets/images/icons/x-circle.svg
-</span><span class="p">@@ -0,0 +1,15 @@</span>
-<span class="gi">+&lt;svg
-+  xmlns="http://www.w3.org/2000/svg"
-+  viewBox="0 0 24 24"
-+  width="24"
-+  height="24"
-+  fill="none"
-+  stroke="currentColor"
-+  stroke-width="2"
-+  stroke-linecap="round"
-+  stroke-linejoin="round"
-+&gt;
-+  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
-+  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
-+  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
-+&lt;/svg&gt;
-</span></code></pre></div></details>
-
-              <details
-  id="app/views/seats/show.html.erb"
-  open
->
-  <summary>
-    app/views/seats/show.html.erb
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
-index db8733b..214e057 100644
-</span><span class="gd">--- a/app/views/seats/show.html.erb
-</span><span class="gi">+++ b/app/views/seats/show.html.erb
-</span><span class="p">@@ -10,23 +10,12 @@</span>
-       &lt;button
-         class="syos-button syos-button--transparent"
-       &gt;
-<span class="gd">-        &lt;svg
--          xmlns="http://www.w3.org/2000/svg"
--          viewBox="0 0 24 24"
--          width="24"
--          height="24"
--          class="syos-icon syos-icon--large"
--          title="Close modal"
--          fill="none"
--          stroke="currentColor"
--          stroke-width="2"
--          stroke-linecap="round"
--          stroke-linejoin="round"
--        &gt;
--          &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
--          &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
--          &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
--        &lt;/svg&gt;
-</span><span class="gi">+        &lt;%= inline_svg_tag(
-+          "icons/x-circle.svg",
-+          aria: true,
-+          class: "syos-icon syos-icon--large",
-+          title: "Close modal",
-+        ) %&gt;
-</span>       &lt;/button&gt;
-     &lt;/form&gt;
-   &lt;/header&gt;
+   def click_on_seat(row_number)
+     find(%{[aria-label*="#{row_number}"]}).click
 </code></pre></div></details>
 
           </aside>
