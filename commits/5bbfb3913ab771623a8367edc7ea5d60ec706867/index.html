@@ -1,0 +1,322 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Add System Test for viewing a Seat's details
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="./" aria-current="page">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../723ecc2de8487a1703890edb45f376c15efda730/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../c0f36017b567de0d51c8eeddf00eb72f34e62cb9/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../c1455935438c523bdd84d311250ce4f823a25885/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../cac341569884fd79039d8a45cbb63c994a51b5f7/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../de1255eb147cc06644d546a6cd82c2499630109e/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5111f61d062943c53e2ac822239763f969b8f5b2/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../99a796fc10aa77fe599af62cfeb0fbfbbf13cbee/">Switch floors from map
+</a>
+          <a href="../adadaecbd7dfa327414f598d7bb2724761807220/">Filter Seats based on their Price
+</a>
+          <a href="../e7cc9a4136937f2cb6f7a231a4b8f422e826ce73/">Implement Server-Side Price Filtering
+</a>
+          <a href="../16ae73647510a99e89612e5c7e8b1b6e8cfb9bef/">Add panning and zooming to SVG map element
+</a>
+          <a href="../0c924daa54dbaac71154827b06553e7b3ab6581f/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../2ed91badf1680af4ac3b813c4379b06d8a3ea3f7/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../91f3acf0576e2a2e4d372d21f5b8eda7d8ab8926/">Persist map across page loads
+</a>
+          <a href="../c80bf69b1f5f6bce761455548f57e56c2f675a8f/">Introduce a Loading Indicator
+</a>
+          <a href="../e4c6f4cc8fa67970f875374f9f7cb9c38109a252/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../12e8f267e4a23f64408d584b44069e01269862c3/">Opt out of preview caching
+</a>
+          <a href="../5a223eea320ebd488cb52a4203127ceee9839fae/">Progressively enhance Selection State
+</a>
+          <a href="../a4512d88bc53b085d2afd099c7e415469df70d83/">Progressively enhance price filtering
+</a>
+          <a href="../fdfb428d258f40728bb79127a3864d7f1be86de4/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../dd113c1392deb67e1126da2c94ad693b76640eb6/">Manage filter query parameters with push state
+</a>
+          <a href="../7fadb715bed8732b630cff162096a7cdf797d6bf/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../e43c6810263ac4a5c89379fba8e6d37909d8c08b/">Hide elements that require JavaScript
+</a>
+          <a href="../43c91563d632dd759373a8e2a3cfc496b1ed19b4/">Execute System Tests without JavaScript
+</a>
+          <a href="../5cdde8693300ace390c89259071c21cd2cfa2eee/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">              &#8592; Previous
+</a>
+<a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Add System Test for viewing a Seat&rsquo;s details</h1>
+
+<p>This commit introduces <code>factory_bot</code> and configures MiniTest to use it
+instead of loading our application&rsquo;s fixture files.</p>
+
+<p>The first test drives the browser by visiting the Benedum Center&rsquo;s
+Orchestra floor, then clicking on seat <code>AA-101</code>.</p>
+
+<p>The <code>click_on_seat</code> help is necessary due to Capybara&rsquo;s inability to
+treat <code>&lt;a&gt;</code> elements nested within <code>&lt;svg&gt;</code> elements as if they were
+normal <code>&lt;a&gt;</code> elements. Capybara&rsquo;s selector strategies include a matcher
+that finds <code>&lt;a&gt;</code> elements based on their <code>title</code> attribute text, or
+their <code>aria-label</code> attribute text. However, when matching elements exist
+within an <code>&lt;svg&gt;</code>, they are not found.</p>
+
+<p>To counteract this limitation, the <code>click_on_seat</code> uses an <code>aria-label</code>
+attribute CSS selector to determine which element to click.</p>
+
+<h2>Running the tests</h2>
+
+<p>To simplify executing the entire test suite, this commit declares the
+<code>default</code> Rake task to execute <em>both</em> <a href="https://guides.rubyonrails.org/v6.0/command_line.html#rails-test"><code>rails test</code></a> and <a href="https://guides.rubyonrails.org/v6.0/testing.html#implementing-a-system-test"><code>rails
+test:system</code></a>.</p>
+
+<p>This diff intentionally commits a failing test suite to the project&rsquo;s
+revisions history. It represents the &ldquo;Red&rdquo; phase of a <a href="https://en.wikipedia.org/wiki/Test-driven_development#Development_style">&ldquo;Red, Green,
+Refactor&rdquo; cycle</a>, and will be resolved in future commits.</p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="Gemfile"
+  open
+>
+  <summary>
+    Gemfile
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
+index 575651b..0472bb4 100644
+</span><span class="gd">--- a/Gemfile
+</span><span class="gi">+++ b/Gemfile
+</span><span class="p">@@ -40,6 +40,7 @@</span> end
+ group :test do
+   # Adds support for Capybara system testing and selenium driver
+   gem 'capybara', '&gt;= 2.15'
+<span class="gi">+  gem 'factory_bot', '~&gt; 5.0.0'
+</span>   gem 'selenium-webdriver'
+   # Easy installation and use of web drivers to run system tests with browsers
+   gem 'webdrivers'
+</code></pre></div></details>
+
+              <details
+  id="Gemfile.lock"
+  open
+>
+  <summary>
+    Gemfile.lock
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
+index ccf80c4..6d80f68 100644
+</span><span class="gd">--- a/Gemfile.lock
+</span><span class="gi">+++ b/Gemfile.lock
+</span><span class="p">@@ -75,6 +75,8 @@</span> GEM
+     concurrent-ruby (1.1.6)
+     crass (1.0.6)
+     erubi (1.9.0)
+<span class="gi">+    factory_bot (5.0.2)
++      activesupport (&gt;= 4.2.0)
+</span>     ffi (1.12.2)
+     globalid (0.4.2)
+       activesupport (&gt;= 4.2.0)
+<span class="p">@@ -203,6 +205,7 @@</span> DEPENDENCIES
+   bootsnap (&gt;= 1.4.2)
+   byebug
+   capybara (&gt;= 2.15)
+<span class="gi">+  factory_bot (~&gt; 5.0.0)
+</span>   jbuilder (~&gt; 2.7)
+   listen (&gt;= 3.0.5, &lt; 3.2)
+   pg (&gt;= 0.18, &lt; 2.0)
+</code></pre></div></details>
+
+              <details
+  id="Rakefile"
+  open
+>
+  <summary>
+    Rakefile
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Rakefile b/Rakefile
+index e85f913..c9b01f5 100644
+</span><span class="gd">--- a/Rakefile
+</span><span class="gi">+++ b/Rakefile
+</span><span class="p">@@ -4,3 +4,5 @@</span>
+ require_relative 'config/application'
+ 
+ Rails.application.load_tasks
+<span class="gi">+
++task default: ["test", "test:system"]
+</span></code></pre></div></details>
+
+              <details
+  id="test/factories.rb"
+  open
+>
+  <summary>
+    test/factories.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/factories.rb b/test/factories.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..45a2575
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/factories.rb
+</span><span class="p">@@ -0,0 +1,30 @@</span>
+<span class="gi">+FactoryBot.define do
++  factory :benedum_center, class: "Venue" do
++    name { "Benedum Center" }
++    slug { "benedum_center" }
++  end
++
++  factory :orchestra, class: "Floor" do
++    association :venue, factory: [:benedum_center]
++
++    name { "Orchestra" }
++    slug { "orchestra" }
++  end
++
++  factory :section do
++    association :floor, factory: [:orchestra]
++
++    name { "Section #{id}" }
++    slug { "section-#{id}" }
++    price { 10_00 }
++  end
++
++  factory :seat do
++    association :section
++
++    sequence(:number)
++    row { "AA" }
++    x { 0 }
++    y { 0 }
++  end
++end
+</span></code></pre></div></details>
+
+              <details
+  id="test/system/visitor_views_seats_test.rb"
+  open
+>
+  <summary>
+    test/system/visitor_views_seats_test.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_views_seats_test.rb b/test/system/visitor_views_seats_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..6678b42
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/system/visitor_views_seats_test.rb
+</span><span class="p">@@ -0,0 +1,19 @@</span>
+<span class="gi">+require "application_system_test_case"
++
++class VisitorViewsSeatsTest &lt; ApplicationSystemTestCase
++  test "visiting the seats index" do
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    section = create(:section, floor: floor, price: 10_00)
++    seat = create(:seat, row: "AA", number: "101", section: section)
++
++    visit("/venues/benedum_center/floors/orchestra/seats")
++    click_on_seat("AA-101")
++
++    assert_text("$10.00")
++  end
++
++  def click_on_seat(row_number)
++    find(%{[aria-label*="#{row_number}"]}).click
++  end
++end
+</span></code></pre></div></details>
+
+              <details
+  id="test/test_helper.rb"
+  open
+>
+  <summary>
+    test/test_helper.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/test_helper.rb b/test/test_helper.rb
+index d5300f8..a07007b 100644
+</span><span class="gd">--- a/test/test_helper.rb
+</span><span class="gi">+++ b/test/test_helper.rb
+</span><span class="p">@@ -6,8 +6,9 @@</span> class ActiveSupport::TestCase
+   # Run tests in parallel with specified workers
+   parallelize(workers: :number_of_processors)
+ 
+<span class="gd">-  # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
+-  fixtures :all
+</span><span class="gi">+  include FactoryBot::Syntax::Methods
++
++  FactoryBot.find_definitions
+</span> 
+   # Add more helper methods to be used by all tests here...
+ end
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

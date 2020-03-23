@@ -1,0 +1,259 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Render Seats for a Venue with SVG elements
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="./" aria-current="page">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../723ecc2de8487a1703890edb45f376c15efda730/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../c0f36017b567de0d51c8eeddf00eb72f34e62cb9/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../c1455935438c523bdd84d311250ce4f823a25885/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../cac341569884fd79039d8a45cbb63c994a51b5f7/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../de1255eb147cc06644d546a6cd82c2499630109e/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5111f61d062943c53e2ac822239763f969b8f5b2/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../99a796fc10aa77fe599af62cfeb0fbfbbf13cbee/">Switch floors from map
+</a>
+          <a href="../adadaecbd7dfa327414f598d7bb2724761807220/">Filter Seats based on their Price
+</a>
+          <a href="../e7cc9a4136937f2cb6f7a231a4b8f422e826ce73/">Implement Server-Side Price Filtering
+</a>
+          <a href="../16ae73647510a99e89612e5c7e8b1b6e8cfb9bef/">Add panning and zooming to SVG map element
+</a>
+          <a href="../0c924daa54dbaac71154827b06553e7b3ab6581f/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../2ed91badf1680af4ac3b813c4379b06d8a3ea3f7/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../91f3acf0576e2a2e4d372d21f5b8eda7d8ab8926/">Persist map across page loads
+</a>
+          <a href="../c80bf69b1f5f6bce761455548f57e56c2f675a8f/">Introduce a Loading Indicator
+</a>
+          <a href="../e4c6f4cc8fa67970f875374f9f7cb9c38109a252/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../12e8f267e4a23f64408d584b44069e01269862c3/">Opt out of preview caching
+</a>
+          <a href="../5a223eea320ebd488cb52a4203127ceee9839fae/">Progressively enhance Selection State
+</a>
+          <a href="../a4512d88bc53b085d2afd099c7e415469df70d83/">Progressively enhance price filtering
+</a>
+          <a href="../fdfb428d258f40728bb79127a3864d7f1be86de4/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../dd113c1392deb67e1126da2c94ad693b76640eb6/">Manage filter query parameters with push state
+</a>
+          <a href="../7fadb715bed8732b630cff162096a7cdf797d6bf/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../e43c6810263ac4a5c89379fba8e6d37909d8c08b/">Hide elements that require JavaScript
+</a>
+          <a href="../43c91563d632dd759373a8e2a3cfc496b1ed19b4/">Execute System Tests without JavaScript
+</a>
+          <a href="../5cdde8693300ace390c89259071c21cd2cfa2eee/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">              &#8592; Previous
+</a>
+<a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Render Seats for a Venue with SVG elements</h1>
+
+<p>The <code>seats#index</code> template iterates over the available <code>sections</code>,
+rendering <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g"><code>&lt;g&gt;</code> elements</a>.</p>
+
+<p>Then, iterating over each <code>Section</code> record&rsquo;s associated <code>Seat</code> records,
+renders <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/circle"><code>&lt;circle&gt;</code> elements</a> as children into the <code>Section</code>
+records&rsquo; groups.</p>
+
+<p>The <code>Seat</code> records are rendered as <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg"><code>&lt;svg&gt;</code> elements</a> that are
+positioned with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/x"><code>x</code> attributes</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/y"><code>y</code> attributes</a>, generated
+from the <code>Seat</code> record&rsquo;s <code>x</code> and <code>y</code> columns.</p>
+
+<p>Additionally, dynamically render the name of the current <code>Venue</code> record
+in the page&rsquo;s top-left corner.</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77235168-f565c300-6b89-11ea-8098-8ba68269103f.png" alt="seats rendered as SVG elements" /></p>
+
+<h2>Maintaining acceptable performance</h2>
+
+<p>Without being careful, queries like the <code>seats#index</code> action&rsquo;s query for
+a collection of section records <em>along with</em> their seat records have the
+potential to increase our response times, thanks to <a href="https://thoughtbot.com/upcase/videos/advanced-query-optimization"> Performance
+Regressions caused by N+1 queries</a>.</p>
+
+<p>As a pre-emptive measure, modify the <code>sections</code> query to <a href="https://api.rubyonrails.org/v5.2/classes/ActiveRecord/QueryMethods.html#method-i-includes">eager-load
+related <code>Seat</code> records in a single query by appending a call to
+<code>includes(:seats)</code></a>.</p>
+
+<p><strong>Before:</strong></p>
+<div class="highlight"><pre class="highlight plaintext"><code>Started GET "/venues/benedum_center/floors/orchestra/seats" for 127.0.0.1 at 2020-03-22 18:16:38 -0400
+Processing by SeatsController#index as HTML
+  Parameters: {"venue_id"=&gt;"benedum_center", "floor_id"=&gt;"orchestra"}
+  Venue Load (0.3ms)  SELECT "venues".* FROM "venues" WHERE "venues"."slug" = $1 LIMIT $2  [["slug", "benedum_center"], ["LIMIT", 1]]
+  ↳ app/controllers/seats_controller.rb:3:in `index'
+  Floor Load (0.2ms)  SELECT "floors".* FROM "floors" WHERE "floors"."venue_id" = $1 AND "floors"."slug" = $2 LIMIT $3  [["venue_id", 487793135], ["slug", "orchestra"], ["LIMIT", 1]]
+  ↳ app/controllers/seats_controller.rb:4:in `index'
+  Rendering seats/index.html.erb within layouts/application
+  Section Load (0.3ms)  SELECT "sections".* FROM "sections" WHERE "sections"."floor_id" = $1  [["floor_id", 155412994]]
+  ↳ app/views/seats/index.html.erb:22
+  Seat Load (1.4ms)  SELECT "seats".* FROM "seats" WHERE "seats"."section_id" = $1  [["section_id", 725913746]]
+  ↳ app/views/seats/index.html.erb:24
+  Seat Load (1.3ms)  SELECT "seats".* FROM "seats" WHERE "seats"."section_id" = $1  [["section_id", 531561397]]
+  ↳ app/views/seats/index.html.erb:24
+  Seat Load (1.4ms)  SELECT "seats".* FROM "seats" WHERE "seats"."section_id" = $1  [["section_id", 171254202]]
+  ↳ app/views/seats/index.html.erb:24
+  Rendered seats/index.html.erb within layouts/application (Duration: 72.7ms | Allocations: 34553)
+
+Completed 200 OK in 88ms (Views: 80.1ms | ActiveRecord: 4.8ms | Allocations: 42467)
+</code></pre></div>
+<p><strong>After:</strong></p>
+<div class="highlight"><pre class="highlight plaintext"><code>Started GET "/venues/benedum_center/floors/orchestra/seats" for 127.0.0.1 at ...
+Processing by SeatsController#index as HTML
+  Parameters: {"venue_id"=&gt;"benedum_center", "floor_id"=&gt;"orchestra"}
+  Venue Load (0.4ms)  SELECT "venues".* FROM "venues" WHERE "venues"."slug" = $1 LIMIT $2  [["slug", "benedum_center"], ["LIMIT", 1]]
+  ↳ app/controllers/seats_controller.rb:3:in `index'
+  Floor Load (0.3ms)  SELECT "floors".* FROM "floors" WHERE "floors"."venue_id" = $1 AND "floors"."slug" = $2 LIMIT $3  [["venue_id", 487793135], ["slug", "orchestra"], ["LIMIT", 1]]
+  ↳ app/controllers/seats_controller.rb:4:in `index'
+  Rendering seats/index.html.erb within layouts/application
+  Section Load (0.3ms)  SELECT "sections".* FROM "sections" WHERE "sections"."floor_id" = $1  [["floor_id", 155412994]]
+  ↳ app/views/seats/index.html.erb:22
+  Seat Load (4.1ms)  SELECT "seats".* FROM "seats" WHERE "seats"."section_id" IN ($1, $2, $3)  [["section_id", 725913746], ["section_id", 531561397], ["section_id", 171254202]]
+  ↳ app/views/seats/index.html.erb:22
+  Rendered seats/index.html.erb within layouts/application (Duration: 72.3ms | Allocations: 36164)
+
+Completed 200 OK in 84ms (Views: 76.1ms | ActiveRecord: 5.2ms | Allocations: 44188)
+</code></pre></div>
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/controllers/seats_controller.rb"
+  open
+>
+  <summary>
+    app/controllers/seats_controller.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/seats_controller.rb b/app/controllers/seats_controller.rb
+index e277dbf..376f7b2 100644
+</span><span class="gd">--- a/app/controllers/seats_controller.rb
+</span><span class="gi">+++ b/app/controllers/seats_controller.rb
+</span><span class="p">@@ -1,2 +1,13 @@</span>
+ class SeatsController &lt; ApplicationController
+<span class="gi">+  def index
++    venue = Venue.find_by!(slug: params[:venue_id])
++    floor = venue.floors.find_by!(slug: params[:floor_id])
++    sections = floor.sections.includes(:seats)
++
++    render(locals: {
++      venue: venue,
++      floor: floor,
++      sections: sections,
++    })
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index fbe7def..d5d67c1 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -1,6 +1,6 @@</span>
+ &lt;header class="syos-site-frame__header syos-site-header"&gt;
+   &lt;p class="syos-site-header__subtext"&gt;
+<span class="gd">-    Venue Name
+</span><span class="gi">+    &lt;%= venue.name %&gt;
+</span>   &lt;/p&gt;
+ &lt;/header&gt;
+ 
+<span class="p">@@ -18,6 +18,25 @@</span>
+         viewBox="0 0 1600 1600"
+       &gt;
+         &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
+<span class="gi">+
++        &lt;g&gt;
++          &lt;% sections.each do |section| %&gt;
++            &lt;g&gt;
++              &lt;% section.seats.each do |seat| %&gt;
++                &lt;svg
++                  width="12px"
++                  height="12px"
++                  viewBox="0 0 24 24"
++                  x="&lt;%= seat.x %&gt;"
++                  y="&lt;%= seat.y %&gt;"
++                &gt;
++                  &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
++                  &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
++                &lt;/svg&gt;
++              &lt;% end %&gt;
++            &lt;/g&gt;
++          &lt;% end %&gt;
++        &lt;/g&gt;
+</span>       &lt;/svg&gt;
+     &lt;/div&gt;
+ 
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

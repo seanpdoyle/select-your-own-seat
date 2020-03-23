@@ -1,0 +1,178 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Replace Seat `<svg>` elements with `<use>`
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../723ecc2de8487a1703890edb45f376c15efda730/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../c0f36017b567de0d51c8eeddf00eb72f34e62cb9/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../c1455935438c523bdd84d311250ce4f823a25885/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="./" aria-current="page">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../de1255eb147cc06644d546a6cd82c2499630109e/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5111f61d062943c53e2ac822239763f969b8f5b2/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../99a796fc10aa77fe599af62cfeb0fbfbbf13cbee/">Switch floors from map
+</a>
+          <a href="../adadaecbd7dfa327414f598d7bb2724761807220/">Filter Seats based on their Price
+</a>
+          <a href="../e7cc9a4136937f2cb6f7a231a4b8f422e826ce73/">Implement Server-Side Price Filtering
+</a>
+          <a href="../16ae73647510a99e89612e5c7e8b1b6e8cfb9bef/">Add panning and zooming to SVG map element
+</a>
+          <a href="../0c924daa54dbaac71154827b06553e7b3ab6581f/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../2ed91badf1680af4ac3b813c4379b06d8a3ea3f7/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../91f3acf0576e2a2e4d372d21f5b8eda7d8ab8926/">Persist map across page loads
+</a>
+          <a href="../c80bf69b1f5f6bce761455548f57e56c2f675a8f/">Introduce a Loading Indicator
+</a>
+          <a href="../e4c6f4cc8fa67970f875374f9f7cb9c38109a252/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../12e8f267e4a23f64408d584b44069e01269862c3/">Opt out of preview caching
+</a>
+          <a href="../5a223eea320ebd488cb52a4203127ceee9839fae/">Progressively enhance Selection State
+</a>
+          <a href="../a4512d88bc53b085d2afd099c7e415469df70d83/">Progressively enhance price filtering
+</a>
+          <a href="../fdfb428d258f40728bb79127a3864d7f1be86de4/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../dd113c1392deb67e1126da2c94ad693b76640eb6/">Manage filter query parameters with push state
+</a>
+          <a href="../7fadb715bed8732b630cff162096a7cdf797d6bf/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../e43c6810263ac4a5c89379fba8e6d37909d8c08b/">Hide elements that require JavaScript
+</a>
+          <a href="../43c91563d632dd759373a8e2a3cfc496b1ed19b4/">Execute System Tests without JavaScript
+</a>
+          <a href="../5cdde8693300ace390c89259071c21cd2cfa2eee/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../c1455935438c523bdd84d311250ce4f823a25885/">              &#8592; Previous
+</a>
+<a href="../de1255eb147cc06644d546a6cd82c2499630109e/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Replace Seat <code>&lt;svg&gt;</code> elements with <code>&lt;use&gt;</code></h1>
+
+<p>Extract a separate <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element"><code>&lt;svg&gt;</code></a> nested within the map that is visually
+hidden. This <code>&lt;svg&gt;</code> element declares a <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/symbol"><code>&lt;symbol&gt;</code></a> element
+with an <code>id</code> attribute named to represent a <code>Seat</code>&lsquo;s unselected icon.</p>
+
+<p>Replace our <code>Seat</code>&rsquo;s corresponding <code>&lt;svg&gt;</code> elements with <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use"><code>&lt;use&gt;</code></a>
+elements that reference our <code>&lt;symbol&gt;</code> elements by declaring
+<code>xlink:href</code> attribute which refers to the <code>&lt;symbol&gt;</code> element&rsquo;s <code>id</code>
+attribute.</p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index ca57ca9..52dac4e 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -19,6 +19,18 @@</span>
+       &gt;
+         &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
+ 
+<span class="gi">+        &lt;svg style="display: none;"&gt;
++          &lt;symbol
++            id="seat-icon-unselected"
++            width="24"
++            height="24"
++            viewbox="0 0 24 24"
++          &gt;
++            &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
++            &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
++          &lt;/symbol&gt;
++        &lt;/svg&gt;
++
+</span>         &lt;g&gt;
+           &lt;% sections.each do |section| %&gt;
+             &lt;g&gt;
+<span class="p">@@ -27,16 +39,14 @@</span>
+                   href="&lt;%= venue_floor_seat_path(venue, floor, seat.row_number) %&gt;"
+                   aria-label="&lt;%= seat.row_number %&gt;"
+                 &gt;
+<span class="gd">-                  &lt;svg
+</span><span class="gi">+                  &lt;use
++                    xlink:href="#seat-icon-unselected"
+</span>                     width="12px"
+                     height="12px"
+<span class="gd">-                    viewBox="0 0 24 24"
+</span>                     x="&lt;%= seat.x %&gt;"
+                     y="&lt;%= seat.y %&gt;"
+                   &gt;
+<span class="gd">-                    &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
+-                    &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
+-                  &lt;/svg&gt;
+</span><span class="gi">+                  &lt;/use&gt;
+</span>                 &lt;/a&gt;
+               &lt;% end %&gt;
+             &lt;/g&gt;
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

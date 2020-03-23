@@ -1,0 +1,299 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Render the application's layout
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="./" aria-current="page">Render the application&#x27;s layout
+</a>
+          <a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../723ecc2de8487a1703890edb45f376c15efda730/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../c0f36017b567de0d51c8eeddf00eb72f34e62cb9/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../c1455935438c523bdd84d311250ce4f823a25885/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../cac341569884fd79039d8a45cbb63c994a51b5f7/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../de1255eb147cc06644d546a6cd82c2499630109e/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5111f61d062943c53e2ac822239763f969b8f5b2/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../99a796fc10aa77fe599af62cfeb0fbfbbf13cbee/">Switch floors from map
+</a>
+          <a href="../adadaecbd7dfa327414f598d7bb2724761807220/">Filter Seats based on their Price
+</a>
+          <a href="../e7cc9a4136937f2cb6f7a231a4b8f422e826ce73/">Implement Server-Side Price Filtering
+</a>
+          <a href="../16ae73647510a99e89612e5c7e8b1b6e8cfb9bef/">Add panning and zooming to SVG map element
+</a>
+          <a href="../0c924daa54dbaac71154827b06553e7b3ab6581f/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../2ed91badf1680af4ac3b813c4379b06d8a3ea3f7/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../91f3acf0576e2a2e4d372d21f5b8eda7d8ab8926/">Persist map across page loads
+</a>
+          <a href="../c80bf69b1f5f6bce761455548f57e56c2f675a8f/">Introduce a Loading Indicator
+</a>
+          <a href="../e4c6f4cc8fa67970f875374f9f7cb9c38109a252/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../12e8f267e4a23f64408d584b44069e01269862c3/">Opt out of preview caching
+</a>
+          <a href="../5a223eea320ebd488cb52a4203127ceee9839fae/">Progressively enhance Selection State
+</a>
+          <a href="../a4512d88bc53b085d2afd099c7e415469df70d83/">Progressively enhance price filtering
+</a>
+          <a href="../fdfb428d258f40728bb79127a3864d7f1be86de4/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../dd113c1392deb67e1126da2c94ad693b76640eb6/">Manage filter query parameters with push state
+</a>
+          <a href="../7fadb715bed8732b630cff162096a7cdf797d6bf/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../e43c6810263ac4a5c89379fba8e6d37909d8c08b/">Hide elements that require JavaScript
+</a>
+          <a href="../43c91563d632dd759373a8e2a3cfc496b1ed19b4/">Execute System Tests without JavaScript
+</a>
+          <a href="../5cdde8693300ace390c89259071c21cd2cfa2eee/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../5b2d6c293f899aaae4daf916643948091485a11c/">              &#8592; Previous
+</a>
+<a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Render the application&rsquo;s layout</h1>
+
+<p>This commit adds a <a href="#app/controllers/seats_controller.rb"><code>SeatsController</code>
+class</a> to serve requests made to
+routes like:</p>
+<div class="highlight"><pre class="highlight plaintext"><code>/venues/benedum_center/floors/orchestra/seats
+</code></pre></div>
+<p>This commit relies upon Rails&rsquo; <a href="https://guides.rubyonrails.org/v6.0.0/layouts_and_rendering.html#rendering-by-default-convention-over-configuration-in-action">conventional controller action
+rendering</a>.</p>
+
+<p>To declare a controller &ldquo;action&rdquo;, a controller that extends from
+<code>ActionController::Base</code> can either:</p>
+
+<ul>
+<li><p>define an instance method that corresponds to the action (in this
+case, an <code>#index</code> instance method)</p></li>
+<li><p>declare a view file named after the action in the directory that
+corresponds to the controller name (in this case,
+[<code>app/views/seats/index.html.erb</code>][app/views/seats/index.html.erb])</p></li>
+</ul>
+
+<p>If a method that corresponds to the action does not exist, Rails will
+automatically <a href="https://guides.rubyonrails.org/v6.0.0/layouts_and_rendering.html#rendering-by-default-convention-over-configuration-in-action">infer which template to render</a>.</p>
+
+<p>The controller has no methods defined, and declares a <code>seats#index</code> view
+template in the
+[<code>app/views/seats/index.html.erb</code>][app/views/seats/index.html.erb] file.
+The <code>seats#index</code> renders static HTML that relies upon the pre-defined
+CSS styling rules.</p>
+
+<p>This static HTML serves as the Seats page&rsquo;s layout. We&rsquo;ll make the
+contents of the page dynamic in subsequent commits.</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77235487-627a5800-6b8c-11ea-861e-fb61777569dd.png" alt="seats page layout" /></p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/controllers/seats_controller.rb"
+  open
+>
+  <summary>
+    app/controllers/seats_controller.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/seats_controller.rb b/app/controllers/seats_controller.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..e277dbf
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/controllers/seats_controller.rb
+</span><span class="p">@@ -0,0 +1,2 @@</span>
+<span class="gi">+class SeatsController &lt; ApplicationController
++end
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/layouts/application.html.erb"
+  open
+>
+  <summary>
+    app/views/layouts/application.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index 6400ae6..833b309 100644
+</span><span class="gd">--- a/app/views/layouts/application.html.erb
+</span><span class="gi">+++ b/app/views/layouts/application.html.erb
+</span><span class="p">@@ -2,6 +2,7 @@</span>
+ &lt;html&gt;
+   &lt;head&gt;
+     &lt;title&gt;SelectYourOwnSeat&lt;/title&gt;
+<span class="gi">+    &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+</span>     &lt;%= csrf_meta_tags %&gt;
+     &lt;%= csp_meta_tag %&gt;
+ 
+<span class="p">@@ -10,6 +11,8 @@</span>
+   &lt;/head&gt;
+ 
+   &lt;body&gt;
+<span class="gd">-    &lt;%= yield %&gt;
+</span><span class="gi">+    &lt;div class="syos-site-frame"&gt;
++      &lt;%= yield %&gt;
++    &lt;/div&gt;
+</span>   &lt;/body&gt;
+ &lt;/html&gt;
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..fbe7def
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -0,0 +1,57 @@</span>
+<span class="gi">+&lt;header class="syos-site-frame__header syos-site-header"&gt;
++  &lt;p class="syos-site-header__subtext"&gt;
++    Venue Name
++  &lt;/p&gt;
++&lt;/header&gt;
++
++&lt;main class="syos-site-frame__main"&gt;
++  &lt;section
++    class="syos-frame"
++  &gt;
++    &lt;div class="syos-frame__map"&gt;
++      &lt;svg
++        xmlns="http://www.w3.org/2000/svg"
++        xmlns:xlink="http://www.w3.org/1999/xlink"
++        class="syos-seat-map"
++        width="1600px"
++        height="1600px"
++        viewBox="0 0 1600 1600"
++      &gt;
++        &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
++      &lt;/svg&gt;
++    &lt;/div&gt;
++
++    &lt;div class="syos-frame__sidebar"&gt;
++      &lt;div id="cart-summary"&gt;
++        &lt;h2 class="syos-u-margin-bottom-2"&gt;
++          Your seat selections
++        &lt;/h2&gt;
++
++        &lt;p class="syos-u-font-size-small syos-u-margin-bottom-2"&gt;
++          Seats are not reserved until added to the cart.
++        &lt;/p&gt;
++
++        &lt;table class="syos-table"&gt;
++          &lt;thead&gt;
++            &lt;tr&gt;
++              &lt;th&gt;
++                Seat
++              &lt;/th&gt;
++
++              &lt;th class="syos-table__cell--numerals"&gt;
++                Price
++              &lt;/th&gt;
++
++              &lt;th class="visually-hidden"&gt;
++                Remove
++              &lt;/th&gt;
++            &lt;/tr&gt;
++          &lt;/thead&gt;
++
++          &lt;tbody&gt;
++          &lt;/tbody&gt;
++        &lt;/table&gt;
++      &lt;/div&gt;
++    &lt;/div&gt;
++  &lt;/section&gt;
++&lt;/main&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="config/routes.rb"
+  open
+>
+  <summary>
+    config/routes.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index c06383a..2b9f710 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -1,3 +1,10 @@</span>
+ Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+<span class="gi">+  resources :venues, only: [] do
++    resources :floors, only: [] do
++      resources :seats, only: [:index]
++    end
++  end
++
++  root to: redirect("/venues/benedum_center/floors/orchestra/seats")
+</span> end
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>
