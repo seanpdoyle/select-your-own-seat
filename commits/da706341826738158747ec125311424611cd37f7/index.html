@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Add `<symbol>` for a selected seat
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
       <nav class="history">
         <a href="../../">select-your-own-seat</a>
 
-          <a href="./" aria-current="page">[GENERATED] Initial Commit
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
           <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
@@ -49,7 +49,7 @@
 </a>
           <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
 </a>
-          <a href="../da706341826738158747ec125311424611cd37f7/">Add `&lt;symbol&gt;` for a selected seat
+          <a href="./" aria-current="page">Add `&lt;symbol&gt;` for a selected seat
 </a>
           <a href="../fc9ad4f11be590595f219702284a79db2ffbd066/">Explain the map&#x27;s symbols with a legend
 </a>
@@ -97,34 +97,69 @@
 
         <nav class="navigation">
 
-
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              Next &#8594;
+<a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">              &#8592; Previous
+</a>
+<a href="../fc9ad4f11be590595f219702284a79db2ffbd066/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>[GENERATED] Initial Commit</h1>
+          <h1>Add <code>&lt;symbol&gt;</code> for a selected seat</h1>
 
-<p>This commit is the output of the following command (<code>rails@6.0.2.2</code>):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>rails new select-your-own-seat \
-  --webpack=stimulus \
-  --database=postgresql \
-  --skip-action-cable \
-  --skip-action-mailbox \
-  --skip-action-mailer \
-  --skip-action-text \
-  --skip-active-storage
-</code></pre></div>
-<p>This command skips several Rails-provided dependencies that the project
-won&rsquo;t be utilizing.</p>
+<p>When rendering the list of <code>Seat</code> records for a <code>Floor</code>, render <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use"><code>&lt;use&gt;</code>
+elements</a> referring to the new <code>#seat-icon-selected</code> version of a
+seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</code>.</p>
 
-<p>It sets <a href="https://www.postgresql.org/">PostgreSQL</a> as the application&rsquo;s database, configures the
-project&rsquo;s JavaScript to be built with <a href="https://webpack.js.org/">Webpack</a> through <a href="https://github.com/rails/webpacker">Webpacker</a>,
-and makes <a href="https://stimulusjs.org/">StimulusJS</a> available on the project&rsquo;s client-side.</p>
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386360-0288da80-6d61-11ea-8d80-fe46c3f53706.png" alt="selected seat icon" /></p>
 
         </article>
           <aside class="container__item diff">
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 52dac4e..6d751ea 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -29,6 +29,15 @@</span>
+             &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
+             &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
+           &lt;/symbol&gt;
+<span class="gi">+
++          &lt;symbol
++            id="seat-icon-selected"
++            width="24"
++            height="24"
++            viewbox="0 0 24 24"
++          &gt;
++            &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
++          &lt;/symbol&gt;
+</span>         &lt;/svg&gt;
+ 
+         &lt;g&gt;
+<span class="p">@@ -40,7 +49,11 @@</span>
+                   aria-label="&lt;%= seat.row_number %&gt;"
+                 &gt;
+                   &lt;use
+<span class="gd">-                    xlink:href="#seat-icon-unselected"
+</span><span class="gi">+                    &lt;% if Current.cart.include?(seat) %&gt;
++                      xlink:href="#seat-icon-selected"
++                    &lt;% else %&gt;
++                      xlink:href="#seat-icon-unselected"
++                    &lt;% end %&gt;
+</span>                     width="12px"
+                     height="12px"
+                     x="&lt;%= seat.x %&gt;"
+</code></pre></div></details>
+
           </aside>
       </section>
     </main>

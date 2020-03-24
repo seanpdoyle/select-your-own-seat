@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Opt out of preview caching
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
       <nav class="history">
         <a href="../../">select-your-own-seat</a>
 
-          <a href="./" aria-current="page">[GENERATED] Initial Commit
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
           <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
@@ -71,7 +71,7 @@
 </a>
           <a href="../7426f4ba2ace0de8314bc38040e1f2141c2cb812/">Dynamically Hide and Show Loading Spinner
 </a>
-          <a href="../c748856bec27865304c7fe28c40ae60f2f896b04/">Opt out of preview caching
+          <a href="./" aria-current="page">Opt out of preview caching
 </a>
           <a href="../fbdb7e9543af3e8e3da056dc8e645746fc7592b3/">Progressively enhance Selection State
 </a>
@@ -97,34 +97,48 @@
 
         <nav class="navigation">
 
-
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              Next &#8594;
+<a href="../7426f4ba2ace0de8314bc38040e1f2141c2cb812/">              &#8592; Previous
+</a>
+<a href="../fbdb7e9543af3e8e3da056dc8e645746fc7592b3/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>[GENERATED] Initial Commit</h1>
+          <h1>Opt out of preview caching</h1>
 
-<p>This commit is the output of the following command (<code>rails@6.0.2.2</code>):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>rails new select-your-own-seat \
-  --webpack=stimulus \
-  --database=postgresql \
-  --skip-action-cable \
-  --skip-action-mailbox \
-  --skip-action-mailer \
-  --skip-action-text \
-  --skip-active-storage
-</code></pre></div>
-<p>This command skips several Rails-provided dependencies that the project
-won&rsquo;t be utilizing.</p>
+<p>When re-visiting a <code>seats#show</code> page that&rsquo;s already in the Turbolinks
+cache (like when un-selecting a seat from the <code>&lt;dialog&gt;</code> element), the
+<code>&lt;dialog&gt;</code> and map flash in a distracting way.</p>
 
-<p>It sets <a href="https://www.postgresql.org/">PostgreSQL</a> as the application&rsquo;s database, configures the
-project&rsquo;s JavaScript to be built with <a href="https://webpack.js.org/">Webpack</a> through <a href="https://github.com/rails/webpacker">Webpacker</a>,
-and makes <a href="https://stimulusjs.org/">StimulusJS</a> available on the project&rsquo;s client-side.</p>
+<p>This commit configures Turbolinks to enable caching for reloading pages
+from the back-button triggered navigation stacks by setting the cache
+strategy to <a href="https://github.com/turbolinks/turbolinks#opting-out-of-caching"><code>no-preview</code></a></p>
 
         </article>
           <aside class="container__item diff">
+              <details
+  id="app/views/layouts/application.html.erb"
+  open
+>
+  <summary>
+    app/views/layouts/application.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index a4d4546..5d4fb5e 100644
+</span><span class="gd">--- a/app/views/layouts/application.html.erb
+</span><span class="gi">+++ b/app/views/layouts/application.html.erb
+</span><span class="p">@@ -5,6 +5,7 @@</span>
+     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+     &lt;%= csrf_meta_tags %&gt;
+     &lt;%= csp_meta_tag %&gt;
+<span class="gi">+    &lt;meta name="turbolinks-cache-control" content="no-preview"&gt;
+</span> 
+     &lt;%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;
+     &lt;%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
+</code></pre></div></details>
+
           </aside>
       </section>
     </main>

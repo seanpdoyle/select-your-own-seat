@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>[GENERATED] Initial Commit
+    <title>Create `git-read` GitHub Action
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -20,7 +20,7 @@
       <nav class="history">
         <a href="../../">select-your-own-seat</a>
 
-          <a href="./" aria-current="page">[GENERATED] Initial Commit
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
           <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
@@ -87,7 +87,7 @@
 </a>
           <a href="../2baa9ad185d826a71d01ecf10fa331fc6be8fa0e/">Execute System Tests without JavaScript
 </a>
-          <a href="../35c585660f7bf2a22bf340624d275f15449865c2/">Create `git-read` GitHub Action
+          <a href="./" aria-current="page">Create `git-read` GitHub Action
 </a>
       </nav>
     </details>
@@ -97,34 +97,94 @@
 
         <nav class="navigation">
 
-
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              Next &#8594;
-</a>        </nav>
+<a href="../2baa9ad185d826a71d01ecf10fa331fc6be8fa0e/">              &#8592; Previous
+</a>
+        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>[GENERATED] Initial Commit</h1>
+          <h1>Create <code>git-read</code> GitHub Action</h1>
 
-<p>This commit is the output of the following command (<code>rails@6.0.2.2</code>):</p>
-<div class="highlight"><pre class="highlight plaintext"><code>rails new select-your-own-seat \
-  --webpack=stimulus \
-  --database=postgresql \
-  --skip-action-cable \
-  --skip-action-mailbox \
-  --skip-action-mailer \
-  --skip-action-text \
-  --skip-active-storage
-</code></pre></div>
-<p>This command skips several Rails-provided dependencies that the project
-won&rsquo;t be utilizing.</p>
+<p>Utilize the <a href="https://github.com/seanpdoyle/git-read"><code>seanpdoyle/git-read</code></a> [GitHub Action] to
+generate web pages from this project&rsquo;s Git history.</p>
 
-<p>It sets <a href="https://www.postgresql.org/">PostgreSQL</a> as the application&rsquo;s database, configures the
-project&rsquo;s JavaScript to be built with <a href="https://webpack.js.org/">Webpack</a> through <a href="https://github.com/rails/webpacker">Webpacker</a>,
-and makes <a href="https://stimulusjs.org/">StimulusJS</a> available on the project&rsquo;s client-side.</p>
+<p>The declarations in <code>.github/workflow/git-read.yml</code> were inspired by the
+corresponding GitHub Action workflow declared in the <a href="https://github.com/seanpdoyle/git-read/blob/master/.github/workflows/git-read.yml"><code>git-read</code>
+repository</a>.</p>
+
+<p>Specifying the <code>--git-dir</code> and <code>--output-dir</code> values in terms of the
+GitHub Actions-provided <a href="https://help.github.com/en/actions/configuring-and-managing-workflows/using-environment-variables#default-environment-variables"><code>$GITHUB_WORKSPACE</code> environment variable</a>
+is important to ensure that the proper output is pushed to the
+<code>gh-pages</code> branch.</p>
+
+<p>Upon each <code>git push</code> to this repository, this project&rsquo;s Git history will
+be rendered as HTML and deployed to the <a href="https://pages.github.com/"><code>gh-pages</code> branch</a>,
+available at https://seanpdoyle.github.io/select-your-own-seat.</p>
 
         </article>
           <aside class="container__item diff">
+              <details
+  id=".github/workflows/git-read.yml"
+  open
+>
+  <summary>
+    .github/workflows/git-read.yml
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.github/workflows/git-read.yml b/.github/workflows/git-read.yml
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..7fb86fc
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/.github/workflows/git-read.yml
+</span><span class="p">@@ -0,0 +1,45 @@</span>
+<span class="gi">+name: git-read
++
++on:
++  push:
++    branches:
++      - master
++
++jobs:
++  build:
++    runs-on: ubuntu-latest
++    steps:
++      - uses: actions/checkout@v2
++        with:
++          fetch-depth: 0
++
++      - uses: actions/checkout@v2
++        with:
++          repository: "seanpdoyle/git-read"
++          path: "git-read"
++
++      - uses: actions/cache@v1
++        with:
++          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
++          restore-keys: ${{ runner.os }}-gems-
++          path: vendor/bundle
++
++      - uses: actions/setup-ruby@v1
++        with:
++          ruby-version: "2.6.5"
++          run: bundle config path vendor/bundle
++
++      - name: Build documentation from Git History
++        run: |
++          $GITHUB_WORKSPACE/git-read/script/install
++          $GITHUB_WORKSPACE/git-read/bin/git-read \
++            --verbose \
++            --git-dir ./ \
++            --output-dir build/
++
++      - name: Deploy
++        uses: peaceiris/actions-gh-pages@v3
++        with:
++          personal_token: ${{ secrets.PERSONAL_TOKEN }}
++          commit_message: ${{ github.event.head_commit.message }}
++          publish_dir: build/
+</span></code></pre></div></details>
+
           </aside>
       </section>
     </main>
