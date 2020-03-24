@@ -8,6 +8,7 @@ export default class extends Controller {
     "seat",
     "section",
     "selection",
+    "viewport",
     "zoomControls",
   ]
 
@@ -22,21 +23,42 @@ export default class extends Controller {
       minZoom: 1.0,
       maxZoom: 8,
     })
+
+    const mapState = this.readMapState()
+    if (mapState) {
+      const [ zoom, pan ] = mapState
+
+      this.map.zoom(zoom)
+      this.map.pan(pan)
+    }
+
     this.selectSeats()
   }
 
   disconnect() {
-    if (this.isDiscardingMap) {
-      this.map.destroy()
+    this.writeMapState(this.map)
+
+    this.map.destroy()
+  }
+
+  writeMapState(map) {
+    const floorId = this.data.get("floorId")
+
+    const state = [map.getZoom(), map.getPan()]
+
+    window.sessionStorage.setItem(`${floorId}.state`, JSON.stringify(state))
+  }
+
+  readMapState() {
+    const floorId = this.data.get("floorId")
+
+    const state = window.sessionStorage.getItem(`${floorId}.state`)
+
+    try {
+      return JSON.parse(state)
+    } catch (_) {
+      return null
     }
-  }
-
-  discardMap() {
-    this.mapTarget.removeAttribute("data-turbolinks-permanent")
-  }
-
-  get isDiscardingMap() {
-    return !this.mapTarget.hasAttribute("data-turbolinks-permanent")
   }
 
   zoomIn() {
