@@ -1,0 +1,284 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Unselect a Seat to remove it from visitor's Cart
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../216b59c57382d8d091ee380dac22779bce0f03f3/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../6c0d693b3c6fe7caf64b782adae933b678be9665/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../cd3d29c6717df5e6b169c8be211f6e2447158d74/">Add `seats#show` route and action
+</a>
+          <a href="../2eb88c2b9f33cb84f4b35bfc47b484f4f7b84ca2/">Add `inline_svg` gem
+</a>
+          <a href="../d92c26b80eb78d7aa87e9ee419655e7b668de904/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="./" aria-current="page">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../56abe06d8370ea5c308df58dfc00cf93d82ac3d1/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../20eb681d52446fdb56cba2e2dd124df986aa7cae/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../9d14aa897fab41fb3db950c50d9a2ad566bc2350/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../3ef6c718acb4234ebfcdb6fcdd5a30388e98c324/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../1cc7a250fdf123151d43d52fd92cbdb1d6cde896/">Switch floors from map
+</a>
+          <a href="../d3003ec92097d04fd4bd73530895ae644ee5f69e/">Filter Seats based on their Price
+</a>
+          <a href="../b52604a94495aff9d4c921fde51086bd42f6d556/">Implement Server-Side Price Filtering
+</a>
+          <a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/">Add panning and zooming to SVG map element
+</a>
+          <a href="../31534d16f855b53d0bd331931709b87222060123/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../c762566cabd2135fe67c7877aacd894ae6af8301/">Persist map across page loads
+</a>
+          <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">Introduce a Loading Indicator
+</a>
+          <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../641ae448f0103200d8b6616c6c7684926c8c8558/">Opt out of preview caching
+</a>
+          <a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/">Progressively enhance Selection State
+</a>
+          <a href="../d28a1a560df65677015cae331d2f375b22e530b3/">Progressively enhance price filtering
+</a>
+          <a href="../ad83cab691dcc7ab46876094b2633b39c999a1db/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../6236e5b81d0d4de460375af2cf8e24b3ea70090e/">Manage filter query parameters with push state
+</a>
+          <a href="../c7613b1cd691655c014ba1d2aef935a21f38889d/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/">Hide elements that require JavaScript
+</a>
+          <a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/">Execute System Tests without JavaScript
+</a>
+          <a href="../3d740fcdb09545f99070ce4bbc6e03e75f27cdef/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../d92c26b80eb78d7aa87e9ee419655e7b668de904/">              &#8592; Previous
+</a>
+<a href="../56abe06d8370ea5c308df58dfc00cf93d82ac3d1/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Unselect a Seat to remove it from visitor&rsquo;s Cart</h1>
+
+<p>Change the cart summary&rsquo;s <code>&lt;button&gt;</code> element to be rendered with a
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/UrlHelper.html#method-i-button_to"><code>button_to</code></a> helper, transforming its underlying element to
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code> element</a> with its <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method"><code>method</code> attribute</a> set to
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE"><code>DELETE</code></a>.</p>
+
+<p>This commit also introduces the <code>SelectionsController#destroy</code> action to
+handle requests made from the <code>&lt;form&gt;</code> generated by the <code>button_to</code>
+call.</p>
+
+<p>In order to route requests to the <code>selections#destroy</code> method <em>without</em>
+a <code>SeatSelection</code> record identifier, declare the route as a <a href="https://guides.rubyonrails.org/v6.0/routing.html#singular-resources">singular
+resource route</a>. To access this action, the page&rsquo;s
+<code>&lt;form&gt;</code> element must declare its <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action"><code>action</code> attribute</a> to the
+<code>/seats/:seat_id/selections</code> route, and ensure that its method is
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE"><code>DELETE</code></a>.</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386365-03ba0780-6d61-11ea-9b37-e4266abab99d.gif" alt="unselect from cart" /></p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/controllers/selections_controller.rb"
+  open
+>
+  <summary>
+    app/controllers/selections_controller.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/selections_controller.rb b/app/controllers/selections_controller.rb
+index 2d6f971..a00c873 100644
+</span><span class="gd">--- a/app/controllers/selections_controller.rb
+</span><span class="gi">+++ b/app/controllers/selections_controller.rb
+</span><span class="p">@@ -6,4 +6,12 @@</span> class SelectionsController &lt; ApplicationController
+ 
+     redirect_to venue_floor_seats_url(seat.venue, seat.floor)
+   end
+<span class="gi">+
++  def destroy
++    seat = Seat.find(params[:seat_id])
++
++    Current.cart.seat_selections.where(seat_id: seat).destroy_all
++
++    redirect_to venue_floor_seats_url(seat.venue, seat.floor)
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 1fa0c41..8da5260 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -80,14 +80,18 @@</span>
+                   &lt;%= number_to_currency(seat.section.price / 100.0) %&gt;
+                 &lt;/td&gt;
+                 &lt;td class="syos-u-text-align-right"&gt;
+<span class="gd">-                  &lt;button class="syos-button syos-button--transparent"&gt;
+</span><span class="gi">+                  &lt;%= button_to(
++                    seat_selection_path(seat),
++                    class: "syos-button syos-button--transparent",
++                    method: :delete,
++                  ) do %&gt;
+</span>                     &lt;%= inline_svg_tag(
+                       "icons/x-circle.svg",
+                       aria: true,
+                       class: "syos-icon",
+                       title: "Remove",
+                     ) %&gt;
+<span class="gd">-                  &lt;/button&gt;
+</span><span class="gi">+                  &lt;% end %&gt;
+</span>                 &lt;/td&gt;
+               &lt;/tr&gt;
+             &lt;% end %&gt;
+</code></pre></div></details>
+
+              <details
+  id="config/routes.rb"
+  open
+>
+  <summary>
+    config/routes.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index 1f8d5ed..8ff545e 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -8,6 +8,7 @@</span> Rails.application.routes.draw do
+ 
+   resources :seats, only: [] do
+     resources :selections, only: [:create]
+<span class="gi">+    resource :selection, only: [:destroy]
+</span>   end
+ 
+   root to: redirect("/venues/benedum_center/floors/orchestra/seats")
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/selections_controller_test.rb"
+  open
+>
+  <summary>
+    test/controllers/selections_controller_test.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/selections_controller_test.rb b/test/controllers/selections_controller_test.rb
+index f4a817d..76b31c9 100644
+</span><span class="gd">--- a/test/controllers/selections_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/selections_controller_test.rb
+</span><span class="p">@@ -19,4 +19,15 @@</span> class SelectionsControllerTest &lt; ActionDispatch::IntegrationTest
+ 
+     assert_equal cart.seats.ids, [seat.id]
+   end
+<span class="gi">+
++  test "#destroy when a Seat is already selected" do
++    seat_selection = create(:seat_selection)
++    cart = seat_selection.cart
++    seat = seat_selection.seat
++    cookies[:cart_token] = cart.token
++
++    delete seat_selection_path(seat, seat_selection)
++
++    assert_equal cart.seats.ids, []
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/system/visitor_unselects_seat_test.rb"
+  open
+>
+  <summary>
+    test/system/visitor_unselects_seat_test.rb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_unselects_seat_test.rb b/test/system/visitor_unselects_seat_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..bfb6a23
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/system/visitor_unselects_seat_test.rb
+</span><span class="p">@@ -0,0 +1,18 @@</span>
+<span class="gi">+require "application_system_test_case"
++
++class VisitorUnselectsSeatTest &lt; ApplicationSystemTestCase
++  test "visiting the seat page" do
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    section = create(:section, floor: floor, price: 10_00)
++    seat = create(:seat, row: "AA", number: "101", section: section)
++
++    visit "/venues/benedum_center/floors/orchestra/seats/AA-101"
++    click_on "Select"
++    click_on "Remove"
++
++    within "#cart-summary" do
++      assert_no_text "$10.00"
++    end
++  end
++end
+</span></code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

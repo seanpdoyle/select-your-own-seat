@@ -1,0 +1,242 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Navigate when `<dialog>` element closes
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../216b59c57382d8d091ee380dac22779bce0f03f3/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../6c0d693b3c6fe7caf64b782adae933b678be9665/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../cd3d29c6717df5e6b169c8be211f6e2447158d74/">Add `seats#show` route and action
+</a>
+          <a href="../2eb88c2b9f33cb84f4b35bfc47b484f4f7b84ca2/">Add `inline_svg` gem
+</a>
+          <a href="../d92c26b80eb78d7aa87e9ee419655e7b668de904/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../db78e9d8cc83cd5cde671272220b8aae731ac7bc/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../56abe06d8370ea5c308df58dfc00cf93d82ac3d1/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../20eb681d52446fdb56cba2e2dd124df986aa7cae/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../9d14aa897fab41fb3db950c50d9a2ad566bc2350/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../3ef6c718acb4234ebfcdb6fcdd5a30388e98c324/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../1cc7a250fdf123151d43d52fd92cbdb1d6cde896/">Switch floors from map
+</a>
+          <a href="../d3003ec92097d04fd4bd73530895ae644ee5f69e/">Filter Seats based on their Price
+</a>
+          <a href="../b52604a94495aff9d4c921fde51086bd42f6d556/">Implement Server-Side Price Filtering
+</a>
+          <a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/">Add panning and zooming to SVG map element
+</a>
+          <a href="../31534d16f855b53d0bd331931709b87222060123/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../c762566cabd2135fe67c7877aacd894ae6af8301/">Persist map across page loads
+</a>
+          <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">Introduce a Loading Indicator
+</a>
+          <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../641ae448f0103200d8b6616c6c7684926c8c8558/">Opt out of preview caching
+</a>
+          <a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/">Progressively enhance Selection State
+</a>
+          <a href="../d28a1a560df65677015cae331d2f375b22e530b3/">Progressively enhance price filtering
+</a>
+          <a href="../ad83cab691dcc7ab46876094b2633b39c999a1db/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../6236e5b81d0d4de460375af2cf8e24b3ea70090e/">Manage filter query parameters with push state
+</a>
+          <a href="./" aria-current="page">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/">Hide elements that require JavaScript
+</a>
+          <a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/">Execute System Tests without JavaScript
+</a>
+          <a href="../3d740fcdb09545f99070ce4bbc6e03e75f27cdef/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../6236e5b81d0d4de460375af2cf8e24b3ea70090e/">              &#8592; Previous
+</a>
+<a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Navigate when <code>&lt;dialog&gt;</code> element closes</h1>
+
+<p>When viewing seats through the page&rsquo;s modal <code>&lt;dialog&gt;</code> element, closing
+the modal does not update the page&rsquo;s URL. This means that after viewing
+a Seat&rsquo;s details early on in a session, a User can navigate back to the
+Seats index, filter seats, remove Seats from their cart.</p>
+
+<p>The whole time they&rsquo;re taking action, they might not update the
+URL&rsquo;s path. If they were to reload the page, they might be surprised to
+re-visit the last selected seat&rsquo;s details in a modal <code>&lt;dialog&gt;</code> element.</p>
+
+<p>This commit replaces the <code>&lt;form method=&quot;dialog&quot;&gt;</code> element with an <code>&lt;a&gt;</code>
+element that links to the <code>/venues/:venue_id/floors/:floor_id/seats</code>
+URL.</p>
+
+<p>Additionally, this commit handles the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event"><code>&lt;dialog&gt;</code>&lsquo;s <code>cancel</code>
+event</a> that&rsquo;s triggered by <kbd>esc</kbd>, by introducing the
+<code>dialog_controller.js</code> file and declaring the
+<code>data-action=&quot;cancel-&gt;dialog#cancel&quot;</code> attribute to route events to the
+<code>dialog#cancel</code> function.</p>
+
+<p>Once events are routed to <code>cancel</code>, invoke <a href="https://github.com/turbolinks/turbolinks#turbolinksvisit"><code>Turbolinks.visit</code></a>
+with the value of <code>data-return-to-url</code>.</p>
+
+<p>In a JavaScript-disabled environment, clicking the &ldquo;Close&rdquo; button will
+navigate the user back to the Seats index, but a <kbd>esc</kbd> will
+not. Whoops!</p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/javascript/controllers/dialog_controller.js"
+  open
+>
+  <summary>
+    app/javascript/controllers/dialog_controller.js
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/dialog_controller.js b/app/javascript/controllers/dialog_controller.js
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..ea205e8
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/javascript/controllers/dialog_controller.js
+</span><span class="p">@@ -0,0 +1,10 @@</span>
+<span class="gi">+import { Controller } from "stimulus"
++import Turbolinks from "turbolinks"
++
++export default class extends Controller {
++  cancel({ currentTarget }) {
++    const { redirectToUrl } = currentTarget.dataset
++
++    Turbolinks.visit(redirectToUrl, { action: "replace" })
++  }
++}
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/_dialog.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/_dialog.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/_dialog.html.erb b/app/views/seats/_dialog.html.erb
+index 585d935..adfdf0a 100644
+</span><span class="gd">--- a/app/views/seats/_dialog.html.erb
+</span><span class="gi">+++ b/app/views/seats/_dialog.html.erb
+</span><span class="p">@@ -1,6 +1,9 @@</span>
+ &lt;%= tag.dialog(
+   class: "syos-dialog",
+   open: true,
+<span class="gi">+  "data-controller": "dialog",
++  "data-action": "cancel-&gt;dialog#cancel",
++  "data-redirect-to-url": redirect_to_url,
+</span> ) do %&gt;
+   &lt;%= yield %&gt;
+ &lt;% end %&gt;
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/show.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/show.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
+index 537eb79..aae06a1 100644
+</span><span class="gd">--- a/app/views/seats/show.html.erb
+</span><span class="gi">+++ b/app/views/seats/show.html.erb
+</span><span class="p">@@ -1,23 +1,22 @@</span>
+ &lt;%= render(template: "seats/index", locals: local_assigns) %&gt;
+ 
+<span class="gd">-&lt;%= render(layout: "seats/dialog") do %&gt;
+</span><span class="gi">+&lt;%= render(layout: "seats/dialog", locals: { redirect_to_url: venue_floor_seats_path(venue, floor) }) do %&gt;
+</span>   &lt;header class="syos-dialog__header"&gt;
+     &lt;h2 class="syos-dialog__title"&gt;
+       Confirm seat selection
+     &lt;/h2&gt;
+ 
+<span class="gd">-    &lt;form method="dialog"&gt;
+-      &lt;button
+-        class="syos-button syos-button--transparent"
+-      &gt;
+-        &lt;%= inline_svg_tag(
+-          "icons/x-circle.svg",
+-          aria: true,
+-          class: "syos-icon syos-icon--large",
+-          title: "Close modal",
+-        ) %&gt;
+-      &lt;/button&gt;
+-    &lt;/form&gt;
+</span><span class="gi">+    &lt;%= link_to(
++      venue_floor_seats_path(venue, floor),
++      class: "syos-button syos-button--transparent",
++    ) do %&gt;
++      &lt;%= inline_svg_tag(
++        "icons/x-circle.svg",
++        aria: true,
++        class: "syos-icon syos-icon--large",
++        title: "Close modal",
++      ) %&gt;
++    &lt;% end %&gt;
+</span>   &lt;/header&gt;
+ 
+   &lt;section class="syos-dialog__body"&gt;
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

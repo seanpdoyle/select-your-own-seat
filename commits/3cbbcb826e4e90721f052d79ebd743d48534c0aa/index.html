@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Hide elements that require JavaScript
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -83,7 +83,7 @@
 </a>
           <a href="../c7613b1cd691655c014ba1d2aef935a21f38889d/">Navigate when `&lt;dialog&gt;` element closes
 </a>
-          <a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/">Hide elements that require JavaScript
+          <a href="./" aria-current="page">Hide elements that require JavaScript
 </a>
           <a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/">Execute System Tests without JavaScript
 </a>
@@ -97,76 +97,79 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../c7613b1cd691655c014ba1d2aef935a21f38889d/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Hide elements that require JavaScript</h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>This commit hides the elements that do not function without JavaScript
+enabled: the zoom controls.</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
+<p>To hide the zoom controls when JavaScript is disabled, declare their
+<code>&lt;div&gt;</code> with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden"><code>hidden</code></a> attribute.</p>
 
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
-
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
-
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p>Next, when JavaScript <em>is enabled</em>, remove the <code>hidden</code> attribute when
+the <code>seats</code> controller attaches to the DOM in its <a href="https://stimulusjs.org/reference/lifecycle-callbacks"><code>connect()</code></a>
+lifecycle callback.</p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/javascript/controllers/seats_controller.js"
   open
 >
   <summary>
-    .tool-versions
+    app/javascript/controllers/seats_controller.js
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
-</span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
-</span></code></pre></div></details>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index 3ef4e53..f16a9c3 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -8,9 +8,11 @@</span> export default class extends Controller {
+     "seat",
+     "section",
+     "selection",
+<span class="gi">+    "zoomControls",
+</span>   ]
+ 
+   connect() {
+<span class="gi">+    this.zoomControlsTarget.hidden = false
+</span>     this.map = svgPanZoom(this.mapTarget, {
+       center: true,
+       fit: true,
+</code></pre></div></details>
 
               <details
-  id="bin/setup"
+  id="app/views/seats/index.html.erb"
   open
 >
   <summary>
-    bin/setup
+    app/views/seats/index.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index e87003d..bf994ba 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -169,7 +169,11 @@</span>
+         &lt;% end %&gt;
+       &lt;/svg&gt;
  
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
-</span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+<span class="gd">-      &lt;div class="syos-frame__map-zoom syos-control-zoom"&gt;
+</span><span class="gi">+      &lt;div
++        class="syos-frame__map-zoom syos-control-zoom"
++        data-target="seats.zoomControls"
++        hidden
++        &gt;
+</span>         &lt;button
+           class="syos-button syos-button--transparent syos-control-zoom__button"
+           type="button"
 </code></pre></div></details>
 
           </aside>

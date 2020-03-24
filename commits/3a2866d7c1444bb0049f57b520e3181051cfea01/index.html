@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Dynamically Hide and Show Loading Spinner
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -69,7 +69,7 @@
 </a>
           <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">Introduce a Loading Indicator
 </a>
-          <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">Dynamically Hide and Show Loading Spinner
+          <a href="./" aria-current="page">Dynamically Hide and Show Loading Spinner
 </a>
           <a href="../641ae448f0103200d8b6616c6c7684926c8c8558/">Opt out of preview caching
 </a>
@@ -97,76 +97,130 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../641ae448f0103200d8b6616c6c7684926c8c8558/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Dynamically Hide and Show Loading Spinner</h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>Add the <code>loadingOverlay</code> target to the <code>seats</code> controller, and <a href="https://stimulusjs.org/reference/actions#global-events">route
+the <code>document</code>-wide global events</a> named
+<code>turbolinks:request-start</code> and <code>turbolinks:load</code> to the
+<code>seats#loadingStarted</code> and <code>seats#loadingFinished</code> actions respectively.</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
+<p>When handling <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#full-list-of-events"><code>turbolinks:request-start</code> and <code>turbolinks:load</code>
+events</a>, only hide and show the loading indicator
+when we&rsquo;re discarding our map element, since it&rsquo;s persisted across
+navigations when the <code>data-turbolinks-permanent</code> attribute is present.</p>
 
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
+<p>The CSS class that visually indicates a loading state is <code>.is-loading</code>.
+This class is passed as the <code>[data-seats-loading-class]</code> attribute on
+the <code>[data-controller=&quot;seats&quot;]</code> element in the <a href="#app/views/seats/index.html.erb"><code>seats/index</code>
+template</a>. Once declared as such, that
+value is available through Stimulus&rsquo; <a href="https://stimulusjs.org/reference/data-maps">Data Maps
+interface</a>.</p>
 
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
+<h2>Desktop</h2>
 
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p><img src="https://user-images.githubusercontent.com/2575027/77386338-f8ff7280-6d60-11ea-909c-365cfaa3a2d5.gif" alt="loading-spinner-on-nav" /></p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/javascript/controllers/seats_controller.js"
   open
 >
   <summary>
-    .tool-versions
+    app/javascript/controllers/seats_controller.js
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
-</span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
-</span></code></pre></div></details>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index d953e65..abddaf1 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -3,6 +3,7 @@</span> import svgPanZoom from "svg-pan-zoom"
+ 
+ export default class extends Controller {
+   static targets = [
+<span class="gi">+    "loadingOverlay",
+</span>     "map",
+   ]
+ 
+<span class="p">@@ -18,7 +19,7 @@</span> export default class extends Controller {
+   }
+ 
+   disconnect() {
+<span class="gd">-    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
+</span><span class="gi">+    if (this.isDiscardingMap) {
+</span>       this.map.destroy()
+     }
+   }
+<span class="p">@@ -27,6 +28,10 @@</span> export default class extends Controller {
+     this.mapTarget.removeAttribute("data-turbolinks-permanent")
+   }
+ 
+<span class="gi">+  get isDiscardingMap() {
++    return !this.mapTarget.hasAttribute("data-turbolinks-permanent")
++  }
++
+</span>   zoomIn() {
+     this.map.zoomIn()
+   }
+<span class="p">@@ -34,4 +39,14 @@</span> export default class extends Controller {
+   zoomOut() {
+     this.map.zoomOut()
+   }
+<span class="gi">+
++  loadingStarted() {
++    if (this.isDiscardingMap) {
++      this.loadingOverlayTarget.classList.add(this.data.get("loadingClass"))
++    }
++  }
++
++  loadingFinished() {
++    this.loadingOverlayTarget.classList.remove(this.data.get("loadingClass"))
++  }
+</span> }
+</code></pre></div></details>
 
               <details
-  id="bin/setup"
+  id="app/views/seats/index.html.erb"
   open
 >
   <summary>
-    bin/setup
+    app/views/seats/index.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 12c3744..8f6b7e2 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -8,6 +8,7 @@</span>
+   &lt;section
+     class="syos-frame"
+     data-controller="seats"
+<span class="gi">+    data-seats-loading-class="is-loading"
+</span>   &gt;
+     &lt;div class="syos-frame__map"&gt;
+       &lt;nav class="syos-frame__floor-nav syos-floor-nav"&gt;
+<span class="p">@@ -80,7 +81,12 @@</span>
+       &lt;/div&gt;
  
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
-</span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+       &lt;div
+<span class="gd">-        class="syos-frame__map-overlay syos-loader-overlay is-loading"
+</span><span class="gi">+        class="syos-frame__map-overlay syos-loader-overlay"
++        data-target="seats.loadingOverlay"
++        data-action="
++          turbolinks:request-start@document-&gt;seats#loadingStarted
++          turbolinks:load@document-&gt;seats#loadingFinished
++        "
+</span>         aria-hidden="true"
+         &gt;
+         &lt;%= inline_svg_tag(
 </code></pre></div></details>
 
           </aside>

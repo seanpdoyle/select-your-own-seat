@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Persist map across page loads
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -65,7 +65,7 @@
 </a>
           <a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">Add behavior to Zoom In and Zoom Out buttons
 </a>
-          <a href="../c762566cabd2135fe67c7877aacd894ae6af8301/">Persist map across page loads
+          <a href="./" aria-current="page">Persist map across page loads
 </a>
           <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">Introduce a Loading Indicator
 </a>
@@ -97,76 +97,116 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Persist map across page loads</h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>The <code>&lt;svg&gt;</code> element that serves as the <code>seats#index</code> and <code>seats#show</code>
+seat map includes more than 1,000 elements per floor. Parsing,
+rendering, and discarding the DOM Nodes that represent the map takes
+time and could be wasteful.</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
+<p>Additionally, now that the application is capable of panning and
+zooming, it&rsquo;s important to preserve that state as our users interact
+with the map, so that they&rsquo;re not surprised or disrupted.</p>
 
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
+<p>This commit annotates the <code>&lt;svg&gt;</code> element that includes the page&rsquo;s seat
+map elements with <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#persisting-elements-across-page-loads"><code>data-turbolinks-permanent</code></a> to persist it
+across page loads. In order to persist the element across page loads, it
+requires an <code>id</code> attribute, so declare it as <code>&quot;map&quot;</code>.</p>
 
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
+<p>There is an exception to this optimization: navigating between the
+floors of our venue. When switching floors, preserving the map&rsquo;s current
+zoom and pan <em>would be a surprise</em>.</p>
 
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p>When navigating to a separate <code>Floor</code> in a <code>Venue</code>,
+the clicked <code>&lt;a&gt;</code> element will fire a <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#full-list-of-events"><code>turbolinks:click</code></a> event.</p>
+
+<p>This commit decorates the <code>&lt;a&gt;</code> elements with <a href="https://stimulusjs.org/reference/actions"><code>data-action</code>
+attributes</a> that route the events to the <code>seats#discardMap</code>
+function. The <code>discardMap</code> function removes the
+<code>data-turbolinks-permanent</code> attribute, preventing it from being retained
+during the imminent page transition.</p>
+
+<p>The presence or absence of the <code>data-turbolinks-permanent</code> attribute
+represents whether or not the <code>seats</code> controller should discard the map.</p>
+
+<p>Therefore <em>do not</em> destroy the map when navigating between pages <em>while
+the map is being retained</em>.</p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/javascript/controllers/seats_controller.js"
   open
 >
   <summary>
-    .tool-versions
+    app/javascript/controllers/seats_controller.js
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
-</span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
-</span></code></pre></div></details>
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index 4d78851..d953e65 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -18,7 +18,13 @@</span> export default class extends Controller {
+   }
+ 
+   disconnect() {
+<span class="gd">-    this.map.destroy()
+</span><span class="gi">+    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
++      this.map.destroy()
++    }
++  }
++
++  discardMap() {
++    this.mapTarget.removeAttribute("data-turbolinks-permanent")
+</span>   }
+ 
+   zoomIn() {
+</code></pre></div></details>
 
               <details
-  id="bin/setup"
+  id="app/views/seats/index.html.erb"
   open
 >
   <summary>
-    bin/setup
+    app/views/seats/index.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index d0428cb..96eb878 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -23,6 +23,7 @@</span>
+               &lt;li class="syos-block-stack__item"&gt;
+                 &lt;%= active_link_to(
+                   venue_floor_seats_path(venue, floor),
+<span class="gi">+                  "data-action" =&gt; "turbolinks:click-&gt;seats#discardMap",
+</span>                 ) do %&gt;
+                   &lt;%= floor.name %&gt;
+                 &lt;% end %&gt;
+<span class="p">@@ -79,6 +80,7 @@</span>
+       &lt;/div&gt;
  
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
-</span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+       &lt;svg
+<span class="gi">+        id="map"
+</span>         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         class="syos-seat-map"
+<span class="p">@@ -86,6 +88,7 @@</span>
+         height="1600px"
+         viewBox="0 0 1600 1600"
+         data-target="seats.map"
+<span class="gi">+        data-turbolinks-permanent
+</span>       &gt;
+         &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
+ 
 </code></pre></div></details>
 
           </aside>

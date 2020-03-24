@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Opt out of preview caching
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -71,7 +71,7 @@
 </a>
           <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">Dynamically Hide and Show Loading Spinner
 </a>
-          <a href="../641ae448f0103200d8b6616c6c7684926c8c8558/">Opt out of preview caching
+          <a href="./" aria-current="page">Opt out of preview caching
 </a>
           <a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/">Progressively enhance Selection State
 </a>
@@ -97,76 +97,46 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Opt out of preview caching</h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>When re-visiting a <code>seats#show</code> page that&rsquo;s already in the Turbolinks
+cache (like when un-selecting a seat from the <code>&lt;dialog&gt;</code> element), the
+<code>&lt;dialog&gt;</code> and map flash in a distracting way.</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
-
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
-
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
-
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p>This commit configures Turbolinks to disable caching for reloading pages
+from the back-button triggered navigation stacks by setting the cache
+strategy to <a href="https://github.com/turbolinks/turbolinks#opting-out-of-caching"><code>no-preview</code></a></p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/views/layouts/application.html.erb"
   open
 >
   <summary>
-    .tool-versions
+    app/views/layouts/application.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
-</span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
-</span></code></pre></div></details>
-
-              <details
-  id="bin/setup"
-  open
->
-  <summary>
-    bin/setup
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
- 
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index a4d4546..5d4fb5e 100644
+</span><span class="gd">--- a/app/views/layouts/application.html.erb
+</span><span class="gi">+++ b/app/views/layouts/application.html.erb
+</span><span class="p">@@ -5,6 +5,7 @@</span>
+     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+     &lt;%= csrf_meta_tags %&gt;
+     &lt;%= csp_meta_tag %&gt;
+<span class="gi">+    &lt;meta name="turbolinks-cache-control" content="no-preview"&gt;
 </span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+     &lt;%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;
+     &lt;%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
 </code></pre></div></details>
 
           </aside>

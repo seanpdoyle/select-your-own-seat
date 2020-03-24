@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Introduce a Loading Indicator
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -67,7 +67,7 @@
 </a>
           <a href="../c762566cabd2135fe67c7877aacd894ae6af8301/">Persist map across page loads
 </a>
-          <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">Introduce a Loading Indicator
+          <a href="./" aria-current="page">Introduce a Loading Indicator
 </a>
           <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">Dynamically Hide and Show Loading Spinner
 </a>
@@ -97,76 +97,77 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../c762566cabd2135fe67c7877aacd894ae6af8301/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Introduce a Loading Indicator</h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>This commit adds the HTML necessary to display a loading indicator over
+the map and various other controls on the page.</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
+<p>The indicator contains an inline-rendered <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg"><code>&lt;svg&gt;</code> element</a>
+that we animate to spin indefinitely.</p>
 
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
+<p>Future commits will add logic to dynamically hide and show the indicator
+by adding and removing the <code>.is-loading</code> CSS class.</p>
 
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
+<h2>Desktop</h2>
 
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p><img src="https://user-images.githubusercontent.com/2575027/77386339-f9980900-6d60-11ea-995a-4ce0e25f5ec0.gif" alt="loading-spinner" /></p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/assets/images/icons/loader.svg"
   open
 >
   <summary>
-    .tool-versions
+    app/assets/images/icons/loader.svg
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/loader.svg b/app/assets/images/icons/loader.svg
 </span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
+</span><span class="gh">index 0000000..5dcf9dd
 </span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
+</span><span class="gi">+++ b/app/assets/images/icons/loader.svg
 </span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"&gt;&lt;g fill="#FFF" fill-rule="nonzero"&gt;&lt;path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18" opacity=".25"/&gt;&lt;path d="M12 0c6.627 0 12 5.373 12 12h-3a9 9 0 0 0-9-9V0z"/&gt;&lt;/g&gt;&lt;/svg&gt;
 </span></code></pre></div></details>
 
               <details
-  id="bin/setup"
+  id="app/views/seats/index.html.erb"
   open
 >
   <summary>
-    bin/setup
+    app/views/seats/index.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 96eb878..12c3744 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -79,6 +79,16 @@</span>
+         &lt;/ul&gt;
+       &lt;/div&gt;
  
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
-</span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+<span class="gi">+      &lt;div
++        class="syos-frame__map-overlay syos-loader-overlay is-loading"
++        aria-hidden="true"
++        &gt;
++        &lt;%= inline_svg_tag(
++          "icons/loader.svg",
++          class: "syos-icon syos-icon--xlarge syos-loader-overlay__loader",
++        ) %&gt;
++      &lt;/div&gt;
++
+</span>       &lt;svg
+         id="map"
+         xmlns="http://www.w3.org/2000/svg"
 </code></pre></div></details>
 
           </aside>

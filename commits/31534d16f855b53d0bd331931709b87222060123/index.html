@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Add map zoom controls to `seats/index`
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -61,7 +61,7 @@
 </a>
           <a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/">Add panning and zooming to SVG map element
 </a>
-          <a href="../31534d16f855b53d0bd331931709b87222060123/">Add map zoom controls to `seats&#x2F;index`
+          <a href="./" aria-current="page">Add map zoom controls to `seats&#x2F;index`
 </a>
           <a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">Add behavior to Zoom In and Zoom Out buttons
 </a>
@@ -97,76 +97,123 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Add map zoom controls to <code>seats/index</code></h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>This commit introduces the HTML that will control the map&rsquo;s zoom level.
+The controls add <code>&lt;button&gt;</code> elements that contain inline-<code>&lt;svg&gt;</code>
+plus and minus icons.</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
+<p>The elements are declared with <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/button#attr-type"><code>type=&quot;button&quot;</code></a>. While this
+attribute feels redundant, it&rsquo;s important to declare, since we expect to
+extend them with JavaScript behavior.</p>
 
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
+<p>According to the MDN Documentation, <code>type=&quot;button&quot;</code> ensures that they
+won&rsquo;t submit <code>&lt;form&gt;</code> elements, should they find themselves
+in a situation where <code>&lt;form&gt;</code> elements are their ancestors:</p>
 
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
+<blockquote>
+<p><code>type=&quot;submit&quot;</code>: The button submits the form data to the server. This
+is the default if the attribute is not specified, or if the attribute
+is dynamically changed to an empty or invalid value.</p>
 
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p><code>type=&quot;button&quot;</code>: The button has no default behavior. It can have
+client-side scripts associated with the element&rsquo;s events, which are
+triggered when the events occur.</p>
+</blockquote>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386362-03217100-6d61-11ea-92b0-b902be52b175.png" alt="map zoom buttons" /></p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/assets/images/icons/minus.svg"
   open
 >
   <summary>
-    .tool-versions
+    app/assets/images/icons/minus.svg
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/minus.svg b/app/assets/images/icons/minus.svg
 </span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
+</span><span class="gh">index 0000000..24bbfef
 </span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
+</span><span class="gi">+++ b/app/assets/images/icons/minus.svg
 </span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;line x1="5" y1="12" x2="19" y2="12"&gt;&lt;/line&gt;&lt;/svg&gt;
 </span></code></pre></div></details>
 
               <details
-  id="bin/setup"
+  id="app/assets/images/icons/plus.svg"
   open
 >
   <summary>
-    bin/setup
+    app/assets/images/icons/plus.svg
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/plus.svg b/app/assets/images/icons/plus.svg
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..86a9ab6
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/assets/images/icons/plus.svg
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;line x1="12" y1="5" x2="12" y2="19"&gt;&lt;/line&gt;&lt;line x1="5" y1="12" x2="19" y2="12"&gt;&lt;/line&gt;&lt;/svg&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index eac56a5..26dfb9a 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -141,6 +141,32 @@</span>
+           &lt;/g&gt;
+         &lt;% end %&gt;
+       &lt;/svg&gt;
+<span class="gi">+
++      &lt;div class="syos-frame__map-zoom syos-control-zoom"&gt;
++        &lt;button
++          class="syos-button syos-button--transparent syos-control-zoom__button"
++          type="button"
++        &gt;
++          &lt;%= inline_svg_tag(
++            "icons/plus.svg",
++            aria: true,
++            class: "syos-icon",
++            title: "zoom in",
++          ) %&gt;
++        &lt;/button&gt;
++
++        &lt;button
++          class="syos-button syos-button--transparent syos-control-zoom__button"
++          type="button"
++        &gt;
++          &lt;%= inline_svg_tag(
++            "icons/minus.svg",
++            aria: true,
++            class: "syos-icon",
++            title: "zoom out",
++          ) %&gt;
++        &lt;/button&gt;
++      &lt;/div&gt;
+</span>     &lt;/div&gt;
  
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
-</span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+     &lt;div class="syos-frame__sidebar"&gt;
 </code></pre></div></details>
 
           </aside>
