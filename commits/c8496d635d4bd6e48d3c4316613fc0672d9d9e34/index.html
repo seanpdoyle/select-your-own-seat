@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `<symbol>` for a selected seat
+    <title>Introduce a Loading Indicator
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -49,7 +49,7 @@
 </a>
           <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
 </a>
-          <a href="./" aria-current="page">Add `&lt;symbol&gt;` for a selected seat
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
 </a>
           <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
 </a>
@@ -67,7 +67,7 @@
 </a>
           <a href="../e27fc280d6333f6199a188f9a0fe2db9e8cfca78/">Persist map across page loads
 </a>
-          <a href="../c8496d635d4bd6e48d3c4316613fc0672d9d9e34/">Introduce a Loading Indicator
+          <a href="./" aria-current="page">Introduce a Loading Indicator
 </a>
           <a href="../71225e847880574dcf4e7d63b501c5e18813fc90/">Dynamically Hide and Show Loading Spinner
 </a>
@@ -97,22 +97,48 @@
 
         <nav class="navigation">
 
-<a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">              &#8592; Previous
+<a href="../e27fc280d6333f6199a188f9a0fe2db9e8cfca78/">              &#8592; Previous
 </a>
-<a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">              Next &#8594;
+<a href="../71225e847880574dcf4e7d63b501c5e18813fc90/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>&lt;symbol&gt;</code> for a selected seat</h1>
+          <h1>Introduce a Loading Indicator</h1>
 
-<p>When rendering the list of <code>Seat</code> records for a <code>Floor</code>, render <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use"><code>&lt;use&gt;</code>
-elements</a> referring to the new <code>#seat-icon-selected</code> version of a
-seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</code>.</p>
+<p>This commit adds the HTML necessary to display a loading indicator over
+the map and various other controls on the page.</p>
+
+<p>The indicator contains an inline-rendered <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg"><code>&lt;svg&gt;</code> element</a>
+that we animate to spin indefinitely.</p>
+
+<p>Future commits will add logic to dynamically hide and show the indicator
+by adding and removing the <code>.is-loading</code> CSS class.</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386339-f9980900-6d60-11ea-995a-4ce0e25f5ec0.gif" alt="loading-spinner" /></p>
 
         </article>
           <aside class="container__item diff">
+              <details
+  id="app/assets/images/icons/loader.svg"
+  open
+>
+  <summary>
+    app/assets/images/icons/loader.svg
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/loader.svg b/app/assets/images/icons/loader.svg
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..5dcf9dd
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/assets/images/icons/loader.svg
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"&gt;&lt;g fill="#FFF" fill-rule="nonzero"&gt;&lt;path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0m0 3a9 9 0 1 1 0 18 9 9 0 0 1 0-18" opacity=".25"/&gt;&lt;path d="M12 0c6.627 0 12 5.373 12 12h-3a9 9 0 0 0-9-9V0z"/&gt;&lt;/g&gt;&lt;/svg&gt;
+</span></code></pre></div></details>
+
               <details
   id="app/views/seats/index.html.erb"
   open
@@ -122,38 +148,26 @@ seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</co
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
-index 52dac4e..6d751ea 100644
+index fa66960..9404aec 100644
 </span><span class="gd">--- a/app/views/seats/index.html.erb
 </span><span class="gi">+++ b/app/views/seats/index.html.erb
-</span><span class="p">@@ -29,6 +29,15 @@</span>
-             &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-             &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
-           &lt;/symbol&gt;
-<span class="gi">+
-+          &lt;symbol
-+            id="seat-icon-selected"
-+            width="24"
-+            height="24"
-+            viewbox="0 0 24 24"
-+          &gt;
-+            &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-+          &lt;/symbol&gt;
-</span>         &lt;/svg&gt;
+</span><span class="p">@@ -79,6 +79,16 @@</span>
+         &lt;/ul&gt;
+       &lt;/div&gt;
  
-         &lt;g&gt;
-<span class="p">@@ -40,7 +49,11 @@</span>
-                   aria-label="&lt;%= seat.row_number %&gt;"
-                 &gt;
-                   &lt;use
-<span class="gd">-                    xlink:href="#seat-icon-unselected"
-</span><span class="gi">+                    &lt;% if Current.cart.include?(seat) %&gt;
-+                      xlink:href="#seat-icon-selected"
-+                    &lt;% else %&gt;
-+                      xlink:href="#seat-icon-unselected"
-+                    &lt;% end %&gt;
-</span>                     width="12px"
-                     height="12px"
-                     x="&lt;%= seat.x %&gt;"
+<span class="gi">+      &lt;div
++        class="syos-frame__map-overlay syos-loader-overlay is-loading"
++        aria-hidden="true"
++        &gt;
++        &lt;%= inline_svg_tag(
++          "icons/loader.svg",
++          class: "syos-icon syos-icon--xlarge syos-loader-overlay__loader",
++        ) %&gt;
++      &lt;/div&gt;
++
+</span>       &lt;svg
+         id="map"
+         data-target="seats.map"
 </code></pre></div></details>
 
           </aside>

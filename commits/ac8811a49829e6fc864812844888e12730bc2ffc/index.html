@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `<symbol>` for a selected seat
+    <title>Hide elements that require JavaScript
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -49,7 +49,7 @@
 </a>
           <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
 </a>
-          <a href="./" aria-current="page">Add `&lt;symbol&gt;` for a selected seat
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
 </a>
           <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
 </a>
@@ -83,7 +83,7 @@
 </a>
           <a href="../9359b90cfbb5decf0eda725a5002e28741734c6b/">Navigate when `&lt;dialog&gt;` element closes
 </a>
-          <a href="../ac8811a49829e6fc864812844888e12730bc2ffc/">Hide elements that require JavaScript
+          <a href="./" aria-current="page">Hide elements that require JavaScript
 </a>
           <a href="../b4888c8139e00f8e63bace15443804264321000b/">Execute System Tests without JavaScript
 </a>
@@ -97,22 +97,54 @@
 
         <nav class="navigation">
 
-<a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">              &#8592; Previous
+<a href="../9359b90cfbb5decf0eda725a5002e28741734c6b/">              &#8592; Previous
 </a>
-<a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">              Next &#8594;
+<a href="../b4888c8139e00f8e63bace15443804264321000b/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>&lt;symbol&gt;</code> for a selected seat</h1>
+          <h1>Hide elements that require JavaScript</h1>
 
-<p>When rendering the list of <code>Seat</code> records for a <code>Floor</code>, render <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use"><code>&lt;use&gt;</code>
-elements</a> referring to the new <code>#seat-icon-selected</code> version of a
-seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</code>.</p>
+<p>This commit hides the elements that do not function without JavaScript
+enabled: the zoom controls.</p>
+
+<p>To hide the zoom controls when JavaScript is disabled, declare their
+<code>&lt;div&gt;</code> with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden"><code>hidden</code></a> attribute.</p>
+
+<p>Next, when JavaScript <em>is enabled</em>, remove the <code>hidden</code> attribute when
+the <code>seats</code> controller attaches to the DOM in its <a href="https://stimulusjs.org/reference/lifecycle-callbacks"><code>connect()</code></a>
+lifecycle callback.</p>
 
         </article>
           <aside class="container__item diff">
+              <details
+  id="app/javascript/controllers/seats_controller.js"
+  open
+>
+  <summary>
+    app/javascript/controllers/seats_controller.js
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index 68f06e0..2d82ab4 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -8,9 +8,11 @@</span> export default class extends Controller {
+     "seat",
+     "section",
+     "selection",
+<span class="gi">+    "zoomControls",
+</span>   ]
+ 
+   connect() {
+<span class="gi">+    this.zoomControlsTarget.hidden = false
+</span>     this.map = svgPanZoom(this.mapTarget, {
+       viewportSelector: "#map-viewport",
+       center: true,
+</code></pre></div></details>
+
               <details
   id="app/views/seats/index.html.erb"
   open
@@ -122,38 +154,22 @@ seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</co
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
-index 52dac4e..6d751ea 100644
+index aca4b02..c1c3976 100644
 </span><span class="gd">--- a/app/views/seats/index.html.erb
 </span><span class="gi">+++ b/app/views/seats/index.html.erb
-</span><span class="p">@@ -29,6 +29,15 @@</span>
-             &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-             &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
-           &lt;/symbol&gt;
-<span class="gi">+
-+          &lt;symbol
-+            id="seat-icon-selected"
-+            width="24"
-+            height="24"
-+            viewbox="0 0 24 24"
-+          &gt;
-+            &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-+          &lt;/symbol&gt;
-</span>         &lt;/svg&gt;
+</span><span class="p">@@ -171,7 +171,11 @@</span>
+         &lt;/g&gt;
+       &lt;/svg&gt;
  
-         &lt;g&gt;
-<span class="p">@@ -40,7 +49,11 @@</span>
-                   aria-label="&lt;%= seat.row_number %&gt;"
-                 &gt;
-                   &lt;use
-<span class="gd">-                    xlink:href="#seat-icon-unselected"
-</span><span class="gi">+                    &lt;% if Current.cart.include?(seat) %&gt;
-+                      xlink:href="#seat-icon-selected"
-+                    &lt;% else %&gt;
-+                      xlink:href="#seat-icon-unselected"
-+                    &lt;% end %&gt;
-</span>                     width="12px"
-                     height="12px"
-                     x="&lt;%= seat.x %&gt;"
+<span class="gd">-      &lt;div class="syos-frame__map-zoom syos-control-zoom"&gt;
+</span><span class="gi">+      &lt;div
++        class="syos-frame__map-zoom syos-control-zoom"
++        data-target="seats.zoomControls"
++        hidden
++        &gt;
+</span>         &lt;button
+           class="syos-button syos-button--transparent syos-control-zoom__button"
+           type="button"
 </code></pre></div></details>
 
           </aside>

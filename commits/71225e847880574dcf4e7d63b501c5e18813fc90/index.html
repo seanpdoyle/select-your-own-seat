@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `<symbol>` for a selected seat
+    <title>Dynamically Hide and Show Loading Spinner
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -49,7 +49,7 @@
 </a>
           <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
 </a>
-          <a href="./" aria-current="page">Add `&lt;symbol&gt;` for a selected seat
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
 </a>
           <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
 </a>
@@ -69,7 +69,7 @@
 </a>
           <a href="../c8496d635d4bd6e48d3c4316613fc0672d9d9e34/">Introduce a Loading Indicator
 </a>
-          <a href="../71225e847880574dcf4e7d63b501c5e18813fc90/">Dynamically Hide and Show Loading Spinner
+          <a href="./" aria-current="page">Dynamically Hide and Show Loading Spinner
 </a>
           <a href="../2e6b5d9d1d7064dc9008b61e60fa22f475acefb8/">Opt out of preview caching
 </a>
@@ -97,22 +97,89 @@
 
         <nav class="navigation">
 
-<a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">              &#8592; Previous
+<a href="../c8496d635d4bd6e48d3c4316613fc0672d9d9e34/">              &#8592; Previous
 </a>
-<a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">              Next &#8594;
+<a href="../2e6b5d9d1d7064dc9008b61e60fa22f475acefb8/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>&lt;symbol&gt;</code> for a selected seat</h1>
+          <h1>Dynamically Hide and Show Loading Spinner</h1>
 
-<p>When rendering the list of <code>Seat</code> records for a <code>Floor</code>, render <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use"><code>&lt;use&gt;</code>
-elements</a> referring to the new <code>#seat-icon-selected</code> version of a
-seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</code>.</p>
+<p>Add the <code>loadingOverlay</code> target to the <code>seats</code> controller, and <a href="https://stimulusjs.org/reference/actions#global-events">route
+the <code>document</code>-wide global events</a> named
+<code>turbolinks:request-start</code> and <code>turbolinks:load</code> to the
+<code>seats#loadingStarted</code> and <code>seats#loadingFinished</code> actions respectively.</p>
+
+<p>When handling <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#full-list-of-events"><code>turbolinks:request-start</code> and <code>turbolinks:load</code>
+events</a>, only hide and show the loading indicator
+when we&rsquo;re discarding our map element, since it&rsquo;s persisted across
+navigations when the <code>data-turbolinks-permanent</code> attribute is present.</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386338-f8ff7280-6d60-11ea-909c-365cfaa3a2d5.gif" alt="loading-spinner-on-nav" /></p>
 
         </article>
           <aside class="container__item diff">
+              <details
+  id="app/javascript/controllers/seats_controller.js"
+  open
+>
+  <summary>
+    app/javascript/controllers/seats_controller.js
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index f60125a..c7134c6 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -3,6 +3,7 @@</span> import svgPanZoom from "svg-pan-zoom"
+ 
+ export default class extends Controller {
+   static targets = [
+<span class="gi">+    "loadingOverlay",
+</span>     "map",
+   ]
+ 
+<span class="p">@@ -19,7 +20,7 @@</span> export default class extends Controller {
+   }
+ 
+   disconnect() {
+<span class="gd">-    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
+</span><span class="gi">+    if (this.isDiscardingMap) {
+</span>       this.map.destroy()
+     }
+   }
+<span class="p">@@ -28,6 +29,10 @@</span> export default class extends Controller {
+     this.mapTarget.removeAttribute("data-turbolinks-permanent")
+   }
+ 
+<span class="gi">+  get isDiscardingMap() {
++    return !this.mapTarget.hasAttribute("data-turbolinks-permanent")
++  }
++
+</span>   zoomIn() {
+     this.map.zoomIn()
+   }
+<span class="p">@@ -35,4 +40,14 @@</span> export default class extends Controller {
+   zoomOut() {
+     this.map.zoomOut()
+   }
+<span class="gi">+
++  loadingStarted() {
++    if (this.isDiscardingMap) {
++      this.loadingOverlayTarget.classList.add("is-loading")
++    }
++  }
++
++  loadingFinished() {
++    this.loadingOverlayTarget.classList.remove("is-loading")
++  }
+</span> }
+</code></pre></div></details>
+
               <details
   id="app/views/seats/index.html.erb"
   open
@@ -122,38 +189,23 @@ seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</co
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
-index 52dac4e..6d751ea 100644
+index 9404aec..9519ae1 100644
 </span><span class="gd">--- a/app/views/seats/index.html.erb
 </span><span class="gi">+++ b/app/views/seats/index.html.erb
-</span><span class="p">@@ -29,6 +29,15 @@</span>
-             &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-             &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
-           &lt;/symbol&gt;
-<span class="gi">+
-+          &lt;symbol
-+            id="seat-icon-selected"
-+            width="24"
-+            height="24"
-+            viewbox="0 0 24 24"
-+          &gt;
-+            &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-+          &lt;/symbol&gt;
-</span>         &lt;/svg&gt;
+</span><span class="p">@@ -80,7 +80,12 @@</span>
+       &lt;/div&gt;
  
-         &lt;g&gt;
-<span class="p">@@ -40,7 +49,11 @@</span>
-                   aria-label="&lt;%= seat.row_number %&gt;"
-                 &gt;
-                   &lt;use
-<span class="gd">-                    xlink:href="#seat-icon-unselected"
-</span><span class="gi">+                    &lt;% if Current.cart.include?(seat) %&gt;
-+                      xlink:href="#seat-icon-selected"
-+                    &lt;% else %&gt;
-+                      xlink:href="#seat-icon-unselected"
-+                    &lt;% end %&gt;
-</span>                     width="12px"
-                     height="12px"
-                     x="&lt;%= seat.x %&gt;"
+       &lt;div
+<span class="gd">-        class="syos-frame__map-overlay syos-loader-overlay is-loading"
+</span><span class="gi">+        class="syos-frame__map-overlay syos-loader-overlay"
++        data-target="seats.loadingOverlay"
++        data-action="
++          turbolinks:request-start@document-&gt;seats#loadingStarted
++          turbolinks:load@document-&gt;seats#loadingFinished
++        "
+</span>         aria-hidden="true"
+         &gt;
+         &lt;%= inline_svg_tag(
 </code></pre></div></details>
 
           </aside>

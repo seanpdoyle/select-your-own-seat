@@ -1,0 +1,247 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Progressively enhance price filtering
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../5d9c6bcbb6d189470a7568028ca44449ab038467/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../11038eceddfecc920e3fe5ae6fd0b5ab0a418946/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../390ef53953daba6393aec5dc3b23f91233a2782f/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../d58feb4a3639155791b43ae11a9937fc809fbad4/">Switch floors from map
+</a>
+          <a href="../21253af1ea1dfd83c0bb50a92b31233258f03da5/">Filter Seats based on their Price
+</a>
+          <a href="../8f5396846bdbed1491b13f754dea3ef563016a48/">Implement Server-Side Price Filtering
+</a>
+          <a href="../b59569d1980e3f4391145429568477ecc0a49469/">Add panning and zooming to SVG map element
+</a>
+          <a href="../6c6f26b03bbe43e8841426fb93c7e18f8afe2ae2/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../40bda3270144ae12500ac492cd897d81965b7698/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../e27fc280d6333f6199a188f9a0fe2db9e8cfca78/">Persist map across page loads
+</a>
+          <a href="../c8496d635d4bd6e48d3c4316613fc0672d9d9e34/">Introduce a Loading Indicator
+</a>
+          <a href="../71225e847880574dcf4e7d63b501c5e18813fc90/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../2e6b5d9d1d7064dc9008b61e60fa22f475acefb8/">Opt out of preview caching
+</a>
+          <a href="../7ba14d99917d92e093e1201a9c9a66a86f599538/">Progressively enhance Selection State
+</a>
+          <a href="./" aria-current="page">Progressively enhance price filtering
+</a>
+          <a href="../bad251ea0d4ef0d4c85ed6692ae721a9559638a1/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../76dd8144b4a56c303e10dfa77b074f5f746841e0/">Manage filter query parameters with push state
+</a>
+          <a href="../9359b90cfbb5decf0eda725a5002e28741734c6b/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../ac8811a49829e6fc864812844888e12730bc2ffc/">Hide elements that require JavaScript
+</a>
+          <a href="../b4888c8139e00f8e63bace15443804264321000b/">Execute System Tests without JavaScript
+</a>
+          <a href="../c34f2529d114ac5ef05891c04648b2f784ff6c3d/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../7ba14d99917d92e093e1201a9c9a66a86f599538/">              &#8592; Previous
+</a>
+<a href="../bad251ea0d4ef0d4c85ed6692ae721a9559638a1/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Progressively enhance price filtering</h1>
+
+<p>This commit progressively enhances the existing server-side price
+filtering to be possible from the client-side, without disrupting the
+current map state.</p>
+
+<p>Embed <code>data-price</code> onto each <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g"><code>&lt;g&gt;</code></a> element to represent that
+<code>Section</code> record&rsquo;s price.</p>
+
+<p>When the corresponding <code>&lt;input type=&quot;radio&quot;&gt;</code> element is <code>checked</code>,
+route the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/input_event"><code>input</code> event</a> to the <code>seats#filterSeats</code> action. The
+<code>seats#filterSeats</code> action will use the <code>checked</code> radio button&rsquo;s price
+to determine which Sections should be highlighted, and which Sections
+should have their opacity decreased.</p>
+
+<p>The values for the <code>opacity</code> attribute that indicate inclusion and
+exclusion are encoded (as <code>data-included-opacity</code> and
+<code>data-excluded-opacity</code>) into the <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g"><code>&lt;g&gt;</code></a> elements that represent the
+Sections.</p>
+
+<p>Additionally, wrap the filter <code>&lt;form&gt;</code> element&rsquo;s <code>&lt;input type=&quot;submit&quot;&gt;</code>
+element in a <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/noscript"><code>&lt;noscript&gt;</code></a> element.</p>
+
+<p>When JavaScript is enabled in the client&rsquo;s web browser, the new
+Stimulus-powered event routing will apply the filter changes in
+real-time, without the need to submit the <code>&lt;form&gt;</code>.</p>
+
+<p>However, when JavaScript is disabled, the <code>&lt;input type=&quot;submit&quot;&gt;</code> will
+render, and the <code>&lt;form&gt;</code> will filter the map by making HTTP requests to
+the server.</p>
+
+<h2>Selecting a filter with the mouse</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386345-fac93600-6d60-11ea-94aa-9c7e27fe5d3c.gif" alt="price filtering with mouse" /></p>
+
+<h2>Selecting a filter with focus</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386343-fac93600-6d60-11ea-891b-6a44abc9a0a1.gif" alt="price filtering with focus" /></p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/javascript/controllers/seats_controller.js"
+  open
+>
+  <summary>
+    app/javascript/controllers/seats_controller.js
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index aad8261..0d15e19 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -6,6 +6,7 @@</span> export default class extends Controller {
+     "loadingOverlay",
+     "map",
+     "seat",
+<span class="gi">+    "section",
+</span>     "selection",
+   ]
+ 
+<span class="p">@@ -67,4 +68,27 @@</span> export default class extends Controller {
+       }
+     })
+   }
+<span class="gi">+
++  filterSeats({ currentTarget }) {
++    const price = currentTarget.value
++    const maximum = Number(price)
++
++    this.sectionTargets.
++      filter(section =&gt; Number(section.dataset.price) &gt; maximum).
++      forEach(section =&gt; {
++        const { excludedOpacity } = section.dataset
++
++        section.setAttribute("opacity", excludedOpacity)
++        section.setAttribute("aria-hidden", true)
++      })
++
++    this.sectionTargets.
++      filter(section =&gt; Number(section.dataset.price) &lt;= maximum).
++      forEach(section =&gt; {
++        const { includedOpacity } = section.dataset
++
++        section.setAttribute("opacity", includedOpacity)
++        section.removeAttribute("aria-hidden")
++      })
++  }
+</span> }
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 007bdba..ff44ae2 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -138,6 +138,10 @@</span>
+                 opacity="0.3"
+                 aria-hidden="true"
+               &lt;% end %&gt;
+<span class="gi">+              data-target="seats.section"
++              data-price="&lt;%= section.price %&gt;"
++              data-included-opacity="1.0"
++              data-excluded-opacity="0.3"
+</span>             &gt;
+               &lt;% section.seats.each do |seat| %&gt;
+                 &lt;a
+<span class="p">@@ -219,6 +223,7 @@</span>
+                 type="radio"
+                 name="maximum"
+                 value="&lt;%= maximum %&gt;"
+<span class="gi">+                data-action="input-&gt;seats#filterSeats"
+</span>                 &lt;% if params[:maximum].to_i == maximum ||
+                     [params[:maximum], next_maximum].none? %&gt;
+                   checked
+<span class="p">@@ -242,7 +247,9 @@</span>
+             &lt;% end %&gt;
+           &lt;/div&gt;
+ 
+<span class="gd">-          &lt;input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters"&gt;
+</span><span class="gi">+          &lt;noscript&gt;
++            &lt;input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters"&gt;
++          &lt;/noscript&gt;
+</span>         &lt;/fieldset&gt;
+       &lt;% end %&gt;
+ 
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

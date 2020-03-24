@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `<symbol>` for a selected seat
+    <title>Opt out of preview caching
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -49,7 +49,7 @@
 </a>
           <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
 </a>
-          <a href="./" aria-current="page">Add `&lt;symbol&gt;` for a selected seat
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
 </a>
           <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
 </a>
@@ -71,7 +71,7 @@
 </a>
           <a href="../71225e847880574dcf4e7d63b501c5e18813fc90/">Dynamically Hide and Show Loading Spinner
 </a>
-          <a href="../2e6b5d9d1d7064dc9008b61e60fa22f475acefb8/">Opt out of preview caching
+          <a href="./" aria-current="page">Opt out of preview caching
 </a>
           <a href="../7ba14d99917d92e093e1201a9c9a66a86f599538/">Progressively enhance Selection State
 </a>
@@ -97,63 +97,46 @@
 
         <nav class="navigation">
 
-<a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">              &#8592; Previous
+<a href="../71225e847880574dcf4e7d63b501c5e18813fc90/">              &#8592; Previous
 </a>
-<a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">              Next &#8594;
+<a href="../7ba14d99917d92e093e1201a9c9a66a86f599538/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>&lt;symbol&gt;</code> for a selected seat</h1>
+          <h1>Opt out of preview caching</h1>
 
-<p>When rendering the list of <code>Seat</code> records for a <code>Floor</code>, render <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use"><code>&lt;use&gt;</code>
-elements</a> referring to the new <code>#seat-icon-selected</code> version of a
-seat based on whether or not they&rsquo;re in the visitor&rsquo;s <code>Cart</code>.</p>
+<p>When re-visiting a <code>seats#show</code> page that&rsquo;s already in the Turbolinks
+cache (like when un-selecting a seat from the <code>&lt;dialog&gt;</code> element), the
+<code>&lt;dialog&gt;</code> and map flash in a distracting way.</p>
+
+<p>This commit configures Turbolinks to enable caching for reloading pages
+from the back-button triggered navigation stacks by setting the cache
+strategy to <a href="https://github.com/turbolinks/turbolinks#opting-out-of-caching"><code>no-preview</code></a></p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id="app/views/seats/index.html.erb"
+  id="app/views/layouts/application.html.erb"
   open
 >
   <summary>
-    app/views/seats/index.html.erb
+    app/views/layouts/application.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
-index 52dac4e..6d751ea 100644
-</span><span class="gd">--- a/app/views/seats/index.html.erb
-</span><span class="gi">+++ b/app/views/seats/index.html.erb
-</span><span class="p">@@ -29,6 +29,15 @@</span>
-             &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-             &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
-           &lt;/symbol&gt;
-<span class="gi">+
-+          &lt;symbol
-+            id="seat-icon-selected"
-+            width="24"
-+            height="24"
-+            viewbox="0 0 24 24"
-+          &gt;
-+            &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
-+          &lt;/symbol&gt;
-</span>         &lt;/svg&gt;
- 
-         &lt;g&gt;
-<span class="p">@@ -40,7 +49,11 @@</span>
-                   aria-label="&lt;%= seat.row_number %&gt;"
-                 &gt;
-                   &lt;use
-<span class="gd">-                    xlink:href="#seat-icon-unselected"
-</span><span class="gi">+                    &lt;% if Current.cart.include?(seat) %&gt;
-+                      xlink:href="#seat-icon-selected"
-+                    &lt;% else %&gt;
-+                      xlink:href="#seat-icon-unselected"
-+                    &lt;% end %&gt;
-</span>                     width="12px"
-                     height="12px"
-                     x="&lt;%= seat.x %&gt;"
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/layouts/application.html.erb b/app/views/layouts/application.html.erb
+index a4d4546..5d4fb5e 100644
+</span><span class="gd">--- a/app/views/layouts/application.html.erb
+</span><span class="gi">+++ b/app/views/layouts/application.html.erb
+</span><span class="p">@@ -5,6 +5,7 @@</span>
+     &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+     &lt;%= csrf_meta_tags %&gt;
+     &lt;%= csp_meta_tag %&gt;
+<span class="gi">+    &lt;meta name="turbolinks-cache-control" content="no-preview"&gt;
+</span> 
+     &lt;%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %&gt;
+     &lt;%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %&gt;
 </code></pre></div></details>
 
           </aside>
