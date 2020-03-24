@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Hide elements that require JavaScript
+    <title>Handle Price Filtering `<form>` reset events
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -69,25 +69,25 @@
 </a>
           <a href="../49aa57ecec206f6ac1695c91fb40bffe78fda718/">Introduce a Loading Indicator
 </a>
-          <a href="../7426f4ba2ace0de8314bc38040e1f2141c2cb812/">Dynamically Hide and Show Loading Spinner
+          <a href="../d398b2b9fb09eff5d9484acca6fee3fb7fcd573b/">Dynamically Hide and Show Loading Spinner
 </a>
-          <a href="../c748856bec27865304c7fe28c40ae60f2f896b04/">Opt out of preview caching
+          <a href="../5ee085b8eac2f600aca3ed7dd7cd9a877fea1570/">Opt out of preview caching
 </a>
-          <a href="../fbdb7e9543af3e8e3da056dc8e645746fc7592b3/">Progressively enhance Selection State
+          <a href="../3f1185a33da85d18e8e4b2fede054ed335b09e46/">Progressively enhance Selection State
 </a>
-          <a href="../495b95162312d0cc2abb46813031c2626f57ce4f/">Progressively enhance price filtering
+          <a href="../a08331535372e60c07285a9ab61986ba4f869f4a/">Progressively enhance price filtering
 </a>
-          <a href="../48cb6ee0aefb3fb334e6009fa9abb2cc9f8bf86b/">Handle Price Filtering `&lt;form&gt;` reset events
+          <a href="./" aria-current="page">Handle Price Filtering `&lt;form&gt;` reset events
 </a>
-          <a href="../7acf06dd3ac827325c81dcb924468621661c0893/">Manage filter query parameters with push state
+          <a href="../a0b77a6219853498c9dfedb5a0714612e4ff8833/">Manage filter query parameters with push state
 </a>
-          <a href="../9e250055b1abd5d97a5149879c055e2b6a25e0be/">Navigate when `&lt;dialog&gt;` element closes
+          <a href="../52cbb9288ca441863ab9866a3eaab2159d5e322d/">Navigate when `&lt;dialog&gt;` element closes
 </a>
-          <a href="./" aria-current="page">Hide elements that require JavaScript
+          <a href="../7c01d06df62a3c335aee5ada65188493803cab60/">Hide elements that require JavaScript
 </a>
-          <a href="../2baa9ad185d826a71d01ecf10fa331fc6be8fa0e/">Execute System Tests without JavaScript
+          <a href="../f1aae9e2ba7c4381f6b3f12044c1723be6863b73/">Execute System Tests without JavaScript
 </a>
-          <a href="../35c585660f7bf2a22bf340624d275f15449865c2/">Create `git-read` GitHub Action
+          <a href="../29fbda26e62efef0dc73a1d3b9d76d93d75a5e56/">Create `git-read` GitHub Action
 </a>
       </nav>
     </details>
@@ -97,25 +97,35 @@
 
         <nav class="navigation">
 
-<a href="../9e250055b1abd5d97a5149879c055e2b6a25e0be/">              &#8592; Previous
+<a href="../a08331535372e60c07285a9ab61986ba4f869f4a/">              &#8592; Previous
 </a>
-<a href="../2baa9ad185d826a71d01ecf10fa331fc6be8fa0e/">              Next &#8594;
+<a href="../a0b77a6219853498c9dfedb5a0714612e4ff8833/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Hide elements that require JavaScript</h1>
+          <h1>Handle Price Filtering <code>&lt;form&gt;</code> reset events</h1>
 
-<p>This commit hides the elements that do not function without JavaScript
-enabled: the zoom controls.</p>
+<p>When the &ldquo;Clear Filters&rdquo; button is clicked, the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code>
+element</a> will return to its initial state, and a
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLFormElement/reset_event"><code>reset</code></a> event will be fired.</p>
 
-<p>To hide the zoom controls when JavaScript is disabled, declare their
-<code>&lt;div&gt;</code> with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden"><code>hidden</code></a> attribute.</p>
+<p>This commit configures the <code>&lt;form&gt;</code> element to route that event to the
+<code>seats#filterSeats</code> action.</p>
 
-<p>Next, when JavaScript <em>is enabled</em>, remove the <code>hidden</code> attribute when
-the <code>seats</code> controller attaches to the DOM in its <a href="https://stimulusjs.org/reference/lifecycle-callbacks"><code>connect()</code></a>
-lifecycle callback.</p>
+<p>Unfortunately, this event&rsquo;s <code>currentTarget</code> property does not refer to
+the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio"><code>&lt;input type=&quot;radio&quot;&gt;</code> button element</a> that the value
+was reset to.</p>
+
+<p>To account for this, handle the case when <code>currentTarget.value</code> is
+<code>undefined</code> as a proxy for the <code>&lt;form&gt;</code> being reset, and replace it with
+a value that will <em>never</em> be less than a price on the page (e.g.
+<a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity"><code>Infinity</code></a>).</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386347-fb61cc80-6d60-11ea-99ac-1adb3bae07ba.gif" alt="price filtering form reset" /></p>
 
         </article>
           <aside class="container__item diff">
@@ -128,21 +138,18 @@ lifecycle callback.</p>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
-index 68f06e0..2d82ab4 100644
+index 03c25b7..085bee0 100644
 </span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
 </span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
-</span><span class="p">@@ -8,9 +8,11 @@</span> export default class extends Controller {
-     "seat",
-     "section",
-     "selection",
-<span class="gi">+    "zoomControls",
-</span>   ]
+</span><span class="p">@@ -71,7 +71,7 @@</span> export default class extends Controller {
  
-   connect() {
-<span class="gi">+    this.zoomControlsTarget.hidden = false
-</span>     this.map = svgPanZoom(this.mapTarget, {
-       viewportSelector: "#map-viewport",
-       center: true,
+   filterSeats({ currentTarget }) {
+     const price = currentTarget.value
+<span class="gd">-    const maximum = Number(price)
+</span><span class="gi">+    const maximum = Number(price || Infinity)
+</span> 
+     this.sectionTargets.
+       filter(section =&gt; Number(section.dataset.price) &gt; maximum).
 </code></pre></div></details>
 
               <details
@@ -154,22 +161,17 @@ index 68f06e0..2d82ab4 100644
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
-index aca4b02..c1c3976 100644
+index f3b5783..8088652 100644
 </span><span class="gd">--- a/app/views/seats/index.html.erb
 </span><span class="gi">+++ b/app/views/seats/index.html.erb
-</span><span class="p">@@ -171,7 +171,11 @@</span>
-         &lt;/g&gt;
-       &lt;/svg&gt;
- 
-<span class="gd">-      &lt;div class="syos-frame__map-zoom syos-control-zoom"&gt;
-</span><span class="gi">+      &lt;div
-+        class="syos-frame__map-zoom syos-control-zoom"
-+        data-target="seats.zoomControls"
-+        hidden
-+        &gt;
-</span>         &lt;button
-           class="syos-button syos-button--transparent syos-control-zoom__button"
-           type="button"
+</span><span class="p">@@ -206,6 +206,7 @@</span>
+         url: venue_floor_seats_path(venue, floor),
+         method: :get,
+         local: true,
+<span class="gi">+        html: { "data-action" =&gt; "reset-&gt;seats#filterSeats" },
+</span>       ) do |form| %&gt;
+         &lt;fieldset class="syos-u-margin-bottom-6"&gt;
+           &lt;legend class="syos-u-margin-bottom-2 syos-inline-stack"&gt;
 </code></pre></div></details>
 
           </aside>

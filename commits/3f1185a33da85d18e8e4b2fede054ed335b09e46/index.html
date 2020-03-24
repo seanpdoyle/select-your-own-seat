@@ -69,25 +69,25 @@
 </a>
           <a href="../49aa57ecec206f6ac1695c91fb40bffe78fda718/">Introduce a Loading Indicator
 </a>
-          <a href="../7426f4ba2ace0de8314bc38040e1f2141c2cb812/">Dynamically Hide and Show Loading Spinner
+          <a href="../d398b2b9fb09eff5d9484acca6fee3fb7fcd573b/">Dynamically Hide and Show Loading Spinner
 </a>
-          <a href="../c748856bec27865304c7fe28c40ae60f2f896b04/">Opt out of preview caching
+          <a href="../5ee085b8eac2f600aca3ed7dd7cd9a877fea1570/">Opt out of preview caching
 </a>
           <a href="./" aria-current="page">Progressively enhance Selection State
 </a>
-          <a href="../495b95162312d0cc2abb46813031c2626f57ce4f/">Progressively enhance price filtering
+          <a href="../a08331535372e60c07285a9ab61986ba4f869f4a/">Progressively enhance price filtering
 </a>
-          <a href="../48cb6ee0aefb3fb334e6009fa9abb2cc9f8bf86b/">Handle Price Filtering `&lt;form&gt;` reset events
+          <a href="../bcd407d06ae600890bb4af2e71b5f30b3e0930d6/">Handle Price Filtering `&lt;form&gt;` reset events
 </a>
-          <a href="../7acf06dd3ac827325c81dcb924468621661c0893/">Manage filter query parameters with push state
+          <a href="../a0b77a6219853498c9dfedb5a0714612e4ff8833/">Manage filter query parameters with push state
 </a>
-          <a href="../9e250055b1abd5d97a5149879c055e2b6a25e0be/">Navigate when `&lt;dialog&gt;` element closes
+          <a href="../52cbb9288ca441863ab9866a3eaab2159d5e322d/">Navigate when `&lt;dialog&gt;` element closes
 </a>
-          <a href="../fae516f94228907de5b85f2afde01221ae6083b8/">Hide elements that require JavaScript
+          <a href="../7c01d06df62a3c335aee5ada65188493803cab60/">Hide elements that require JavaScript
 </a>
-          <a href="../2baa9ad185d826a71d01ecf10fa331fc6be8fa0e/">Execute System Tests without JavaScript
+          <a href="../f1aae9e2ba7c4381f6b3f12044c1723be6863b73/">Execute System Tests without JavaScript
 </a>
-          <a href="../35c585660f7bf2a22bf340624d275f15449865c2/">Create `git-read` GitHub Action
+          <a href="../29fbda26e62efef0dc73a1d3b9d76d93d75a5e56/">Create `git-read` GitHub Action
 </a>
       </nav>
     </details>
@@ -97,9 +97,9 @@
 
         <nav class="navigation">
 
-<a href="../c748856bec27865304c7fe28c40ae60f2f896b04/">              &#8592; Previous
+<a href="../5ee085b8eac2f600aca3ed7dd7cd9a877fea1570/">              &#8592; Previous
 </a>
-<a href="../495b95162312d0cc2abb46813031c2626f57ce4f/">              Next &#8594;
+<a href="../a08331535372e60c07285a9ab61986ba4f869f4a/">              Next &#8594;
 </a>        </nav>
       </header>
 
@@ -176,7 +176,7 @@ the <code>seats#selectSeats</code> action.</p>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
-index c7134c6..aad8261 100644
+index 91040af..4d20ff9 100644
 </span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
 </span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
 </span><span class="p">@@ -5,6 +5,8 @@</span> export default class extends Controller {
@@ -198,7 +198,7 @@ index c7134c6..aad8261 100644
    disconnect() {
 <span class="p">@@ -50,4 +53,18 @@</span> export default class extends Controller {
    loadingFinished() {
-     this.loadingOverlayTarget.classList.remove("is-loading")
+     this.loadingOverlayTarget.classList.remove(this.data.get("loadingClass"))
    }
 <span class="gi">+
 +  selectSeats() {
@@ -226,10 +226,10 @@ index c7134c6..aad8261 100644
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
-index 9519ae1..007bdba 100644
+index b5c48e1..b80b40e 100644
 </span><span class="gd">--- a/app/views/seats/index.html.erb
 </span><span class="gi">+++ b/app/views/seats/index.html.erb
-</span><span class="p">@@ -154,6 +154,10 @@</span>
+</span><span class="p">@@ -155,6 +155,10 @@</span>
                      height="12px"
                      x="&lt;%= seat.x %&gt;"
                      y="&lt;%= seat.y %&gt;"
@@ -240,7 +240,7 @@ index 9519ae1..007bdba 100644
 </span>                   &gt;
                    &lt;/use&gt;
                  &lt;/a&gt;
-<span class="p">@@ -270,7 +274,10 @@</span>
+<span class="p">@@ -271,7 +275,10 @@</span>
  
            &lt;tbody&gt;
              &lt;% Current.cart.seats.each do |seat| %&gt;
@@ -252,7 +252,7 @@ index 9519ae1..007bdba 100644
 </span>                 &lt;td&gt;
                    &lt;%= seat.section.name %&gt;, &lt;%= seat.row_number %&gt;
                  &lt;/td&gt;
-<span class="p">@@ -282,6 +289,8 @@</span>
+<span class="p">@@ -283,6 +290,8 @@</span>
                      seat_selection_path(seat),
                      class: "syos-button syos-button--transparent",
                      method: :delete,
