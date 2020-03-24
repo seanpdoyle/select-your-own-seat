@@ -1,0 +1,298 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Add panning and zooming to SVG map element
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../5d9c6bcbb6d189470a7568028ca44449ab038467/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../11038eceddfecc920e3fe5ae6fd0b5ab0a418946/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../390ef53953daba6393aec5dc3b23f91233a2782f/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../d58feb4a3639155791b43ae11a9937fc809fbad4/">Switch floors from map
+</a>
+          <a href="../21253af1ea1dfd83c0bb50a92b31233258f03da5/">Filter Seats based on their Price
+</a>
+          <a href="../c9b4b1f701b6b71deb04063ad1192c961ecf3d0e/">Implement Server-Side Price Filtering
+</a>
+          <a href="./" aria-current="page">Add panning and zooming to SVG map element
+</a>
+          <a href="../d9d055f67a736c1443cfd7d7739718a41e4aaf45/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../00b3670c945c0978da359c638bc33b5c56192b8d/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../73b397ebe880d4e876939a008443c6a8450111d7/">Persist map across page loads
+</a>
+          <a href="../2e03701e12f81782e81dac168cc5a4d54ddb89ea/">Introduce a Loading Indicator
+</a>
+          <a href="../f45d03bf495a06c8f1f611c5d6b7673f3836e09a/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../10ce43598fb46f4812640c6d758e72275f22b207/">Opt out of preview caching
+</a>
+          <a href="../7b051a8bd788740791128e3f870eaefd522d3fab/">Progressively enhance Selection State
+</a>
+          <a href="../7bb2a799d122a8fc93fefcd415d9d8b54933ad28/">Progressively enhance price filtering
+</a>
+          <a href="../380a3272a46c612bdb3035e9e8602e857e28b22f/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../4aa373d3e50ec164fc0ced8f0a166fe2a7f47ff5/">Manage filter query parameters with push state
+</a>
+          <a href="../17de9dc2e2e69618287f01552a484f506fc2967a/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../02321d8fd33aa51880ca53dd65b81799f5dfd710/">Hide elements that require JavaScript
+</a>
+          <a href="../7d90224ef43a1ce7fe2e9992dd7a5b1df448e344/">Execute System Tests without JavaScript
+</a>
+          <a href="../23fd3b8deb0d262fa5cb4b0a87b42efdb7ed48b5/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../c9b4b1f701b6b71deb04063ad1192c961ecf3d0e/">              &#8592; Previous
+</a>
+<a href="../d9d055f67a736c1443cfd7d7739718a41e4aaf45/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Add panning and zooming to SVG map element</h1>
+
+<p>This commit adds a dependency on the <a href="https://github.com/ariutta/svg-pan-zoom/tree/3.6.0"><code>svg-pan-zoom</code>
+package</a>.</p>
+
+<p>To manage the configuration and execution of that plugin, this commit
+introduces <code>controllers/seats_controller</code> JavaScript module. <a href="https://stimulusjs.org/reference/controllers">That
+module will be instantiated with elements that declare
+<code>data-controller=&quot;seats&quot;</code></a>.</p>
+
+<p>Once an element with <code>data-controller=&quot;seats&quot;</code> exists on the page, the
+module&rsquo;s <a href="https://stimulusjs.org/reference/lifecycle-callbacks#connection"><code>connect()</code> life cycle hook</a> will be invoked, which
+will initiate the <code>svgPanZoom</code> plugin configuration, passing a reference
+to <code>this.element</code> as the DOM Node to attach the map to.</p>
+
+<p>Additionally, This commit wraps the collection of <code>&lt;use&gt;</code> elements in an
+outer <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g"><code>&lt;g&gt;</code> element</a> (as suggested by
+<a href="https://github.com/ariutta/svg-pan-zoom/issues/146">aritutta/svg-pan-zoom#146</a>).</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386342-fa309f80-6d60-11ea-84b5-8b1e49386809.gif" alt="panning-zooming-click" /></p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/javascript/controllers/hello_controller.js"
+  open
+>
+  <summary>
+    app/javascript/controllers/hello_controller.js
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/hello_controller.js b/app/javascript/controllers/hello_controller.js
+</span><span class="p">deleted file mode 100644
+</span><span class="gh">index 28fdb13..0000000
+</span><span class="gd">--- a/app/javascript/controllers/hello_controller.js
+</span><span class="gi">+++ /dev/null
+</span><span class="p">@@ -1,18 +0,0 @@</span>
+<span class="gd">-// Visit The Stimulus Handbook for more details 
+-// https://stimulusjs.org/handbook/introduction
+-// 
+-// This example controller works with specially annotated HTML like:
+-//
+-// &lt;div data-controller="hello"&gt;
+-//   &lt;h1 data-target="hello.output"&gt;&lt;/h1&gt;
+-// &lt;/div&gt;
+-
+-import { Controller } from "stimulus"
+-
+-export default class extends Controller {
+-  static targets = [ "output" ]
+-
+-  connect() {
+-    this.outputTarget.textContent = 'Hello, Stimulus!'
+-  }
+-}
+</span></code></pre></div></details>
+
+              <details
+  id="app/javascript/controllers/seats_controller.js"
+  open
+>
+  <summary>
+    app/javascript/controllers/seats_controller.js
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..974b16f
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -0,0 +1,24 @@</span>
+<span class="gi">+import { Controller } from "stimulus"
++import svgPanZoom from "svg-pan-zoom"
++
++export default class extends Controller {
++  static targets = [
++    "map",
++  ]
++
++  connect() {
++    this.map = svgPanZoom(this.mapTarget, {
++      viewportSelector: "#map-viewport",
++      center: true,
++      fit: true,
++      zoomEnabled: false,
++      zoomScaleSensitivity: 0.75,
++      minZoom: 1.0,
++      maxZoom: 8,
++    })
++  }
++
++  disconnect() {
++    this.map.destroy()
++  }
++}
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 46826f4..5ec9a24 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -7,6 +7,7 @@</span>
+ &lt;main class="syos-site-frame__main"&gt;
+   &lt;section
+     class="syos-frame"
+<span class="gi">+    data-controller="seats"
+</span>   &gt;
+     &lt;div class="syos-frame__map"&gt;
+       &lt;nav class="syos-frame__floor-nav syos-floor-nav"&gt;
+<span class="p">@@ -84,6 +85,7 @@</span>
+         width="1600px"
+         height="1600px"
+         viewBox="0 0 1600 1600"
+<span class="gi">+        data-target="seats.map"
+</span>       &gt;
+         &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
+ 
+<span class="p">@@ -108,7 +110,7 @@</span>
+           &lt;/symbol&gt;
+         &lt;/svg&gt;
+ 
+<span class="gd">-        &lt;g&gt;
+</span><span class="gi">+        &lt;g id="map-viewport"&gt;
+</span>           &lt;% sections.each do |section| %&gt;
+             &lt;g
+               &lt;% if params.fetch(:maximum, Float::INFINITY).to_f &gt;= section.price %&gt;
+</code></pre></div></details>
+
+              <details
+  id="package.json"
+  open
+>
+  <summary>
+    package.json
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/package.json b/package.json
+index 8dbf528..7aacfb3 100644
+</span><span class="gd">--- a/package.json
+</span><span class="gi">+++ b/package.json
+</span><span class="p">@@ -7,6 +7,7 @@</span>
+     "breakpoint-sass": "2.7.1",
+     "dialog-polyfill": "^0.5.0",
+     "stimulus": "^1.1.1",
+<span class="gi">+    "svg-pan-zoom": "^3.6.0",
+</span>     "turbolinks": "^5.2.0"
+   },
+   "version": "0.1.0",
+</code></pre></div></details>
+
+              <details
+  id="yarn.lock"
+  open
+>
+  <summary>
+    yarn.lock
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/yarn.lock b/yarn.lock
+index c3c792f..0fc29e1 100644
+</span><span class="gd">--- a/yarn.lock
+</span><span class="gi">+++ b/yarn.lock
+</span><span class="p">@@ -6788,6 +6788,11 @@</span> supports-color@^7.0.0:
+   dependencies:
+     has-flag "^4.0.0"
+ 
+<span class="gi">+svg-pan-zoom@^3.6.0:
++  version "3.6.0"
++  resolved "https://registry.yarnpkg.com/svg-pan-zoom/-/svg-pan-zoom-3.6.0.tgz#31d8137d7e079e8f059effd85c7605b0567b6e4b"
++  integrity sha512-ZBEL2z/n/W2fLLFzn3NTQgd+7QEfbrKvKmu29U3qvMflmJgLaWkwKbOzWJYESFidTiGYMHkijAKmY6m64moyYg==
++
+</span> svgo@^1.0.0:
+   version "1.3.2"
+   resolved "https://registry.yarnpkg.com/svgo/-/svgo-1.3.2.tgz#b6dc511c063346c9e415b81e43401145b96d4167"
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

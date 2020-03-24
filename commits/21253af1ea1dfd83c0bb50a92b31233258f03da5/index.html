@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Filter Seats based on their Price
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <details id="table-of-contents" class="page__history" open>
+      <summary class="page__history-summary">
+        Table of Contents
+      </summary>
+      <nav class="history">
+        <a href="../../">select-your-own-seat</a>
+
+          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
+</a>
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
+</a>
+          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
+</a>
+          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
+</a>
+          <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/">Establish Database Records
+</a>
+          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
+          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
+</a>
+          <a href="../2cb5e36346078c6cf073473bc5ec053a96155f30/">Render Seats for a Venue with SVG elements
+</a>
+          <a href="../5bbfb3913ab771623a8367edc7ea5d60ec706867/">Add System Test for viewing a Seat&#x27;s details
+</a>
+          <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
+</a>
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
+</a>
+          <a href="../5d9c6bcbb6d189470a7568028ca44449ab038467/">Add a Seat Selection to Shopping Cart
+</a>
+          <a href="../11038eceddfecc920e3fe5ae6fd0b5ab0a418946/">Unselect a Seat to remove it from visitor&#x27;s Cart
+</a>
+          <a href="../390ef53953daba6393aec5dc3b23f91233a2782f/">Unselect a Seat from the `&lt;dialog&gt;`
+</a>
+          <a href="../cc6ec4f46e5eead68d4c5a91d00920f279d9d67c/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+</a>
+          <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
+</a>
+          <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
+</a>
+          <a href="../d58feb4a3639155791b43ae11a9937fc809fbad4/">Switch floors from map
+</a>
+          <a href="./" aria-current="page">Filter Seats based on their Price
+</a>
+          <a href="../c9b4b1f701b6b71deb04063ad1192c961ecf3d0e/">Implement Server-Side Price Filtering
+</a>
+          <a href="../f2137a782dbdf668f27313c953612e0109f22dc7/">Add panning and zooming to SVG map element
+</a>
+          <a href="../d9d055f67a736c1443cfd7d7739718a41e4aaf45/">Add map zoom controls to `seats&#x2F;index`
+</a>
+          <a href="../00b3670c945c0978da359c638bc33b5c56192b8d/">Add behavior to Zoom In and Zoom Out buttons
+</a>
+          <a href="../73b397ebe880d4e876939a008443c6a8450111d7/">Persist map across page loads
+</a>
+          <a href="../2e03701e12f81782e81dac168cc5a4d54ddb89ea/">Introduce a Loading Indicator
+</a>
+          <a href="../f45d03bf495a06c8f1f611c5d6b7673f3836e09a/">Dynamically Hide and Show Loading Spinner
+</a>
+          <a href="../10ce43598fb46f4812640c6d758e72275f22b207/">Opt out of preview caching
+</a>
+          <a href="../7b051a8bd788740791128e3f870eaefd522d3fab/">Progressively enhance Selection State
+</a>
+          <a href="../7bb2a799d122a8fc93fefcd415d9d8b54933ad28/">Progressively enhance price filtering
+</a>
+          <a href="../380a3272a46c612bdb3035e9e8602e857e28b22f/">Handle Price Filtering `&lt;form&gt;` reset events
+</a>
+          <a href="../4aa373d3e50ec164fc0ced8f0a166fe2a7f47ff5/">Manage filter query parameters with push state
+</a>
+          <a href="../17de9dc2e2e69618287f01552a484f506fc2967a/">Navigate when `&lt;dialog&gt;` element closes
+</a>
+          <a href="../02321d8fd33aa51880ca53dd65b81799f5dfd710/">Hide elements that require JavaScript
+</a>
+          <a href="../7d90224ef43a1ce7fe2e9992dd7a5b1df448e344/">Execute System Tests without JavaScript
+</a>
+          <a href="../23fd3b8deb0d262fa5cb4b0a87b42efdb7ed48b5/">Create `git-read` GitHub Action
+</a>
+      </nav>
+    </details>
+
+    <main class="page__content">
+      <header>
+
+        <nav class="navigation">
+
+<a href="../d58feb4a3639155791b43ae11a9937fc809fbad4/">              &#8592; Previous
+</a>
+<a href="../c9b4b1f701b6b71deb04063ad1192c961ecf3d0e/">              Next &#8594;
+</a>        </nav>
+      </header>
+
+      <section class="container">
+        <article class="container__item commit">
+          <h1>Filter Seats based on their Price</h1>
+
+<p>This commit adds static HTML to render a set of <code>&lt;input type=&quot;radio&quot;&gt;</code>
+buttons styled with <code>&lt;label&gt;</code> elements that wrap <code>&lt;svg&gt;</code> elements.</p>
+
+<p>The values of those filters are static for the time being, and the
+selection of a filter does not yet affect the page. The values have been
+chosen as <code>500</code> cents ($5.00), <code>1000</code> cents ($10.00), and <code>1500</code> cents
+($15.00). They&rsquo;re underscored to resemble their price in dollars, and
+are iterated over with <a href="https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-each_cons"><code>Array#each_cons</code></a> to iterate over
+pairs consecutively.</p>
+
+<p>Where there is a <code>nil</code> value for <code>next_maximum</code>, that indicates that
+it&rsquo;s the highest possible value, so the <code>&lt;input&gt;</code> should have the
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input/radio#checked"><code>checked</code> attribute</a>.</p>
+
+<h2>Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386362-03217100-6d61-11ea-92b0-b902be52b175.png" alt="price filtering form" /></p>
+
+        </article>
+          <aside class="container__item diff">
+              <details
+  id="app/assets/images/icons/check-circle.svg"
+  open
+>
+  <summary>
+    app/assets/images/icons/check-circle.svg
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/check-circle.svg b/app/assets/images/icons/check-circle.svg
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..b29ec55
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/assets/images/icons/check-circle.svg
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;&lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="app/assets/images/icons/circle.svg"
+  open
+>
+  <summary>
+    app/assets/images/icons/circle.svg
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/circle.svg b/app/assets/images/icons/circle.svg
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..e5c5512
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/assets/images/icons/circle.svg
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/index.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index fd57874..eddddb5 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -137,6 +137,50 @@</span>
+     &lt;/div&gt;
+ 
+     &lt;div class="syos-frame__sidebar"&gt;
+<span class="gi">+      &lt;form&gt;
++        &lt;fieldset class="syos-u-margin-bottom-6"&gt;
++          &lt;legend class="syos-u-margin-bottom-2 syos-inline-stack"&gt;
++            &lt;h2 class="syos-inline-stack__item"&gt;
++              Filter by max price
++            &lt;/h2&gt;
++
++            &lt;input class="syos-button syos-button--transparent" type="reset" value="Clear Filters"&gt;
++          &lt;/legend&gt;
++
++          &lt;div class="syos-tile-controls"&gt;
++            &lt;% [5_00, 10_00, 15_00, nil].each_cons(2) do |maximum, next_maximum| %&gt;
++              &lt;input
++                id="filter-&lt;%= maximum %&gt;"
++                class="syos-tile-controls__input"
++                type="radio"
++                name="maximum"
++                value="&lt;%= maximum %&gt;"
++                &lt;% if next_maximum.nil? %&gt;
++                  checked
++                &lt;% end %&gt;
++              &gt;
++              &lt;label class="syos-tile-controls__control" for="filter-&lt;%= maximum %&gt;"&gt;
++                &lt;%= inline_svg_tag(
++                  "icons/circle.svg",
++                  aria_hidden: true,
++                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--unselected",
++                ) %&gt;
++
++                &lt;%= inline_svg_tag(
++                  "icons/check-circle.svg",
++                  aria_hidden: true,
++                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--selected",
++                ) %&gt;
++
++                &lt;%= number_to_currency(maximum / 100.0) %&gt;
++              &lt;/label&gt;
++            &lt;% end %&gt;
++          &lt;/div&gt;
++
++          &lt;input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters"&gt;
++        &lt;/fieldset&gt;
++      &lt;/form&gt;
++
+</span>       &lt;div id="cart-summary"&gt;
+         &lt;h2 class="syos-u-margin-bottom-2"&gt;
+           Your seat selections
+</code></pre></div></details>
+
+          </aside>
+      </section>
+    </main>
+  </body>
+</html>

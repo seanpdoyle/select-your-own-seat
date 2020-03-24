@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Add `inline_svg` gem
+    <title>Navigate when `<dialog>` element closes
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -39,7 +39,7 @@
 </a>
           <a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">Add `seats#show` route and action
 </a>
-          <a href="./" aria-current="page">Add `inline_svg` gem
+          <a href="../d4035217935f4778106b42ad5b2c863d9fab8812/">Add `inline_svg` gem
 </a>
           <a href="../5d9c6bcbb6d189470a7568028ca44449ab038467/">Add a Seat Selection to Shopping Cart
 </a>
@@ -81,7 +81,7 @@
 </a>
           <a href="../4aa373d3e50ec164fc0ced8f0a166fe2a7f47ff5/">Manage filter query parameters with push state
 </a>
-          <a href="../17de9dc2e2e69618287f01552a484f506fc2967a/">Navigate when `&lt;dialog&gt;` element closes
+          <a href="./" aria-current="page">Navigate when `&lt;dialog&gt;` element closes
 </a>
           <a href="../02321d8fd33aa51880ca53dd65b81799f5dfd710/">Hide elements that require JavaScript
 </a>
@@ -97,108 +97,93 @@
 
         <nav class="navigation">
 
-<a href="../93f596304bbe2897f546ab8bfc7b90f6a7280dd5/">              &#8592; Previous
+<a href="../4aa373d3e50ec164fc0ced8f0a166fe2a7f47ff5/">              &#8592; Previous
 </a>
-<a href="../5d9c6bcbb6d189470a7568028ca44449ab038467/">              Next &#8594;
+<a href="../02321d8fd33aa51880ca53dd65b81799f5dfd710/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Add <code>inline_svg</code> gem</h1>
+          <h1>Navigate when <code>&lt;dialog&gt;</code> element closes</h1>
 
-<p>Extract the <code>&lt;svg&gt;</code> element that served as our <code>&lt;dialog&gt;</code> element&rsquo;s
-&ldquo;Close modal&rdquo; button.</p>
+<p>When viewing seats through the page&rsquo;s modal <code>&lt;dialog&gt;</code> element, closing
+the modal does not update the page&rsquo;s URL. This means that after viewing
+a Seat&rsquo;s details early on in a session, a User can navigate back to the
+Seats index, filter seats, remove Seats from their cart.</p>
 
-<p>Store the <code>.svg</code> file in <code>app/assets/images/icons</code>, making it available
-to the <a href="https://github.com/jamesmartin/inline_svg/tree/v1.7.1#usage"><code>inline_svg_tag</code>-provided helper</a>.</p>
+<p>The whole time they&rsquo;re taking action, they might not update the
+URL&rsquo;s path. If they were to reload the page, they might be surprised to
+re-visit the last selected seat&rsquo;s details in a modal <code>&lt;dialog&gt;</code> element.</p>
+
+<p>This commit replaces the <code>&lt;form method=&quot;dialog&quot;&gt;</code> element with an <code>&lt;a&gt;</code>
+element that links to the <code>/venues/:venue_id/floors/:floor_id/seats</code>
+URL.</p>
+
+<p>Additionally, this commit handles the <a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/cancel_event"><code>&lt;dialog&gt;</code>&lsquo;s <code>cancel</code>
+event</a> that&rsquo;s triggered by <kbd>esc</kbd>, by introducing the
+<code>dialog_controller.js</code> file and declaring the
+<code>data-action=&quot;cancel-&gt;dialog#cancel&quot;</code> attribute to route events to the
+<code>dialog#cancel</code> function.</p>
+
+<p>Once events are routed to <code>cancel</code>, invoke <a href="https://github.com/turbolinks/turbolinks#turbolinksvisit"><code>Turbolinks.visit</code></a>
+with the value of <code>data-return-to-url</code>.</p>
+
+<p>In a JavaScript-disabled environment, clicking the &ldquo;Close&rdquo; button will
+navigate the user back to the Seats index, but a <kbd>esc</kbd> will
+not. Whoops!</p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id="Gemfile"
+  id="app/javascript/controllers/dialog_controller.js"
   open
 >
   <summary>
-    Gemfile
+    app/javascript/controllers/dialog_controller.js
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
-index 0472bb4..b1127cd 100644
-</span><span class="gd">--- a/Gemfile
-</span><span class="gi">+++ b/Gemfile
-</span><span class="p">@@ -19,6 +19,7 @@</span> gem 'turbolinks', '~&gt; 5'
- gem 'jbuilder', '~&gt; 2.7'
- # Use Active Model has_secure_password
- # gem 'bcrypt', '~&gt; 3.1.7'
-<span class="gi">+gem 'inline_svg'
-</span> 
- # Reduces boot times through caching; required in config/boot.rb
- gem 'bootsnap', '&gt;= 1.4.2', require: false
-</code></pre></div></details>
-
-              <details
-  id="Gemfile.lock"
-  open
->
-  <summary>
-    Gemfile.lock
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
-index 6d80f68..810305a 100644
-</span><span class="gd">--- a/Gemfile.lock
-</span><span class="gi">+++ b/Gemfile.lock
-</span><span class="p">@@ -82,6 +82,9 @@</span> GEM
-       activesupport (&gt;= 4.2.0)
-     i18n (1.8.2)
-       concurrent-ruby (~&gt; 1.0)
-<span class="gi">+    inline_svg (1.7.1)
-+      activesupport (&gt;= 3.0)
-+      nokogiri (&gt;= 1.6)
-</span>     jbuilder (2.10.0)
-       activesupport (&gt;= 5.0.0)
-     listen (3.1.5)
-<span class="p">@@ -206,6 +209,7 @@</span> DEPENDENCIES
-   byebug
-   capybara (&gt;= 2.15)
-   factory_bot (~&gt; 5.0.0)
-<span class="gi">+  inline_svg
-</span>   jbuilder (~&gt; 2.7)
-   listen (&gt;= 3.0.5, &lt; 3.2)
-   pg (&gt;= 0.18, &lt; 2.0)
-</code></pre></div></details>
-
-              <details
-  id="app/assets/images/icons/x-circle.svg"
-  open
->
-  <summary>
-    app/assets/images/icons/x-circle.svg
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/x-circle.svg b/app/assets/images/icons/x-circle.svg
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/dialog_controller.js b/app/javascript/controllers/dialog_controller.js
 </span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..aa8969e
+</span><span class="gh">index 0000000..ea205e8
 </span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/app/assets/images/icons/x-circle.svg
-</span><span class="p">@@ -0,0 +1,15 @@</span>
-<span class="gi">+&lt;svg
-+  xmlns="http://www.w3.org/2000/svg"
-+  viewBox="0 0 24 24"
-+  width="24"
-+  height="24"
-+  fill="none"
-+  stroke="currentColor"
-+  stroke-width="2"
-+  stroke-linecap="round"
-+  stroke-linejoin="round"
-+&gt;
-+  &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
-+  &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
-+  &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
-+&lt;/svg&gt;
+</span><span class="gi">+++ b/app/javascript/controllers/dialog_controller.js
+</span><span class="p">@@ -0,0 +1,10 @@</span>
+<span class="gi">+import { Controller } from "stimulus"
++import Turbolinks from "turbolinks"
++
++export default class extends Controller {
++  cancel({ currentTarget }) {
++    const { redirectToUrl } = currentTarget.dataset
++
++    Turbolinks.visit(redirectToUrl, { action: "replace" })
++  }
++}
 </span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/_dialog.html.erb"
+  open
+>
+  <summary>
+    app/views/seats/_dialog.html.erb
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/_dialog.html.erb b/app/views/seats/_dialog.html.erb
+index 585d935..adfdf0a 100644
+</span><span class="gd">--- a/app/views/seats/_dialog.html.erb
+</span><span class="gi">+++ b/app/views/seats/_dialog.html.erb
+</span><span class="p">@@ -1,6 +1,9 @@</span>
+ &lt;%= tag.dialog(
+   class: "syos-dialog",
+   open: true,
+<span class="gi">+  "data-controller": "dialog",
++  "data-action": "cancel-&gt;dialog#cancel",
++  "data-redirect-to-url": redirect_to_url,
+</span> ) do %&gt;
+   &lt;%= yield %&gt;
+ &lt;% end %&gt;
+</code></pre></div></details>
 
               <details
   id="app/views/seats/show.html.erb"
@@ -209,39 +194,45 @@ index 6d80f68..810305a 100644
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
-index db8733b..214e057 100644
+index 537eb79..aae06a1 100644
 </span><span class="gd">--- a/app/views/seats/show.html.erb
 </span><span class="gi">+++ b/app/views/seats/show.html.erb
-</span><span class="p">@@ -10,23 +10,12 @@</span>
-       &lt;button
-         class="syos-button syos-button--transparent"
-       &gt;
-<span class="gd">-        &lt;svg
--          xmlns="http://www.w3.org/2000/svg"
--          viewBox="0 0 24 24"
--          width="24"
--          height="24"
--          class="syos-icon syos-icon--large"
--          title="Close modal"
--          fill="none"
--          stroke="currentColor"
--          stroke-width="2"
--          stroke-linecap="round"
--          stroke-linejoin="round"
--        &gt;
--          &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
--          &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
--          &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
--        &lt;/svg&gt;
-</span><span class="gi">+        &lt;%= inline_svg_tag(
-+          "icons/x-circle.svg",
-+          aria: true,
-+          class: "syos-icon syos-icon--large",
-+          title: "Close modal",
-+        ) %&gt;
-</span>       &lt;/button&gt;
-     &lt;/form&gt;
-   &lt;/header&gt;
+</span><span class="p">@@ -1,23 +1,22 @@</span>
+ &lt;%= render(template: "seats/index", locals: local_assigns) %&gt;
+ 
+<span class="gd">-&lt;%= render(layout: "seats/dialog") do %&gt;
+</span><span class="gi">+&lt;%= render(layout: "seats/dialog", locals: { redirect_to_url: venue_floor_seats_path(venue, floor) }) do %&gt;
+</span>   &lt;header class="syos-dialog__header"&gt;
+     &lt;h2 class="syos-dialog__title"&gt;
+       Confirm seat selection
+     &lt;/h2&gt;
+ 
+<span class="gd">-    &lt;form method="dialog"&gt;
+-      &lt;button
+-        class="syos-button syos-button--transparent"
+-      &gt;
+-        &lt;%= inline_svg_tag(
+-          "icons/x-circle.svg",
+-          aria: true,
+-          class: "syos-icon syos-icon--large",
+-          title: "Close modal",
+-        ) %&gt;
+-      &lt;/button&gt;
+-    &lt;/form&gt;
+</span><span class="gi">+    &lt;%= link_to(
++      venue_floor_seats_path(venue, floor),
++      class: "syos-button syos-button--transparent",
++    ) do %&gt;
++      &lt;%= inline_svg_tag(
++        "icons/x-circle.svg",
++        aria: true,
++        class: "syos-icon syos-icon--large",
++        title: "Close modal",
++      ) %&gt;
++    &lt;% end %&gt;
+</span>   &lt;/header&gt;
+ 
+   &lt;section class="syos-dialog__body"&gt;
 </code></pre></div></details>
 
           </aside>

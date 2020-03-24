@@ -6,7 +6,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Install JavaScript dependencies during setup
+    <title>Explain the map's symbols with a legend
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <link href="../../stylesheets/syntax.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
 
           <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
 </a>
-          <a href="./" aria-current="page">Install JavaScript dependencies during setup
+          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
 </a>
           <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
 </a>
@@ -51,7 +51,7 @@
 </a>
           <a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">Add `&lt;symbol&gt;` for a selected seat
 </a>
-          <a href="../5cbbc5027f5e78ad21c55addb15816ebb98c5389/">Explain the map&#x27;s symbols with a legend
+          <a href="./" aria-current="page">Explain the map&#x27;s symbols with a legend
 </a>
           <a href="../d58feb4a3639155791b43ae11a9937fc809fbad4/">Switch floors from map
 </a>
@@ -97,76 +97,95 @@
 
         <nav class="navigation">
 
-<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">              &#8592; Previous
+<a href="../e99650c3f4dbe67fb940f1a00719bdedee3042ca/">              &#8592; Previous
 </a>
-<a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">              Next &#8594;
+<a href="../d58feb4a3639155791b43ae11a9937fc809fbad4/">              Next &#8594;
 </a>        </nav>
       </header>
 
       <section class="container">
         <article class="container__item commit">
-          <h1>Install JavaScript dependencies during setup</h1>
+          <h1>Explain the map&rsquo;s symbols with a legend</h1>
 
-<p>In order to execute the <code>webpacker:install</code> command executed during the
-project&rsquo;s <code>rails new</code> command execution, the development environment
-required a semi-current version of <a href="https://nodejs.dev/">NodeJS</a> available on the system.</p>
+<p>Display a map legend for sighted users. Within the legend, render the
+available seat icon states: <em>selected</em> and <em>unselected</em> (referencing
+<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href"><code>xlink:href=&quot;#seat-icon-selected&quot;</code></a> and
+<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/xlink:href"><code>xlink:href=&quot;#seat-icon-unselected&quot;</code></a>, respectively).</p>
 
-<p>The <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF Version Manager</a> is a useful tool that manages
-versions of system-level dependencies, like Ruby and <a href="https://nodejs.dev/">NodeJS</a>.</p>
+<p>To avoid confusing users navigating the page with assistive technology,
+mark the legend with <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques/Using_the_aria-hidden_attribute">aria-hidden=&ldquo;true&rdquo;</a>.</p>
 
-<p>To integrate with <a href="https://asdf-vm.com/#/core-manage-asdf-vm">ASDF</a>, this commit declares a
-<a href="#.tool-versions"><code>.tool-versions</code> file</a> that specifies the <a href="https://nodejs.dev/">NodeJS</a>
-version to be <code>11.7.0</code>.</p>
+<h2>Desktop</h2>
 
-<p>The <code>rails new</code> command that generated this project also generated a
-<code>yarn install</code> line in the project&rsquo;s <a href="#bin/setup"><code>bin/setup</code></a> script
-that is initially commented out.</p>
-
-<p>To ensure that JavaScript dependencies are available to the development
-environment, this commit uncomments that line in the
-<a href="#bin/setup"><code>bin/setup</code></a> script to also run <a href="https://yarnpkg.com/cli/install"><code>yarn
-install</code></a> when installing the application&rsquo;s dependencies.</p>
+<p><img src="https://user-images.githubusercontent.com/2575027/77265265-a9427d80-6c72-11ea-8625-e78efe1b4fe5.png" alt="seat map legend" /></p>
 
         </article>
           <aside class="container__item diff">
               <details
-  id=".tool-versions"
+  id="app/views/seats/index.html.erb"
   open
 >
   <summary>
-    .tool-versions
+    app/views/seats/index.html.erb
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.tool-versions b/.tool-versions
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..6d0c49d
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/.tool-versions
-</span><span class="p">@@ -0,0 +1 @@</span>
-<span class="gi">+nodejs 11.7.0
-</span></code></pre></div></details>
-
-              <details
-  id="bin/setup"
-  open
->
-  <summary>
-    bin/setup
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
-index 5853b5e..2d33af1 100755
-</span><span class="gd">--- a/bin/setup
-</span><span class="gi">+++ b/bin/setup
-</span><span class="p">@@ -18,7 +18,7 @@</span> FileUtils.chdir APP_ROOT do
-   system('bundle check') || system!('bundle install')
- 
-   # Install JavaScript dependencies
-<span class="gd">-  # system('bin/yarn')
-</span><span class="gi">+  system('bin/yarn')
-</span> 
-   # puts "\n== Copying sample files =="
-   # unless File.exist?('config/database.yml')
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 6d751ea..c0bc988 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -9,6 +9,52 @@</span>
+     class="syos-frame"
+   &gt;
+     &lt;div class="syos-frame__map"&gt;
+<span class="gi">+      &lt;div class="syos-frame__legend" aria-hidden="true"&gt;
++        &lt;p class="syos-u-margin-bottom-3 syos-u-font-weight-bold"&gt;
++        Legend
++        &lt;/p&gt;
++
++        &lt;ul class="syos-block-stack"&gt;
++          &lt;li class="syos-block-stack__item"&gt;
++            &lt;svg
++              width="16px"
++              height="16px"
++              viewbox="0 0 16 16"
++              xmlns="http://www.w3.org/2000/svg"
++              aria-hidden="true"
++            &gt;
++              &lt;use
++                width="16px"
++                height="16px"
++                xlink:href="#seat-icon-unselected"
++              &gt;
++              &lt;/use&gt;
++            &lt;/svg&gt;
++
++              Available
++          &lt;/li&gt;
++
++          &lt;li class="syos-block-stack__item"&gt;
++            &lt;svg
++              width="16px"
++              height="16px"
++              viewbox="0 0 16 16"
++              xmlns="http://www.w3.org/2000/svg"
++              aria-hidden="true"
++            &gt;
++              &lt;use
++                width="16px"
++                height="16px"
++                xlink:href="#seat-icon-selected"
++              &gt;
++              &lt;/use&gt;
++            &lt;/svg&gt;
++
++              Selected
++          &lt;/li&gt;
++        &lt;/ul&gt;
++      &lt;/div&gt;
++
+</span>       &lt;svg
+         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
 </code></pre></div></details>
 
           </aside>
