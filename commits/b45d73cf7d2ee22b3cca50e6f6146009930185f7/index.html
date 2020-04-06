@@ -3,109 +3,235 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
     <title>Establish Database Records
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
-    <link href="../../stylesheets/syntax.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
   </head>
   <body class="page">
-    <details id="table-of-contents" class="page__history" open>
-      <summary class="page__history-summary">
-        Table of Contents
-      </summary>
-      <nav class="history">
-        <a href="../../">select-your-own-seat</a>
+    <header class="header">
+      <h1 class="header__name">
+<a href="../../">          select-your-own-seat
+</a>      </h1>
 
-          <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/">[GENERATED] Initial Commit
-</a>
-          <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">Install JavaScript dependencies during setup
-</a>
-          <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/">Elaborate on the project&#x27;s goals in the README
-</a>
-          <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">Add Database Models
-</a>
-          <a href="./" aria-current="page">Establish Database Records
-</a>
-          <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">[GENERATED] Copies CSS Rules from Source Project</a>
-          <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/">Render the application&#x27;s layout
-</a>
-          <a href="../216b59c57382d8d091ee380dac22779bce0f03f3/">Render Seats for a Venue with SVG elements
-</a>
-          <a href="../6c0d693b3c6fe7caf64b782adae933b678be9665/">Add System Test for viewing a Seat&#x27;s details
-</a>
-          <a href="../cd3d29c6717df5e6b169c8be211f6e2447158d74/">Add `seats#show` route and action
-</a>
-          <a href="../2eb88c2b9f33cb84f4b35bfc47b484f4f7b84ca2/">Add `inline_svg` gem
-</a>
-          <a href="../d92c26b80eb78d7aa87e9ee419655e7b668de904/">Add a Seat Selection to Shopping Cart
-</a>
-          <a href="../db78e9d8cc83cd5cde671272220b8aae731ac7bc/">Unselect a Seat to remove it from visitor&#x27;s Cart
-</a>
-          <a href="../56abe06d8370ea5c308df58dfc00cf93d82ac3d1/">Unselect a Seat from the `&lt;dialog&gt;`
-</a>
-          <a href="../20eb681d52446fdb56cba2e2dd124df986aa7cae/">Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
-</a>
-          <a href="../9d14aa897fab41fb3db950c50d9a2ad566bc2350/">Add `&lt;symbol&gt;` for a selected seat
-</a>
-          <a href="../3ef6c718acb4234ebfcdb6fcdd5a30388e98c324/">Explain the map&#x27;s symbols with a legend
-</a>
-          <a href="../1cc7a250fdf123151d43d52fd92cbdb1d6cde896/">Switch floors from map
-</a>
-          <a href="../d3003ec92097d04fd4bd73530895ae644ee5f69e/">Filter Seats based on their Price
-</a>
-          <a href="../b52604a94495aff9d4c921fde51086bd42f6d556/">Implement Server-Side Price Filtering
-</a>
-          <a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/">Add panning and zooming to SVG map element
-</a>
-          <a href="../31534d16f855b53d0bd331931709b87222060123/">Add map zoom controls to `seats&#x2F;index`
-</a>
-          <a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/">Add behavior to Zoom In and Zoom Out buttons
-</a>
-          <a href="../c762566cabd2135fe67c7877aacd894ae6af8301/">Persist map across page loads
-</a>
-          <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/">Introduce a Loading Indicator
-</a>
-          <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/">Dynamically Hide and Show Loading Spinner
-</a>
-          <a href="../641ae448f0103200d8b6616c6c7684926c8c8558/">Opt out of preview caching
-</a>
-          <a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/">Progressively enhance Selection State
-</a>
-          <a href="../d28a1a560df65677015cae331d2f375b22e530b3/">Progressively enhance price filtering
-</a>
-          <a href="../ad83cab691dcc7ab46876094b2633b39c999a1db/">Handle Price Filtering `&lt;form&gt;` reset events
-</a>
-          <a href="../6236e5b81d0d4de460375af2cf8e24b3ea70090e/">Manage filter query parameters with push state
-</a>
-          <a href="../c7613b1cd691655c014ba1d2aef935a21f38889d/">Navigate when `&lt;dialog&gt;` element closes
-</a>
-          <a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/">Hide elements that require JavaScript
-</a>
-          <a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/">Execute System Tests without JavaScript
-</a>
-          <a href="../3d740fcdb09545f99070ce4bbc6e03e75f27cdef/">Create `git-read` GitHub Action
-</a>
-      </nav>
-    </details>
 
-    <main class="page__content">
-      <header>
-
-        <nav class="navigation">
-
+      <nav class="
+        header__navigation
+        navigation
+        
+      ">
 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              &#8592; Previous
 </a>
 <a href="../5b2d6c293f899aaae4daf916643948091485a11c/">              Next &#8594;
-</a>        </nav>
-      </header>
+</a>      </nav>
+    </header>
 
-      <section class="container">
-        <article class="container__item commit">
-          <h1>Establish Database Records</h1>
+    <main class="content">
+      <details class="accordion content__item" data-controller="commit-history">
+        <summary class="accordion__summary">
+          <div class="accordion__closed">
+            <nav class="
+              commit-history
+              u-db-overflow-y--auto
+              u-mb-overflow-x--scroll
+            ">
+                <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
+                <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
+"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
+                <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
+"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Establish Database Records
+" aria-current="page"></a>
+                <a href="../5b2d6c293f899aaae4daf916643948091485a11c/" class="commit-node commit-node--collapsed" title="[GENERATED] Copies CSS Rules from Source Project"></a>
+                <a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/" class="commit-node commit-node--collapsed" title="Render the application's layout
+"></a>
+                <a href="../216b59c57382d8d091ee380dac22779bce0f03f3/" class="commit-node commit-node--collapsed" title="Render Seats for a Venue with SVG elements
+"></a>
+                <a href="../6c0d693b3c6fe7caf64b782adae933b678be9665/" class="commit-node commit-node--collapsed" title="Add System Test for viewing a Seat's details
+"></a>
+                <a href="../cd3d29c6717df5e6b169c8be211f6e2447158d74/" class="commit-node commit-node--collapsed" title="Add `seats#show` route and action
+"></a>
+                <a href="../2eb88c2b9f33cb84f4b35bfc47b484f4f7b84ca2/" class="commit-node commit-node--collapsed" title="Add `inline_svg` gem
+"></a>
+                <a href="../d92c26b80eb78d7aa87e9ee419655e7b668de904/" class="commit-node commit-node--collapsed" title="Add a Seat Selection to Shopping Cart
+"></a>
+                <a href="../db78e9d8cc83cd5cde671272220b8aae731ac7bc/" class="commit-node commit-node--collapsed" title="Unselect a Seat to remove it from visitor's Cart
+"></a>
+                <a href="../56abe06d8370ea5c308df58dfc00cf93d82ac3d1/" class="commit-node commit-node--collapsed" title="Unselect a Seat from the `&lt;dialog&gt;`
+"></a>
+                <a href="../20eb681d52446fdb56cba2e2dd124df986aa7cae/" class="commit-node commit-node--collapsed" title="Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+"></a>
+                <a href="../9d14aa897fab41fb3db950c50d9a2ad566bc2350/" class="commit-node commit-node--collapsed" title="Add `&lt;symbol&gt;` for a selected seat
+"></a>
+                <a href="../3ef6c718acb4234ebfcdb6fcdd5a30388e98c324/" class="commit-node commit-node--collapsed" title="Explain the map's symbols with a legend
+"></a>
+                <a href="../1cc7a250fdf123151d43d52fd92cbdb1d6cde896/" class="commit-node commit-node--collapsed" title="Switch floors from map
+"></a>
+                <a href="../d3003ec92097d04fd4bd73530895ae644ee5f69e/" class="commit-node commit-node--collapsed" title="Filter Seats based on their Price
+"></a>
+                <a href="../b52604a94495aff9d4c921fde51086bd42f6d556/" class="commit-node commit-node--collapsed" title="Implement Server-Side Price Filtering
+"></a>
+                <a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/" class="commit-node commit-node--collapsed" title="Add panning and zooming to SVG map element
+"></a>
+                <a href="../31534d16f855b53d0bd331931709b87222060123/" class="commit-node commit-node--collapsed" title="Add map zoom controls to `seats/index`
+"></a>
+                <a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/" class="commit-node commit-node--collapsed" title="Add behavior to Zoom In and Zoom Out buttons
+"></a>
+                <a href="../c762566cabd2135fe67c7877aacd894ae6af8301/" class="commit-node commit-node--collapsed" title="Persist map across page loads
+"></a>
+                <a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/" class="commit-node commit-node--collapsed" title="Introduce a Loading Indicator
+"></a>
+                <a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/" class="commit-node commit-node--collapsed" title="Dynamically Hide and Show Loading Spinner
+"></a>
+                <a href="../641ae448f0103200d8b6616c6c7684926c8c8558/" class="commit-node commit-node--collapsed" title="Opt out of preview caching
+"></a>
+                <a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/" class="commit-node commit-node--collapsed" title="Progressively enhance Selection State
+"></a>
+                <a href="../d28a1a560df65677015cae331d2f375b22e530b3/" class="commit-node commit-node--collapsed" title="Progressively enhance price filtering
+"></a>
+                <a href="../ad83cab691dcc7ab46876094b2633b39c999a1db/" class="commit-node commit-node--collapsed" title="Handle Price Filtering `&lt;form&gt;` reset events
+"></a>
+                <a href="../6236e5b81d0d4de460375af2cf8e24b3ea70090e/" class="commit-node commit-node--collapsed" title="Manage filter query parameters with push state
+"></a>
+                <a href="../c7613b1cd691655c014ba1d2aef935a21f38889d/" class="commit-node commit-node--collapsed" title="Navigate when `&lt;dialog&gt;` element closes
+"></a>
+                <a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/" class="commit-node commit-node--collapsed" title="Hide elements that require JavaScript
+"></a>
+                <a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/" class="commit-node commit-node--collapsed" title="Execute System Tests without JavaScript
+"></a>
+                <a href="../fae3c14b15f5d24a52167957f26eeffaf592e20b/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
+"></a>
+            </nav>
+
+            <div class="accordion__toggle">
+              <span class="accordion--desktop">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <title>Expand History</title>
+                  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+
+              <span class="accordion--mobile">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <title>Expand History</title>
+                  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+
+          <div class="accordion__opened">
+            <div class="accordion__toggle accordion__toggle--fill">
+              <span class="accordion--desktop">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <title>Collapse History</title>
+                  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+
+              <span class="accordion--mobile">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                  <title>Collapse History</title>
+                  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+                </svg>
+              </span>
+            </div>
+          </div>
+        </summary>
+
+        <nav class="
+          commit-history
+          commit-history--full
+          u-db-overflow-y--auto
+          u-mb-overflow-x--scroll
+        ">
+<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
+
+</a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
+
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
+
+</a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
+
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Establish Database Records</p>
+
+</a><a href="../5b2d6c293f899aaae4daf916643948091485a11c/" class="commit-node commit-node--full">              <p>[GENERATED] Copies CSS Rules from Source Project</p>
+
+</a><a href="../d8c64bd922d07d5904bc480da43e44c4de86dd56/" class="commit-node commit-node--full">              <p>Render the application&#39;s layout</p>
+
+</a><a href="../216b59c57382d8d091ee380dac22779bce0f03f3/" class="commit-node commit-node--full">              <p>Render Seats for a Venue with SVG elements</p>
+
+</a><a href="../6c0d693b3c6fe7caf64b782adae933b678be9665/" class="commit-node commit-node--full">              <p>Add System Test for viewing a Seat&#39;s details</p>
+
+</a><a href="../cd3d29c6717df5e6b169c8be211f6e2447158d74/" class="commit-node commit-node--full">              <p>Add <code>seats#show</code> route and action</p>
+
+</a><a href="../2eb88c2b9f33cb84f4b35bfc47b484f4f7b84ca2/" class="commit-node commit-node--full">              <p>Add <code>inline_svg</code> gem</p>
+
+</a><a href="../d92c26b80eb78d7aa87e9ee419655e7b668de904/" class="commit-node commit-node--full">              <p>Add a Seat Selection to Shopping Cart</p>
+
+</a><a href="../db78e9d8cc83cd5cde671272220b8aae731ac7bc/" class="commit-node commit-node--full">              <p>Unselect a Seat to remove it from visitor&#39;s Cart</p>
+
+</a><a href="../56abe06d8370ea5c308df58dfc00cf93d82ac3d1/" class="commit-node commit-node--full">              <p>Unselect a Seat from the <code>&lt;dialog&gt;</code></p>
+
+</a><a href="../20eb681d52446fdb56cba2e2dd124df986aa7cae/" class="commit-node commit-node--full">              <p>Replace Seat <code>&lt;svg&gt;</code> elements with <code>&lt;use&gt;</code></p>
+
+</a><a href="../9d14aa897fab41fb3db950c50d9a2ad566bc2350/" class="commit-node commit-node--full">              <p>Add <code>&lt;symbol&gt;</code> for a selected seat</p>
+
+</a><a href="../3ef6c718acb4234ebfcdb6fcdd5a30388e98c324/" class="commit-node commit-node--full">              <p>Explain the map&#39;s symbols with a legend</p>
+
+</a><a href="../1cc7a250fdf123151d43d52fd92cbdb1d6cde896/" class="commit-node commit-node--full">              <p>Switch floors from map</p>
+
+</a><a href="../d3003ec92097d04fd4bd73530895ae644ee5f69e/" class="commit-node commit-node--full">              <p>Filter Seats based on their Price</p>
+
+</a><a href="../b52604a94495aff9d4c921fde51086bd42f6d556/" class="commit-node commit-node--full">              <p>Implement Server-Side Price Filtering</p>
+
+</a><a href="../2c209e56aca7fab1abc716a6763132e858d6cca7/" class="commit-node commit-node--full">              <p>Add panning and zooming to SVG map element</p>
+
+</a><a href="../31534d16f855b53d0bd331931709b87222060123/" class="commit-node commit-node--full">              <p>Add map zoom controls to <code>seats/index</code></p>
+
+</a><a href="../83388c4c8fd8468e059ec54de54eea5eb99d11da/" class="commit-node commit-node--full">              <p>Add behavior to Zoom In and Zoom Out buttons</p>
+
+</a><a href="../c762566cabd2135fe67c7877aacd894ae6af8301/" class="commit-node commit-node--full">              <p>Persist map across page loads</p>
+
+</a><a href="../2b22dc2d70b9b6499d6773d18ff757d1cbae2c99/" class="commit-node commit-node--full">              <p>Introduce a Loading Indicator</p>
+
+</a><a href="../3a2866d7c1444bb0049f57b520e3181051cfea01/" class="commit-node commit-node--full">              <p>Dynamically Hide and Show Loading Spinner</p>
+
+</a><a href="../641ae448f0103200d8b6616c6c7684926c8c8558/" class="commit-node commit-node--full">              <p>Opt out of preview caching</p>
+
+</a><a href="../57347d3165acd7783c6dbf49e78e6f021ab3ff98/" class="commit-node commit-node--full">              <p>Progressively enhance Selection State</p>
+
+</a><a href="../d28a1a560df65677015cae331d2f375b22e530b3/" class="commit-node commit-node--full">              <p>Progressively enhance price filtering</p>
+
+</a><a href="../ad83cab691dcc7ab46876094b2633b39c999a1db/" class="commit-node commit-node--full">              <p>Handle Price Filtering <code>&lt;form&gt;</code> reset events</p>
+
+</a><a href="../6236e5b81d0d4de460375af2cf8e24b3ea70090e/" class="commit-node commit-node--full">              <p>Manage filter query parameters with push state</p>
+
+</a><a href="../c7613b1cd691655c014ba1d2aef935a21f38889d/" class="commit-node commit-node--full">              <p>Navigate when <code>&lt;dialog&gt;</code> element closes</p>
+
+</a><a href="../3cbbcb826e4e90721f052d79ebd743d48534c0aa/" class="commit-node commit-node--full">              <p>Hide elements that require JavaScript</p>
+
+</a><a href="../b66bcd65e45b6c994ce59d914260a2453b8d801a/" class="commit-node commit-node--full">              <p>Execute System Tests without JavaScript</p>
+
+</a><a href="../fae3c14b15f5d24a52167957f26eeffaf592e20b/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
+
+</a>        </nav>
+      </details>
+
+      <article class="
+        commit-content
+        commit-content--double
+        content__item
+        content__item--grow
+      ">
+        <section class="commit commit--message">
+
+          <h1 id="establish-database-records">Establish Database Records</h1>
 
 <p>Declare fixtures for each model. The <code>seats</code> fixtures were generated
 from real data.</p>
@@ -117,14 +243,32 @@ database by executing:</p>
 <p>This commit extends the <code>bin/setup</code> script to pre-seed the database with
 records by invoking <code>db:fixtures:load</code>.</p>
 
-        </article>
-          <aside class="container__item diff">
+        </section>
+
+          <aside class="commit commit--diff commit--long-content">
               <details
   id="bin/setup"
   open
+  class="file"
 >
-  <summary>
-    bin/setup
+  <summary class="file__name">
+    <span class="file__toggle file__toggle--close">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand bin/setup</title>
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <span class="file__toggle file__toggle--open">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand bin/setup</title>
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <code>
+      bin/setup
+    </code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/bin/setup b/bin/setup
@@ -146,9 +290,26 @@ index 2d33af1..06962ba 100755
               <details
   id="db/schema.rb"
   open
+  class="file"
 >
-  <summary>
-    db/schema.rb
+  <summary class="file__name">
+    <span class="file__toggle file__toggle--close">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand db/schema.rb</title>
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <span class="file__toggle file__toggle--open">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand db/schema.rb</title>
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <code>
+      db/schema.rb
+    </code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/db/schema.rb b/db/schema.rb
@@ -206,9 +367,26 @@ index c81f663..28e4ed2 100644
               <details
   id="test/fixtures/floors.yml"
   open
+  class="file"
 >
-  <summary>
-    test/fixtures/floors.yml
+  <summary class="file__name">
+    <span class="file__toggle file__toggle--close">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/floors.yml</title>
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <span class="file__toggle file__toggle--open">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/floors.yml</title>
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <code>
+      test/fixtures/floors.yml
+    </code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/fixtures/floors.yml b/test/fixtures/floors.yml
@@ -240,9 +418,26 @@ index 0ac1b3e..c64f9f8 100644
               <details
   id="test/fixtures/seats.yml"
   
+  class="file"
 >
-  <summary>
-    test/fixtures/seats.yml
+  <summary class="file__name">
+    <span class="file__toggle file__toggle--close">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/seats.yml</title>
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <span class="file__toggle file__toggle--open">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/seats.yml</title>
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <code>
+      test/fixtures/seats.yml
+    </code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/fixtures/seats.yml b/test/fixtures/seats.yml
@@ -17581,9 +17776,26 @@ index d83517f..fb5ca4e 100644
               <details
   id="test/fixtures/sections.yml"
   open
+  class="file"
 >
-  <summary>
-    test/fixtures/sections.yml
+  <summary class="file__name">
+    <span class="file__toggle file__toggle--close">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/sections.yml</title>
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <span class="file__toggle file__toggle--open">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/sections.yml</title>
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <code>
+      test/fixtures/sections.yml
+    </code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/fixtures/sections.yml b/test/fixtures/sections.yml
@@ -17644,9 +17856,26 @@ index c30eb05..5d8ab53 100644
               <details
   id="test/fixtures/venues.yml"
   open
+  class="file"
 >
-  <summary>
-    test/fixtures/venues.yml
+  <summary class="file__name">
+    <span class="file__toggle file__toggle--close">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/venues.yml</title>
+        <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <span class="file__toggle file__toggle--open">
+      <svg width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+        <title>Expand test/fixtures/venues.yml</title>
+        <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"/>
+      </svg>
+    </span>
+
+    <code>
+      test/fixtures/venues.yml
+    </code>
   </summary>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/fixtures/venues.yml b/test/fixtures/venues.yml
@@ -17669,7 +17898,7 @@ index 0cd0283..ed9d521 100644
 </span></code></pre></div></details>
 
           </aside>
-      </section>
+      </article>
     </main>
   </body>
 </html>
