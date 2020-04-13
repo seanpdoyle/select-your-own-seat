@@ -19,7 +19,15 @@
   </p>
 </header>
 
-<main class="syos-site-frame__main">
+<main
+  class="syos-site-frame__main"
+  data-controller="fragment"
+  data-action="
+    turbolinks:click->fragment#requested
+    turbolinks:request-start@document->fragment#setHeaders
+    turbolinks:before-render@document->fragment#responded
+  "
+>
   <section
     class="syos-frame noscript"
     data-controller="seats"

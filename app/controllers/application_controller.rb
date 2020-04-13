@@ -6,4 +6,10 @@ class ApplicationController < ActionController::Base
 
     cookies[:cart_token] ||= Current.cart.token
   end
+
+  before_action do
+    if request.headers["X-Fragment"]
+      request.variant << :fragment
+    end
+  end
 end

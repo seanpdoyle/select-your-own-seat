@@ -2,6 +2,7 @@
 <a
   href="<%= venue_floor_seat_path(seat.floor.venue, seat.floor, seat.row_number) %>"
   aria-label="<%= seat.row_number %>"
+  data-fragment-target="dialog"
 >
   <% ["#seat-icon-selected", "#seat-icon-unselected"].each do |state| %>
     <use

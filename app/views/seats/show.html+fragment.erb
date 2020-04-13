@@ -1,0 +1,80 @@
+<%= render(layout: "seats/dialog", locals: { redirect_to_url: venue_floor_seats_path(venue, floor) }) do %>
+  <header class="syos-dialog__header">
+    <h2 class="syos-dialog__title">
+      Confirm seat selection
+    </h2>
+
+    <%= link_to(
+      venue_floor_seats_path(venue, floor),
+      class: "syos-button syos-button--transparent",
+    ) do %>
+      <%= inline_svg_tag(
+        "icons/x-circle.svg",
+        aria: true,
+        class: "syos-icon syos-icon--large",
+        title: "Close modal",
+      ) %>
+    <% end %>
+  </header>
+
+  <section class="syos-dialog__body">
+    <dl class="syos-grid syos-grid--2">
+      <div>
+        <dt>
+          Section
+        </dt>
+
+        <dd class="syos-u-font-size-large">
+          <%= seat.section.name %>
+        </dd>
+      </div>
+
+      <div>
+        <dt>
+          Seat
+        </dt>
+
+        <dd class="syos-u-font-size-large">
+          <%= seat.row_number %>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <footer class="syos-dialog__footer syos-block-stack syos-block-stack--bordered syos-block-stack--large">
+    <div class="syos-inline-stack syos-inline-stack--inline syos-block-stack__item">
+      <div class="syos-inline-stack__item">
+        <p class="syos-u-margin-bottom-0">
+          <%= seat.section.name %>
+        </p>
+      </div>
+
+      <div class="syos-inline-stack__item syos-inline-stack__item--push-start">
+        <p class="syos-u-margin-bottom-0">
+          <strong><%= number_to_currency(seat.section.price / 100.0) %></strong>
+        </p>
+      </div>
+
+      <div class="syos-inline-stack__item">
+        <% if Current.cart.include?(seat) %>
+          <%= button_to(
+            "Remove",
+            seat_selection_path(seat),
+            method: :delete,
+            class: "syos-button",
+            remote: true,
+            form: { "data-action" => "ajax:complete->seats#selectSeats" },
+          ) %>
+        <% else %>
+          <%= button_to(
+            "Select",
+            seat_selections_path(seat),
+            class: "syos-button",
+            remote: true,
+            form: { "data-action" => "ajax:complete->seats#selectSeats" },
+          ) %>
+        <% end %>
+      </div>
+    </div>
+  </footer>
+<% end %>
