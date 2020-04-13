@@ -104,8 +104,14 @@
         height="1600px"
         viewBox="0 0 1600 1600"
         data-target="seats.map"
-        data-turbolinks-permanent
       >
+        <style>
+        <%- if params.key?(:maximum) -%>
+          [data-price-filter-matches]:not([data-price-filter-matches~="<%= params[:maximum] %>"]):not([opacity]) {
+            opacity: 0.3;
+          }
+        <%- end -%>
+        </style>
         <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
 
         <svg style="display: none;">
@@ -131,14 +137,12 @@
 
         <% sections.each do |section| %>
           <g
-            <% if params.fetch(:maximum, Float::INFINITY).to_f >= section.price %>
-              opacity="1.0"
-            <% else %>
-              opacity="0.3"
-              aria-hidden="true"
-            <% end %>
             data-target="seats.section"
             data-price="<%= section.price %>"
+            data-price-filter-matches="<%= filter_prices.select do |(min, max)|
+              section.price < max
+            end.flat_map(&:first).join(" ") %>"
+            data-price-filter-excluded-class="price--excluded"
             data-included-opacity="1.0"
             data-excluded-opacity="0.3"
           >
@@ -219,7 +223,7 @@
           </legend>
 
           <div class="syos-tile-controls">
-            <% [5_00, 10_00, 15_00, nil].each_cons(2) do |maximum, next_maximum| %>
+            <% filter_prices.each do |maximum, next_maximum| %>
               <input
                 id="filter-<%= maximum %>"
                 class="syos-tile-controls__input"

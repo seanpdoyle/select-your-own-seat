@@ -5,6 +5,7 @@ class SeatsController < ApplicationController
     sections = floor.sections.includes(:seats)
 
     render(locals: {
+      filter_prices: [5_00, 10_00, 15_00, Float::INFINITY].each_cons(2).to_a,
       venue: venue,
       floor: floor,
       sections: sections,
@@ -18,6 +19,7 @@ class SeatsController < ApplicationController
     seat = floor.seats.find_by_row_number!(params[:id])
 
     render(locals: {
+      filter_prices: [5_00, 10_00, 15_00, Float::INFINITY].each_cons(2).to_a,
       venue: venue,
       floor: floor,
       sections: sections,

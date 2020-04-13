@@ -1,5 +1,5 @@
 class Seat < ApplicationRecord
-  belongs_to :section
+  belongs_to :section, touch: true
   has_one :floor, through: :section
   has_one :venue, through: :floor
 
