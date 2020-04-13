@@ -40,7 +40,7 @@
               <li class="syos-block-stack__item">
                 <%= active_link_to(
                   venue_floor_seats_path(venue, floor),
-                  "data-action" => "turbolinks:click->seats#discardMap",
+                  "data-action" => "turbolinks:click->seats#loadingStarted",
                 ) do %>
                   <%= floor.name %>
                 <% end %>
@@ -100,7 +100,6 @@
         class="syos-frame__map-overlay syos-loader-overlay"
         data-target="seats.loadingOverlay"
         data-action="
-          turbolinks:request-start@document->seats#loadingStarted
           turbolinks:load@document->seats#loadingFinished
         "
         aria-hidden="true"
@@ -144,39 +143,7 @@
           </symbol>
         </svg>
 
-        <% sections.each do |section| %>
-          <g
-            data-target="seats.section"
-            data-price="<%= section.price %>"
-            data-price-filter-matches="<%= filter_prices.select { |(min, max)| section.price < max }.flat_map(&:first).join(" ") %>"
-            data-price-filter-excluded-class="price--excluded"
-            data-included-opacity="1.0"
-            data-excluded-opacity="0.3"
-          >
-            <% section.seats.each do |seat| %>
-              <a
-                href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
-                aria-label="<%= seat.row_number %>"
-              >
-                <% ["#seat-icon-selected", "#seat-icon-unselected"].each do |state| %>
-                  <use
-                    xlink:href="<%= state %>"
-                    width="12px"
-                    height="12px"
-                    x="<%= seat.x %>"
-                    y="<%= seat.y %>"
-                    data-target="seats.seat"
-                    data-seat-id="<%= seat.id %>"
-                    data-seat-icon="<%= state %>"
-                    data-selected-icon="#seat-icon-selected"
-                    data-unselected-icon="#seat-icon-unselected"
-                  >
-                  </use>
-                <% end %>
-              </a>
-            <% end %>
-          </g>
-        <% end %>
+        <%= render(partial: "sections/section", collection: sections, cached: true) %>
       </svg>
 
       <div

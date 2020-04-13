@@ -1,0 +1,12 @@
+<% cache section do %>
+<g
+  data-target="seats.section"
+  data-price="<%= section.price %>"
+  data-price-filter-matches="<%= section.floor.filter_prices.select { |(min, max)| section.price < max }.flat_map(&:first).join(" ") %>"
+  data-price-filter-excluded-class="price--excluded"
+  data-included-opacity="1.0"
+  data-excluded-opacity="0.3"
+>
+  <%= render(partial: "seats/seat", collection: section.seats, cached: true) %>
+</g>
+<% end %>

@@ -1,0 +1,22 @@
+<% cache seat do %>
+<a
+  href="<%= venue_floor_seat_path(seat.floor.venue, seat.floor, seat.row_number) %>"
+  aria-label="<%= seat.row_number %>"
+>
+  <% ["#seat-icon-selected", "#seat-icon-unselected"].each do |state| %>
+    <use
+      xlink:href="<%= state %>"
+      width="12px"
+      height="12px"
+      x="<%= seat.x %>"
+      y="<%= seat.y %>"
+      data-target="seats.seat"
+      data-seat-id="<%= seat.id %>"
+      data-seat-icon="<%= state %>"
+      data-selected-icon="#seat-icon-selected"
+      data-unselected-icon="#seat-icon-unselected"
+    >
+    </use>
+  <% end %>
+</a>
+<% end %>
