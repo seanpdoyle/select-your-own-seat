@@ -105,6 +105,16 @@
         viewBox="0 0 1600 1600"
         data-target="seats.map"
       >
+        <noscript>
+          <style>
+          <% Current.cart.seats.each do |seat| %>
+            [xlink:href="#seat-icon-selected"]:not([data-seat-id~="<%= seat.id %>"]) {
+              display: none;
+            }
+          <% end %>
+          </style>
+        </noscript>
+
         <style>
         <%- if params.key?(:maximum) -%>
           [data-price-filter-matches]:not([data-price-filter-matches~="<%= params[:maximum] %>"]):not([opacity]) {
@@ -139,9 +149,7 @@
           <g
             data-target="seats.section"
             data-price="<%= section.price %>"
-            data-price-filter-matches="<%= filter_prices.select do |(min, max)|
-              section.price < max
-            end.flat_map(&:first).join(" ") %>"
+            data-price-filter-matches="<%= filter_prices.select { |(min, max)| section.price < max }.flat_map(&:first).join(" ") %>"
             data-price-filter-excluded-class="price--excluded"
             data-included-opacity="1.0"
             data-excluded-opacity="0.3"
@@ -151,22 +159,20 @@
                 href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
                 aria-label="<%= seat.row_number %>"
               >
-                <use
-                  <% if Current.cart.include?(seat) %>
-                    xlink:href="#seat-icon-selected"
-                  <% else %>
-                    xlink:href="#seat-icon-unselected"
-                  <% end %>
-                  width="12px"
-                  height="12px"
-                  x="<%= seat.x %>"
-                  y="<%= seat.y %>"
-                  data-target="seats.seat"
-                  data-seat-id="<%= seat.id %>"
-                  data-selected-icon="#seat-icon-selected"
-                  data-unselected-icon="#seat-icon-unselected"
-                >
-                </use>
+                <% ["#seat-icon-selected", "#seat-icon-unselected"].each do |state| %>
+                  <use
+                    xlink:href="<%= state %>"
+                    width="12px"
+                    height="12px"
+                    x="<%= seat.x %>"
+                    y="<%= seat.y %>"
+                    data-target="seats.seat"
+                    data-seat-id="<%= seat.id %>"
+                    data-selected-icon="#seat-icon-selected"
+                    data-unselected-icon="#seat-icon-unselected"
+                  >
+                  </use>
+                <% end %>
               </a>
             <% end %>
           </g>

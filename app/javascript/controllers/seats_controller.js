@@ -21,6 +21,12 @@ export default class extends Controller {
       minZoom: 1.0,
       maxZoom: 8,
     })
+
+    this.seatTargets.forEach(seat => {
+      if (seat.getAttribute("xlink:href") === "#seat-icon-selected") {
+        seat.remove()
+      }
+    })
     this.selectSeats()
   }
 
