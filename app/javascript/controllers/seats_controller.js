@@ -12,6 +12,7 @@ export default class extends Controller {
   ]
 
   connect() {
+    this.element.classList.remove(this.element.getAttribute("data-seats-noscript-class"))
     this.zoomControlsTarget.hidden = false
     this.map = svgPanZoom(this.mapTarget, {
       center: true,

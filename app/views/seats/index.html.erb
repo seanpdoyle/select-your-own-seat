@@ -1,3 +1,18 @@
+<% content_for :head do %>
+<style>
+<%- if params.key?(:maximum) -%>
+  [data-price-filter-matches]:not([data-price-filter-matches~="<%= params[:maximum] %>"]):not([opacity]) {
+    opacity: 0.3;
+  }
+<%- end -%>
+<%- if Current.cart.seats.any? -%>
+  .noscript [data-seat-icon="#seat-icon-selected"]:<%= Current.cart.seats.map { |seat| %(not([data-seat-id=#{seat.id}])) }.join(":") %>
+    display: none;
+  }
+<%- end -%>
+</style>
+<% end %>
+
 <header class="syos-site-frame__header syos-site-header">
   <p class="syos-site-header__subtext">
     <%= venue.name %>
@@ -6,8 +21,9 @@
 
 <main class="syos-site-frame__main">
   <section
-    class="syos-frame"
+    class="syos-frame noscript"
     data-controller="seats"
+    data-seats-noscript-class="noscript"
     data-seats-loading-class="is-loading"
   >
     <div class="syos-frame__map">
@@ -105,23 +121,6 @@
         viewBox="0 0 1600 1600"
         data-target="seats.map"
       >
-        <noscript>
-          <style>
-          <% Current.cart.seats.each do |seat| %>
-            [xlink:href="#seat-icon-selected"]:not([data-seat-id~="<%= seat.id %>"]) {
-              display: none;
-            }
-          <% end %>
-          </style>
-        </noscript>
-
-        <style>
-        <%- if params.key?(:maximum) -%>
-          [data-price-filter-matches]:not([data-price-filter-matches~="<%= params[:maximum] %>"]):not([opacity]) {
-            opacity: 0.3;
-          }
-        <%- end -%>
-        </style>
         <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
 
         <svg style="display: none;">
@@ -168,6 +167,7 @@
                     y="<%= seat.y %>"
                     data-target="seats.seat"
                     data-seat-id="<%= seat.id %>"
+                    data-seat-icon="<%= state %>"
                     data-selected-icon="#seat-icon-selected"
                     data-unselected-icon="#seat-icon-unselected"
                   >
