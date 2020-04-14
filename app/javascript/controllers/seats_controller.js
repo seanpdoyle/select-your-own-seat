@@ -12,6 +12,7 @@ export default class extends Controller {
   ]
 
   connect() {
+    const mapState = document.querySelector('meta[name="map-state"]')
     this.zoomControlsTarget.hidden = false
     this.map = svgPanZoom(this.mapTarget, {
       center: true,
@@ -38,6 +39,12 @@ export default class extends Controller {
   }
 
   disconnect() {
+    const mapState = document.querySelector('meta[name="map-state"]')
+
+    if (mapState) {
+      mapState.setAttribute("content", JSON.stringify({ pan, zoom }))
+    }
+
     this.map.destroy()
   }
 
