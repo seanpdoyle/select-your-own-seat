@@ -12,7 +12,6 @@ export default class extends Controller {
   ]
 
   connect() {
-    this.element.classList.remove(this.element.getAttribute("data-seats-noscript-class"))
     this.zoomControlsTarget.hidden = false
     this.map = svgPanZoom(this.mapTarget, {
       center: true,
@@ -23,12 +22,19 @@ export default class extends Controller {
       maxZoom: 8,
     })
 
-    this.seatTargets.forEach(seat => {
-      if (seat.getAttribute("xlink:href") === "#seat-icon-selected") {
-        seat.remove()
-      }
-    })
+    this.removeNoscriptSeats()
     this.selectSeats()
+    this.element.classList.remove(this.data.get("noscriptClass"))
+  }
+
+  removeNoscriptSeats() {
+    if (this.element.classList.contains(this.data.get("noscriptClass"))) {
+      this.seatTargets.forEach(seat => {
+        if (seat.getAttribute("xlink:href") === "#seat-icon-selected") {
+          seat.remove()
+        }
+      })
+    }
   }
 
   disconnect() {
