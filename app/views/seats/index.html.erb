@@ -1,15 +1,23 @@
 <% content_for :head do %>
 <style>
 <%- if params.key?(:maximum) -%>
-  [data-price-filter-matches]:not([data-price-filter-matches~="<%= params[:maximum] %>"]):not([opacity]) {
-    opacity: 0.3;
-  }
+[data-price-filter-matches]:not([data-price-filter-matches~="<%= params[:maximum] %>"]):not([opacity]) {
+  opacity: 0.3;
+}
 <%- end -%>
-<%- if Current.cart.seats.any? -%>
-  .noscript [data-seat-icon="#seat-icon-selected"]:<%= Current.cart.seats.map { |seat| %(not([data-seat-id=#{seat.id}])) }.join(":") %>
-    display: none;
-  }
-<%- end -%>
+.noscript [data-seat-icon="#seat-icon-selected"] {
+  display: none;
+}
+
+<% Current.cart.seats.each do |seat| %>
+.noscript [data-seat-icon="#seat-icon-selected"][data-seat-id="<%= seat.id %>"] {
+  display: inherit;
+}
+
+.noscript [data-seat-icon="#seat-icon-unselected"][data-seat-id="<%= seat.id %>"] {
+  display: none;
+}
+<% end %>
 </style>
 <% end %>
 
