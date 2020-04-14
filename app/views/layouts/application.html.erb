@@ -13,12 +13,6 @@
   </head>
 
   <body>
-    <div class="syos-site-frame">
-      <%= yield %>
-    </div>
-
-    <% if content_for?(:dialog) %>
-      <%= yield(:dialog) %>
-    <% end %>
+    <%= yield %>
   </body>
 </html>

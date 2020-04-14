@@ -13,293 +13,295 @@
 </style>
 <% end %>
 
-<header class="syos-site-frame__header syos-site-header">
-  <p class="syos-site-header__subtext">
-    <%= venue.name %>
-  </p>
-</header>
+<div class="syos-site-frame">
+  <header class="syos-site-frame__header syos-site-header">
+    <p class="syos-site-header__subtext">
+      <%= venue.name %>
+    </p>
+  </header>
 
-<main
-  class="syos-site-frame__main"
-  data-controller="fragment"
-  data-action="
-    turbolinks:click->fragment#requested
-    turbolinks:request-start@document->fragment#setHeaders
-    turbolinks:before-render@document->fragment#responded
-  "
->
-  <section
-    class="syos-frame noscript"
-    data-controller="seats"
-    data-seats-noscript-class="noscript"
-    data-seats-loading-class="is-loading"
+  <main
+    class="syos-site-frame__main"
+    data-controller="fragment"
+    data-action="
+      turbolinks:click->fragment#requested
+      turbolinks:request-start@document->fragment#setHeaders
+      turbolinks:before-render@document->fragment#responded
+    "
   >
-    <div class="syos-frame__map">
-      <nav class="syos-frame__floor-nav syos-floor-nav">
-        <div class="syos-floor-nav__header">
-          <p class="syos-u-margin-bottom-3 syos-u-font-weight-bold">
-            Floors
-          </p>
-        </div>
-
-        <div class="syos-floor-nav__diagram-wrapper">
-          <ul class="syos-block-stack">
-            <% venue.floors.each do |floor| %>
-              <li class="syos-block-stack__item">
-                <%= active_link_to(
-                  venue_floor_seats_path(venue, floor),
-                  "data-action" => "turbolinks:click->seats#loadingStarted",
-                ) do %>
-                  <%= floor.name %>
-                <% end %>
-              </li>
-            <% end %>
-          </ul>
-        </div>
-      </nav>
-
-      <div class="syos-frame__legend" aria-hidden="true">
-        <p class="syos-u-margin-bottom-3 syos-u-font-weight-bold">
-        Legend
-        </p>
-
-        <ul class="syos-block-stack">
-          <li class="syos-block-stack__item">
-            <svg
-              width="16px"
-              height="16px"
-              viewbox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <use
-                width="16px"
-                height="16px"
-                xlink:href="#seat-icon-unselected"
-              >
-              </use>
-            </svg>
-
-              Available
-          </li>
-
-          <li class="syos-block-stack__item">
-            <svg
-              width="16px"
-              height="16px"
-              viewbox="0 0 16 16"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <use
-                width="16px"
-                height="16px"
-                xlink:href="#seat-icon-selected"
-              >
-              </use>
-            </svg>
-
-              Selected
-          </li>
-        </ul>
-      </div>
-
-      <div
-        class="syos-frame__map-overlay syos-loader-overlay"
-        data-target="seats.loadingOverlay"
-        data-action="
-          turbolinks:load@document->seats#loadingFinished
-        "
-        aria-hidden="true"
-        >
-        <%= inline_svg_tag(
-          "icons/loader.svg",
-          class: "syos-icon syos-icon--xlarge syos-loader-overlay__loader",
-        ) %>
-      </div>
-
-      <svg
-        id="map"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        class="syos-seat-map"
-        width="1600px"
-        height="1600px"
-        viewBox="0 0 1600 1600"
-        data-target="seats.map"
-      >
-        <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
-
-        <svg style="display: none;">
-          <symbol
-            id="seat-icon-unselected"
-            width="24"
-            height="24"
-            viewbox="0 0 24 24"
-          >
-            <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
-            <circle fill="#ffffff" r="6" cx="12" cy="12"></circle>
-          </symbol>
-
-          <symbol
-            id="seat-icon-selected"
-            width="24"
-            height="24"
-            viewbox="0 0 24 24"
-          >
-            <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
-          </symbol>
-        </svg>
-
-        <%= render(partial: "sections/section", collection: sections, cached: true) %>
-      </svg>
-
-      <div
-        class="syos-frame__map-zoom syos-control-zoom"
-        data-target="seats.zoomControls"
-        hidden
-        >
-        <button
-          class="syos-button syos-button--transparent syos-control-zoom__button"
-          type="button"
-          data-action="click->seats#zoomIn"
-        >
-          <%= inline_svg_tag(
-            "icons/plus.svg",
-            aria: true,
-            class: "syos-icon",
-            title: "zoom in",
-          ) %>
-        </button>
-
-        <button
-          class="syos-button syos-button--transparent syos-control-zoom__button"
-          type="button"
-          data-action="click->seats#zoomOut"
-        >
-          <%= inline_svg_tag(
-            "icons/minus.svg",
-            aria: true,
-            class: "syos-icon",
-            title: "zoom out",
-          ) %>
-        </button>
-      </div>
-    </div>
-
-    <div class="syos-frame__sidebar">
-      <%= form_with(
-        url: venue_floor_seats_path(venue, floor),
-        method: :get,
-        local: true,
-        html: { "data-action" => "reset->seats#filterSeats" },
-      ) do |form| %>
-        <fieldset class="syos-u-margin-bottom-6">
-          <legend class="syos-u-margin-bottom-2 syos-inline-stack">
-            <h2 class="syos-inline-stack__item">
-              Filter by max price
-            </h2>
-
-            <input class="syos-button syos-button--transparent" type="reset" value="Clear Filters">
-          </legend>
-
-          <div class="syos-tile-controls">
-            <% filter_prices.each do |maximum, next_maximum| %>
-              <input
-                id="filter-<%= maximum %>"
-                class="syos-tile-controls__input"
-                type="radio"
-                name="maximum"
-                value="<%= maximum %>"
-                data-action="input->seats#filterSeats"
-                <% if params[:maximum].to_i == maximum ||
-                    [params[:maximum], next_maximum].none? %>
-                  checked
-                <% end %>
-              >
-              <label class="syos-tile-controls__control" for="filter-<%= maximum %>">
-                <%= inline_svg_tag(
-                  "icons/circle.svg",
-                  aria_hidden: true,
-                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--unselected",
-                ) %>
-
-                <%= inline_svg_tag(
-                  "icons/check-circle.svg",
-                  aria_hidden: true,
-                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--selected",
-                ) %>
-
-                <%= number_to_currency(maximum / 100.0) %>
-              </label>
-            <% end %>
+    <section
+      class="syos-frame noscript"
+      data-controller="seats"
+      data-seats-noscript-class="noscript"
+      data-seats-loading-class="is-loading"
+    >
+      <div class="syos-frame__map">
+        <nav class="syos-frame__floor-nav syos-floor-nav">
+          <div class="syos-floor-nav__header">
+            <p class="syos-u-margin-bottom-3 syos-u-font-weight-bold">
+              Floors
+            </p>
           </div>
 
-          <noscript>
-            <input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters">
-          </noscript>
-        </fieldset>
-      <% end %>
-
-      <div id="cart-summary">
-        <h2 class="syos-u-margin-bottom-2">
-          Your seat selections
-        </h2>
-
-        <p class="syos-u-font-size-small syos-u-margin-bottom-2">
-          Seats are not reserved until added to the cart.
-        </p>
-
-        <table class="syos-table">
-          <thead>
-            <tr>
-              <th>
-                Seat
-              </th>
-
-              <th class="syos-table__cell--numerals">
-                Price
-              </th>
-
-              <th class="visually-hidden">
-                Remove
-              </th>
-            </tr>
-          </thead>
-
-          <tbody>
-            <% Current.cart.seats.each do |seat| %>
-              <tr
-                data-target="seats.selection"
-                data-seat-id="<%= seat.id %>"
-              >
-                <td>
-                  <%= seat.section.name %>, <%= seat.row_number %>
-                </td>
-                <td class="syos-table__cell--numerals">
-                  <%= number_to_currency(seat.section.price / 100.0) %>
-                </td>
-                <td class="syos-u-text-align-right">
-                  <%= button_to(
-                    seat_selection_path(seat),
-                    class: "syos-button syos-button--transparent",
-                    method: :delete,
-                    remote: true,
-                    form: { "data-action" => "ajax:complete->seats#selectSeats" },
+          <div class="syos-floor-nav__diagram-wrapper">
+            <ul class="syos-block-stack">
+              <% venue.floors.each do |floor| %>
+                <li class="syos-block-stack__item">
+                  <%= active_link_to(
+                    venue_floor_seats_path(venue, floor),
+                    "data-action" => "turbolinks:click->seats#loadingStarted",
                   ) do %>
-                    <%= inline_svg_tag(
-                      "icons/x-circle.svg",
-                      aria: true,
-                      class: "syos-icon",
-                      title: "Remove",
-                    ) %>
+                    <%= floor.name %>
                   <% end %>
-                </td>
-              </tr>
-            <% end %>
-          </tbody>
-        </table>
+                </li>
+              <% end %>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="syos-frame__legend" aria-hidden="true">
+          <p class="syos-u-margin-bottom-3 syos-u-font-weight-bold">
+          Legend
+          </p>
+
+          <ul class="syos-block-stack">
+            <li class="syos-block-stack__item">
+              <svg
+                width="16px"
+                height="16px"
+                viewbox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <use
+                  width="16px"
+                  height="16px"
+                  xlink:href="#seat-icon-unselected"
+                >
+                </use>
+              </svg>
+
+                Available
+            </li>
+
+            <li class="syos-block-stack__item">
+              <svg
+                width="16px"
+                height="16px"
+                viewbox="0 0 16 16"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true"
+              >
+                <use
+                  width="16px"
+                  height="16px"
+                  xlink:href="#seat-icon-selected"
+                >
+                </use>
+              </svg>
+
+                Selected
+            </li>
+          </ul>
+        </div>
+
+        <div
+          class="syos-frame__map-overlay syos-loader-overlay"
+          data-target="seats.loadingOverlay"
+          data-action="
+            turbolinks:load@document->seats#loadingFinished
+          "
+          aria-hidden="true"
+          >
+          <%= inline_svg_tag(
+            "icons/loader.svg",
+            class: "syos-icon syos-icon--xlarge syos-loader-overlay__loader",
+          ) %>
+        </div>
+
+        <svg
+          id="map"
+          xmlns="http://www.w3.org/2000/svg"
+          xmlns:xlink="http://www.w3.org/1999/xlink"
+          class="syos-seat-map"
+          width="1600px"
+          height="1600px"
+          viewBox="0 0 1600 1600"
+          data-target="seats.map"
+        >
+          <rect fill="none" x="0" y="0" width="1600" height="1600"></rect>
+
+          <svg style="display: none;">
+            <symbol
+              id="seat-icon-unselected"
+              width="24"
+              height="24"
+              viewbox="0 0 24 24"
+            >
+              <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
+              <circle fill="#ffffff" r="6" cx="12" cy="12"></circle>
+            </symbol>
+
+            <symbol
+              id="seat-icon-selected"
+              width="24"
+              height="24"
+              viewbox="0 0 24 24"
+            >
+              <circle fill="#37b24d" r="12" cx="12" cy="12"></circle>
+            </symbol>
+          </svg>
+
+          <%= render(partial: "sections/section", collection: sections, cached: true) %>
+        </svg>
+
+        <div
+          class="syos-frame__map-zoom syos-control-zoom"
+          data-target="seats.zoomControls"
+          hidden
+          >
+          <button
+            class="syos-button syos-button--transparent syos-control-zoom__button"
+            type="button"
+            data-action="click->seats#zoomIn"
+          >
+            <%= inline_svg_tag(
+              "icons/plus.svg",
+              aria: true,
+              class: "syos-icon",
+              title: "zoom in",
+            ) %>
+          </button>
+
+          <button
+            class="syos-button syos-button--transparent syos-control-zoom__button"
+            type="button"
+            data-action="click->seats#zoomOut"
+          >
+            <%= inline_svg_tag(
+              "icons/minus.svg",
+              aria: true,
+              class: "syos-icon",
+              title: "zoom out",
+            ) %>
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
-</main>
+
+      <div class="syos-frame__sidebar">
+        <%= form_with(
+          url: venue_floor_seats_path(venue, floor),
+          method: :get,
+          local: true,
+          html: { "data-action" => "reset->seats#filterSeats" },
+        ) do |form| %>
+          <fieldset class="syos-u-margin-bottom-6">
+            <legend class="syos-u-margin-bottom-2 syos-inline-stack">
+              <h2 class="syos-inline-stack__item">
+                Filter by max price
+              </h2>
+
+              <input class="syos-button syos-button--transparent" type="reset" value="Clear Filters">
+            </legend>
+
+            <div class="syos-tile-controls">
+              <% filter_prices.each do |maximum, next_maximum| %>
+                <input
+                  id="filter-<%= maximum %>"
+                  class="syos-tile-controls__input"
+                  type="radio"
+                  name="maximum"
+                  value="<%= maximum %>"
+                  data-action="input->seats#filterSeats"
+                  <% if params[:maximum].to_i == maximum ||
+                      [params[:maximum], next_maximum].none? %>
+                    checked
+                  <% end %>
+                >
+                <label class="syos-tile-controls__control" for="filter-<%= maximum %>">
+                  <%= inline_svg_tag(
+                    "icons/circle.svg",
+                    aria_hidden: true,
+                    class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--unselected",
+                  ) %>
+
+                  <%= inline_svg_tag(
+                    "icons/check-circle.svg",
+                    aria_hidden: true,
+                    class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--selected",
+                  ) %>
+
+                  <%= number_to_currency(maximum / 100.0) %>
+                </label>
+              <% end %>
+            </div>
+
+            <noscript>
+              <input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters">
+            </noscript>
+          </fieldset>
+        <% end %>
+
+        <div id="cart-summary">
+          <h2 class="syos-u-margin-bottom-2">
+            Your seat selections
+          </h2>
+
+          <p class="syos-u-font-size-small syos-u-margin-bottom-2">
+            Seats are not reserved until added to the cart.
+          </p>
+
+          <table class="syos-table">
+            <thead>
+              <tr>
+                <th>
+                  Seat
+                </th>
+
+                <th class="syos-table__cell--numerals">
+                  Price
+                </th>
+
+                <th class="visually-hidden">
+                  Remove
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <% Current.cart.seats.each do |seat| %>
+                <tr
+                  data-target="seats.selection"
+                  data-seat-id="<%= seat.id %>"
+                >
+                  <td>
+                    <%= seat.section.name %>, <%= seat.row_number %>
+                  </td>
+                  <td class="syos-table__cell--numerals">
+                    <%= number_to_currency(seat.section.price / 100.0) %>
+                  </td>
+                  <td class="syos-u-text-align-right">
+                    <%= button_to(
+                      seat_selection_path(seat),
+                      class: "syos-button syos-button--transparent",
+                      method: :delete,
+                      remote: true,
+                      form: { "data-action" => "ajax:complete->seats#selectSeats" },
+                    ) do %>
+                      <%= inline_svg_tag(
+                        "icons/x-circle.svg",
+                        aria: true,
+                        class: "syos-icon",
+                        title: "Remove",
+                      ) %>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>

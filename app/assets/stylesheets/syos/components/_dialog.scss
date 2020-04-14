@@ -25,6 +25,14 @@ $_syos-dialog-z-map-overlay-above: 10;
   z-index: $_syos-dialog-z-map-overlay-above;
 }
 
+.syos-dialog--noscript {
+  z-index: $_syos-dialog-z-map-overlay-above + 2;
+}
+
+.syos-dialog--noscript + .backdrop {
+  z-index: $_syos-dialog-z-map-overlay-above + 1;
+}
+
 .syos-dialog::backdrop,
 // `::backdrop` polyfill
 .syos-dialog + .backdrop {

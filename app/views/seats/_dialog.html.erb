@@ -1,9 +1,12 @@
 <%= tag.dialog(
-  class: "syos-dialog",
+  class: "syos-dialog syos-dialog--noscript",
   open: true,
   "data-controller": "dialog",
   "data-action": "cancel->dialog#cancel",
-  "data-redirect-to-url": redirect_to_url,
+  "data-dialog-redirect-to-url": redirect_to_url,
+  "data-dialog-noscript-class": "syos-dialog--noscript",
+  "data-dialog-noscript-backdrop": "[data-dialog-backdrop]",
 ) do %>
   <%= yield %>
 <% end %>
+<div class="backdrop" data-dialog-backdrop></div>

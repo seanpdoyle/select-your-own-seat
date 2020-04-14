@@ -12,19 +12,21 @@ export default class extends Controller {
   setHeaders(event) {
     if (this.data.has("requested")) {
       const xhr = event.data.xhr
-      xhr.setRequestHeader("X_FRAGMENT", true)
       xhr.setRequestHeader("X-Fragment", true)
     }
   }
 
   responded(event) {
     const fragmentTarget = this.data.get("requested")
-    const newBody = event.data.newBody
+
+    this.data.delete("requested")
 
     if (fragmentTarget === "dialog") {
-      const main = newBody.querySelector("main")
+      const main = document.body.querySelector("main")
 
-      main.insertAdjacentHTML("afterend", this.data.get("responded"))
+      main.insertAdjacentHTML("afterend", event.data.newBody.innerHTML)
+
+      event.data.newBody.innerHTML = document.body.outerHTML
     }
   }
 }
