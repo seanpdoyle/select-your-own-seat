@@ -31,6 +31,21 @@ export default class extends Controller {
     }
   }
 
+  disconnect() {
+    if (!this.data.get("discardMapState")) {
+      const mapStateElement = document.querySelector('meta[name="map-state"]')
+      const zoom = this.map.getZoom()
+      const { x, y } = this.map.getPan()
+
+      mapStateElement.content = JSON.stringify({
+        zoom,
+        x: x,
+        y: y,
+      })
+    }
+    this.map.destroy()
+  }
+
   removeNoscriptSeats() {
     if (this.element.classList.contains(this.data.get("noscriptClass"))) {
       this.seatTargets.forEach(seat => {
@@ -41,25 +56,16 @@ export default class extends Controller {
     }
   }
 
-  disconnect() {
-    const mapStateElement = document.querySelector('meta[name="map-state"]')
-    const zoom = this.map.getZoom()
-    const { x, y } = this.map.getPan()
-
-    mapStateElement.content = JSON.stringify({
-      zoom,
-      x: x,
-      y: y,
-    })
-    this.map.destroy()
-  }
-
   zoomIn() {
     this.map.zoomIn()
   }
 
   zoomOut() {
     this.map.zoomOut()
+  }
+
+  discardMap() {
+    this.data.set("discardMapState")
   }
 
   loadingStarted() {

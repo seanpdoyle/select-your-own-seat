@@ -57,7 +57,10 @@
                 <li class="syos-block-stack__item">
                   <%= active_link_to(
                     venue_floor_seats_path(venue, floor),
-                    "data-action" => "turbolinks:click->seats#loadingStarted",
+                    "data-action" => "
+                      turbolinks:click->seats#discardMap
+                      turbolinks:click->seats#loadingStarted
+                    ",
                   ) do %>
                     <%= floor.name %>
                   <% end %>
@@ -128,7 +131,6 @@
         </div>
 
         <svg
-          id="map"
           xmlns="http://www.w3.org/2000/svg"
           xmlns:xlink="http://www.w3.org/1999/xlink"
           class="syos-seat-map"
