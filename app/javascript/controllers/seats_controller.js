@@ -14,17 +14,21 @@ export default class extends Controller {
   connect() {
     this.zoomControlsTarget.hidden = false
     this.map = svgPanZoom(this.mapTarget, {
-      center: true,
-      fit: true,
       zoomEnabled: false,
       zoomScaleSensitivity: 0.75,
       minZoom: 1.0,
       maxZoom: 8,
     })
-
     this.removeNoscriptSeats()
     this.selectSeats()
     this.element.classList.remove(this.data.get("noscriptClass"))
+    const mapStateElement = document.querySelector('meta[name="map-state"]')
+
+    if (mapStateElement.content) {
+      const { zoom, x, y } = JSON.parse(mapStateElement.content)
+      this.map.zoom(zoom)
+      this.map.pan({ x, y })
+    }
   }
 
   removeNoscriptSeats() {
@@ -38,6 +42,15 @@ export default class extends Controller {
   }
 
   disconnect() {
+    const mapStateElement = document.querySelector('meta[name="map-state"]')
+    const zoom = this.map.getZoom()
+    const { x, y } = this.map.getPan()
+
+    mapStateElement.content = JSON.stringify({
+      zoom,
+      x: x,
+      y: y,
+    })
     this.map.destroy()
   }
 
