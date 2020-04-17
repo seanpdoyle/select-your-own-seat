@@ -348,7 +348,9 @@ p {
   min-height: 100vh; }
 
 .file {
-  border: solid 1px black; }
+  --file-border: solid 1px black;
+  border-left: var(--file-border);
+  border-right: var(--file-border); }
 
 .file__toggle {
   margin-right: 1rem; }
@@ -357,19 +359,17 @@ p {
   display: none; }
 
 .file[open] .file__toggle--close {
-  display: inherit; }
+  display: inline; }
 
 .file__toggle--open {
-  display: inherit; }
+  display: inline; }
 
 .file[open] .file__toggle--open {
   display: none; }
 
 .file__name {
-  align-items: baseline;
+  border-bottom: var(--file-border);
   cursor: pointer;
-  display: flex;
-  flex-direction: row;
   list-style: none;
   padding: 1rem; }
   .file__name::-webkit-details-marker {
