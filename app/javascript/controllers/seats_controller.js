@@ -22,17 +22,7 @@ export default class extends Controller {
   }
 
   disconnect() {
-    if (this.isDiscardingMap) {
-      this.map.destroy()
-    }
-  }
-
-  discardMap() {
-    this.mapTarget.removeAttribute("data-turbolinks-permanent")
-  }
-
-  get isDiscardingMap() {
-    return !this.mapTarget.hasAttribute("data-turbolinks-permanent")
+    this.map.destroy()
   }
 
   zoomIn() {
@@ -41,16 +31,6 @@ export default class extends Controller {
 
   zoomOut() {
     this.map.zoomOut()
-  }
-
-  loadingStarted() {
-    if (this.isDiscardingMap) {
-      this.loadingOverlayTarget.classList.add(this.data.get("loadingClass"))
-    }
-  }
-
-  loadingFinished() {
-    this.loadingOverlayTarget.classList.remove(this.data.get("loadingClass"))
   }
 
   selectSeats() {

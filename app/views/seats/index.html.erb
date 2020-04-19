@@ -26,10 +26,7 @@
           <ul class="syos-block-stack">
             <% venue.floors.each do |floor| %>
               <li class="syos-block-stack__item">
-                <%= active_link_to(
-                  venue_floor_seats_path(venue, floor),
-                  "data-action" => "turbolinks:click->seats#discardMap",
-                ) do %>
+                <%= active_link_to(venue_floor_seats_path(venue, floor)) do %>
                   <%= floor.name %>
                 <% end %>
               </li>
@@ -87,10 +84,6 @@
       <div
         class="syos-frame__map-overlay syos-loader-overlay"
         data-target="seats.loadingOverlay"
-        data-action="
-          turbolinks:request-start@document->seats#loadingStarted
-          turbolinks:load@document->seats#loadingFinished
-        "
         aria-hidden="true"
         >
         <%= inline_svg_tag(
@@ -108,7 +101,6 @@
         height="1600px"
         viewBox="0 0 1600 1600"
         data-target="seats.map"
-        data-turbolinks-permanent
       >
         <style>
           <% floor.price_ranges.each do |price_range| %>
