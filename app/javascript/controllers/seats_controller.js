@@ -19,10 +19,44 @@ export default class extends Controller {
       maxZoom: 8,
     })
     this.selectSeats()
+
+    if (this.mapState[this.floor]) {
+      const { zoom, x, y } = this.mapState[this.floor]
+
+      this.map.zoom(zoom)
+      this.map.pan({ x, y })
+    }
   }
 
   disconnect() {
+    if (this.mapStateElement) {
+      const zoom = this.map.getZoom()
+      const { x, y } = this.map.getPan()
+
+      this.mapStateElement.content = JSON.stringify({
+        [this.floor]: { zoom, x, y },
+        ...this.mapState,
+      })
+    }
+
     this.map.destroy()
+  }
+
+  get floor() {
+    return this.data.get("floor")
+  }
+
+  get mapStateElement() {
+    return document.querySelector(this.data.get("mapStateElement"))
+  }
+
+  get mapState() {
+    try {
+      return JSON.parse(this.mapStateElement.content)
+    } catch(_) {
+      return {}
+    }
+
   }
 
   zoomIn() {
