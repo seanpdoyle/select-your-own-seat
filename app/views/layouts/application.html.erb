@@ -11,9 +11,18 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body
+    data-controller="turbolinks-fragment"
+    data-action="
+      turbolinks:click->turbolinks-fragment#click
+      turbolinks:request-start@document->turbolinks-fragment#appendHeader
+      turbolinks:before-render@document->turbolinks-fragment#injectFragment
+    "
+  >
     <div class="syos-site-frame">
       <%= yield %>
     </div>
+
+    <div data-turbolinks-fragment-channel="dialog"></div>
   </body>
 </html>
