@@ -1,4 +1,6 @@
+<% unless request.variant.fragment? %>
 <%= render(template: "seats/index", locals: local_assigns) %>
+<% end %>
 
 <%= render("seats/dialog") do %>
   <header class="syos-dialog__header">

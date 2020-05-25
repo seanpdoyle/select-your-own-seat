@@ -142,6 +142,7 @@
               <a
                 href="<%= venue_floor_seat_path(venue, floor, seat.row_number) %>"
                 aria-label="<%= seat.row_number %>"
+                data-turbolinks-fragment="dialog"
               >
                 <use
                   <% if Current.cart.include?(seat) %>
