@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Unselect a Seat from the `<dialog>`
+    <title>Hide elements that require JavaScript
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../3cd6b13369dcc83c73139e0f30c5b541da35678d/">              &#8592; Previous
+<a href="../0a6183869235c2ae289fd6e400ca62be38d506de/">              &#8592; Previous
 </a>
-<a href="../60c9cb275867d10ec018b1dd74190077ac17f909/">              Next &#8594;
+<a href="../ddac45f4644183b8c7c0fd747e3495fa787b7a4d/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -62,8 +62,8 @@
 "></a>
                 <a href="../3cd6b13369dcc83c73139e0f30c5b541da35678d/" class="commit-node commit-node--collapsed" title="Unselect a Seat to remove it from visitor's Cart
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Unselect a Seat from the `&lt;dialog&gt;`
-" aria-current="page"></a>
+                <a href="../2e69ac9158d9ef30c244ac034fb910ccd0e6095d/" class="commit-node commit-node--collapsed" title="Unselect a Seat from the `&lt;dialog&gt;`
+"></a>
                 <a href="../60c9cb275867d10ec018b1dd74190077ac17f909/" class="commit-node commit-node--collapsed" title="Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
 "></a>
                 <a href="../de0bd4565563590a4e779569b7de30052f8bf910/" class="commit-node commit-node--collapsed" title="Add `&lt;symbol&gt;` for a selected seat
@@ -102,8 +102,8 @@
 "></a>
                 <a href="../0a6183869235c2ae289fd6e400ca62be38d506de/" class="commit-node commit-node--collapsed" title="Navigate when `&lt;dialog&gt;` element closes
 "></a>
-                <a href="../31a5e2d681fdc3e2b41b3ec84f67998efd1b4262/" class="commit-node commit-node--collapsed" title="Hide elements that require JavaScript
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Hide elements that require JavaScript
+" aria-current="page"></a>
                 <a href="../ddac45f4644183b8c7c0fd747e3495fa787b7a4d/" class="commit-node commit-node--collapsed" title="Execute System Tests without JavaScript
 "></a>
                 <a href="../16be21397eb8612526b4c66741d632b621e2dceb/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
@@ -170,7 +170,7 @@
 
 </a><a href="../3cd6b13369dcc83c73139e0f30c5b541da35678d/" class="commit-node commit-node--full">              <p>Unselect a Seat to remove it from visitor&#39;s Cart</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Unselect a Seat from the <code>&lt;dialog&gt;</code></p>
+</a><a href="../2e69ac9158d9ef30c244ac034fb910ccd0e6095d/" class="commit-node commit-node--full">              <p>Unselect a Seat from the <code>&lt;dialog&gt;</code></p>
 
 </a><a href="../60c9cb275867d10ec018b1dd74190077ac17f909/" class="commit-node commit-node--full">              <p>Replace Seat <code>&lt;svg&gt;</code> elements with <code>&lt;use&gt;</code></p>
 
@@ -210,7 +210,7 @@
 
 </a><a href="../0a6183869235c2ae289fd6e400ca62be38d506de/" class="commit-node commit-node--full">              <p>Navigate when <code>&lt;dialog&gt;</code> element closes</p>
 
-</a><a href="../31a5e2d681fdc3e2b41b3ec84f67998efd1b4262/" class="commit-node commit-node--full">              <p>Hide elements that require JavaScript</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Hide elements that require JavaScript</p>
 
 </a><a href="../ddac45f4644183b8c7c0fd747e3495fa787b7a4d/" class="commit-node commit-node--full">              <p>Execute System Tests without JavaScript</p>
 
@@ -227,333 +227,98 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="unselect-a-seat-from-the-dialog">Unselect a Seat from the <code>&lt;dialog&gt;</code></h1>
+          <h1 id="hide-elements-that-require-javascript">Hide elements that require JavaScript</h1>
 
-<p>When viewing the details for a <code>Seat</code> that is already included in the
-visitor&rsquo;s <code>Cart</code>, present them with a button to remove it.</p>
+<p>This commit hides the elements that do not function without JavaScript
+enabled: the zoom controls.</p>
 
-<p>To determine whether or not the visitor has added a seat, check if the
-Seat record’s id is in the list of the Cart record’s selected seats
-(accessed via the <a href="https://api.rubyonrails.org/v6.0/classes/ActiveRecord/Associations/ClassMethods.html#method-i-has_many"><code>has_many :seats-generated</code> seats_id
-method</a>).</p>
+<p>To hide the zoom controls when JavaScript is disabled, declare their
+<code>&lt;div&gt;</code> with the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/hidden"><code>hidden</code></a> attribute.</p>
 
-<h2 id="delete-request-routing"><code>DELETE</code> request routing</h2>
-
-<p>In order to support the removal of a Seat without looking up the
-intermediary <code>SeatSelection</code> record, utilize the previously-declared
-<a href="https://guides.rubyonrails.org/v6.0/routing.html#singular-resources">singular <code>resource :seat_selection</code> route
-declaration</a>.</p>
-
-<p>As previously stated, instead of routing <code>DELETE
-/seats/:seat_id/selections/:id</code> requests to the <code>selections#destroy</code>
-controller action, route <code>DELETE /seats/:seat_id/selections</code> requests.</p>
-
-<p>In the controller action, the correct <code>SeatSelection</code> record can be
-determined based on the context provided by the <code>Current.cart</code> and the
-<code>params[:seat_id]</code>.</p>
-
-<h2 id="desktop">Desktop</h2>
-
-<p><img src="https://user-images.githubusercontent.com/2575027/77386366-03ba0780-6d61-11ea-961b-7f198dd90f82.gif" alt="unselect from dialog" /></p>
+<p>Next, when JavaScript <em>is enabled</em>, remove the <code>hidden</code> attribute when
+the <code>seats</code> controller attaches to the DOM in its <a href="https://stimulusjs.org/reference/lifecycle-callbacks"><code>connect()</code></a>
+lifecycle callback.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="app/models/cart.rb"
+  id="app/javascript/controllers/seats_controller.js"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/models/cart.rb</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/javascript/controllers/seats_controller.js</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/models/cart.rb</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/javascript/controllers/seats_controller.js</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      app/models/cart.rb
+      app/javascript/controllers/seats_controller.js
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/cart.rb b/app/models/cart.rb
-index 62b78c9..9e146a3 100644
-</span><span class="gd">--- a/app/models/cart.rb
-</span><span class="gi">+++ b/app/models/cart.rb
-</span><span class="p">@@ -3,4 +3,8 @@</span> class Cart &lt; ApplicationRecord
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index 3ef4e53..f16a9c3 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -8,9 +8,11 @@</span> export default class extends Controller {
+     "seat",
+     "section",
+     "selection",
+<span class="gi">+    "zoomControls",
+</span>   ]
  
-   has_many :seat_selections
-   has_many :seats, through: :seat_selections
-<span class="gi">+
-+  def include?(seat)
-+    seat_ids.include?(seat.id)
-+  end
-</span> end
+   connect() {
+<span class="gi">+    this.zoomControlsTarget.hidden = false
+</span>     this.map = svgPanZoom(this.mapTarget, {
+       center: true,
+       fit: true,
 </code></pre></div></details>
 
               <details
-  id="app/views/seats/show.html.erb"
+  id="app/views/seats/index.html.erb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/show.html.erb</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/show.html.erb</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      app/views/seats/show.html.erb
+      app/views/seats/index.html.erb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
-index bfdd3d9..2ef93c4 100644
-</span><span class="gd">--- a/app/views/seats/show.html.erb
-</span><span class="gi">+++ b/app/views/seats/show.html.erb
-</span><span class="p">@@ -59,11 +59,20 @@</span>
-       &lt;/div&gt;
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 8133c74..8402ed6 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -170,7 +170,11 @@</span>
+         &lt;% end %&gt;
+       &lt;/svg&gt;
  
-       &lt;div class="syos-inline-stack__item"&gt;
-<span class="gd">-        &lt;%= button_to(
--          "Select",
--          seat_selections_path(seat),
--          class: "syos-button",
--        ) %&gt;
-</span><span class="gi">+        &lt;% if Current.cart.include?(seat) %&gt;
-+          &lt;%= button_to(
-+            "Remove",
-+            seat_selection_path(seat),
-+            method: :delete,
-+            class: "syos-button",
-+          ) %&gt;
-+        &lt;% else %&gt;
-+          &lt;%= button_to(
-+            "Select",
-+            seat_selections_path(seat),
-+            class: "syos-button",
-+          ) %&gt;
-+        &lt;% end %&gt;
-</span>       &lt;/div&gt;
-     &lt;/div&gt;
-   &lt;/footer&gt;
-</code></pre></div></details>
-
-              <details
-  id="test/application_system_test_case.rb"
-  open
-  class="file"
->
-  <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/application_system_test_case.rb</title>
-  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/application_system_test_case.rb</title>
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <code>
-      test/application_system_test_case.rb
-    </code>
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/application_system_test_case.rb b/test/application_system_test_case.rb
-index d19212a..6d85d7a 100644
-</span><span class="gd">--- a/test/application_system_test_case.rb
-</span><span class="gi">+++ b/test/application_system_test_case.rb
-</span><span class="p">@@ -2,4 +2,8 @@</span> require "test_helper"
- 
- class ApplicationSystemTestCase &lt; ActionDispatch::SystemTestCase
-   driven_by :selenium, using: :chrome, screen_size: [1400, 1400]
-<span class="gi">+
-+  def click_on_seat(row_number)
-+    find(%{[aria-label*="#{row_number}"]}).click
-+  end
-</span> end
-</code></pre></div></details>
-
-              <details
-  id="test/controllers/selections_controller_test.rb"
-  open
-  class="file"
->
-  <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/selections_controller_test.rb</title>
-  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/selections_controller_test.rb</title>
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <code>
-      test/controllers/selections_controller_test.rb
-    </code>
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/selections_controller_test.rb b/test/controllers/selections_controller_test.rb
-index 76b31c9..2f59574 100644
-</span><span class="gd">--- a/test/controllers/selections_controller_test.rb
-</span><span class="gi">+++ b/test/controllers/selections_controller_test.rb
-</span><span class="p">@@ -26,7 +26,7 @@</span> class SelectionsControllerTest &lt; ActionDispatch::IntegrationTest
-     seat = seat_selection.seat
-     cookies[:cart_token] = cart.token
- 
-<span class="gd">-    delete seat_selection_path(seat, seat_selection)
-</span><span class="gi">+    delete seat_selection_path(seat)
-</span> 
-     assert_equal cart.seats.ids, []
-   end
-</code></pre></div></details>
-
-              <details
-  id="test/models/cart_test.rb"
-  open
-  class="file"
->
-  <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/models/cart_test.rb</title>
-  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/models/cart_test.rb</title>
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <code>
-      test/models/cart_test.rb
-    </code>
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/cart_test.rb b/test/models/cart_test.rb
-</span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..e98e76f
-</span><span class="gd">--- /dev/null
-</span><span class="gi">+++ b/test/models/cart_test.rb
-</span><span class="p">@@ -0,0 +1,22 @@</span>
-<span class="gi">+require "test_helper"
-+
-+class CartTest &lt; ActiveSupport::TestCase
-+  test "#include? returns true when a seat is selected" do
-+    seat_selection = create(:seat_selection)
-+    seat = seat_selection.seat
-+    cart = seat_selection.cart
-+
-+    included = cart.include?(seat)
-+
-+    assert included, "cart includes selected seat"
-+  end
-+
-+  test "#include? returns false when a seat is not yet selected" do
-+    seat = create(:seat)
-+    cart = create(:cart)
-+
-+    included = cart.include?(seat)
-+
-+    refute included, "cart includes selected seat"
-+  end
-+end
-</span></code></pre></div></details>
-
-              <details
-  id="test/system/visitor_unselects_seat_test.rb"
-  open
-  class="file"
->
-  <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/visitor_unselects_seat_test.rb</title>
-  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/visitor_unselects_seat_test.rb</title>
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <code>
-      test/system/visitor_unselects_seat_test.rb
-    </code>
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_unselects_seat_test.rb b/test/system/visitor_unselects_seat_test.rb
-index bfb6a23..439bbb5 100644
-</span><span class="gd">--- a/test/system/visitor_unselects_seat_test.rb
-</span><span class="gi">+++ b/test/system/visitor_unselects_seat_test.rb
-</span><span class="p">@@ -15,4 +15,21 @@</span> class VisitorUnselectsSeatTest &lt; ApplicationSystemTestCase
-       assert_no_text "$10.00"
-     end
-   end
-<span class="gi">+
-+  test "from the details dialog of an already selected seat" do
-+    venue = create(:benedum_center)
-+    floor = create(:orchestra, venue: venue)
-+    section = create(:section, floor: floor, price: 10_00)
-+    seat = create(:seat, row: "AA", number: "101", section: section)
-+
-+    visit "/venues/benedum_center/floors/orchestra/seats"
-+    click_on_seat "AA-101"
-+    click_on "Select"
-+    click_on_seat "AA-101"
-+    within("dialog") { click_on "Remove" }
-+
-+    within "#cart-summary" do
-+      assert_no_text "$10.00"
-+    end
-+  end
-</span> end
-</code></pre></div></details>
-
-              <details
-  id="test/system/visitor_views_seats_test.rb"
-  open
-  class="file"
->
-  <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/visitor_views_seats_test.rb</title>
-  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/visitor_views_seats_test.rb</title>
-  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
-</svg>
-
-
-    <code>
-      test/system/visitor_views_seats_test.rb
-    </code>
-  </summary>
-
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_views_seats_test.rb b/test/system/visitor_views_seats_test.rb
-index 6678b42..4461a43 100644
-</span><span class="gd">--- a/test/system/visitor_views_seats_test.rb
-</span><span class="gi">+++ b/test/system/visitor_views_seats_test.rb
-</span><span class="p">@@ -12,8 +12,4 @@</span> class VisitorViewsSeatsTest &lt; ApplicationSystemTestCase
- 
-     assert_text("$10.00")
-   end
-<span class="gd">-
--  def click_on_seat(row_number)
--    find(%{[aria-label*="#{row_number}"]}).click
--  end
-</span> end
+<span class="gd">-      &lt;div class="syos-frame__map-zoom syos-control-zoom"&gt;
+</span><span class="gi">+      &lt;div
++        class="syos-frame__map-zoom syos-control-zoom"
++        data-target="seats.zoomControls"
++        hidden
++        &gt;
+</span>         &lt;button
+           class="syos-button syos-button--transparent syos-control-zoom__button"
+           type="button"
 </code></pre></div></details>
 
           </aside>
