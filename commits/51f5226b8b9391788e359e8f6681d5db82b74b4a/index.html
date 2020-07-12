@@ -270,10 +270,10 @@ available at https://seanpdoyle.github.io/select-your-own-seat.</p>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.github/workflows/git-read.yml b/.github/workflows/git-read.yml
 </span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..b180b35
+</span><span class="gh">index 0000000..6cc9161
 </span><span class="gd">--- /dev/null
 </span><span class="gi">+++ b/.github/workflows/git-read.yml
-</span><span class="p">@@ -0,0 +1,52 @@</span>
+</span><span class="p">@@ -0,0 +1,53 @@</span>
 <span class="gi">+name: git-read
 +
 +on:
@@ -296,22 +296,23 @@ available at https://seanpdoyle.github.io/select-your-own-seat.</p>
 +          repository: "seanpdoyle/git-read"
 +          path: "git-read"
 +
++      - uses: actions/setup-ruby@v1
++        with:
++          ruby-version: "2.6.x"
++
++      - uses: actions/setup-node@v1
++        with:
++          node-version: "10.x"
++
 +      - uses: actions/cache@v1
 +        with:
 +          key: ${{ runner.os }}-gems-${{ hashFiles('**/Gemfile.lock') }}
 +          restore-keys: ${{ runner.os }}-gems-
 +          path: vendor/bundle
 +
-+      - uses: actions/setup-ruby@v1
-+        with:
-+          ruby-version: "2.6"
-+          run: bundle config path vendor/bundle
-+
-+      - uses: actions/setup-node@v1
-+        with:
-+          node-version: '10.x'
-+
 +      - name: Build documentation from Git History
++        env:
++          BUNDLE_PATH: vendor/bundle
 +        run: |
 +          cd $GITHUB_WORKSPACE/git-read
 +          ./script/install
