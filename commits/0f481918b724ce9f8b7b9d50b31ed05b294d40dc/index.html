@@ -232,7 +232,7 @@
 generate web pages from this project&rsquo;s Git history.</p>
 
 <p>The declarations in <code>.github/workflow/git-read.yml</code> were inspired by the
-corresponding GitHub Action workflow declared in the <a href="https://github.com/seanpdoyle/git-read/blob/master/.github/workflows/git-read.yml"><code>git-read</code>
+corresponding GitHub Action workflow declared in the <a href="https://github.com/seanpdoyle/git-read/blob/main/.github/workflows/git-read.yml"><code>git-read</code>
 repository</a>.</p>
 
 <p>Specifying the <code>--git-dir</code> and <code>--output-dir</code> values in terms of the
@@ -270,7 +270,7 @@ available at https://seanpdoyle.github.io/select-your-own-seat.</p>
 
 <div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/.github/workflows/git-read.yml b/.github/workflows/git-read.yml
 </span><span class="p">new file mode 100644
-</span><span class="gh">index 0000000..a5ca591
+</span><span class="gh">index 0000000..b180b35
 </span><span class="gd">--- /dev/null
 </span><span class="gi">+++ b/.github/workflows/git-read.yml
 </span><span class="p">@@ -0,0 +1,52 @@</span>
@@ -279,7 +279,7 @@ available at https://seanpdoyle.github.io/select-your-own-seat.</p>
 +on:
 +  push:
 +    branches:
-+      - master
++      - main
 +    tags:
 +      - "*"
 +
