@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Filter Seats based on their Price
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              &#8592; Previous
+<a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/">              &#8592; Previous
 </a>
-<a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              Next &#8594;
+<a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
 "></a>
                 <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
@@ -72,8 +72,8 @@
 "></a>
                 <a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/" class="commit-node commit-node--collapsed" title="Switch floors from map
 "></a>
-                <a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--collapsed" title="Filter Seats based on their Price
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Filter Seats based on their Price
+" aria-current="page"></a>
                 <a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--collapsed" title="Implement Server-Side Price Filtering
 "></a>
                 <a href="../9b4a4f6dc0a6b83ec6d77e68a692b8eb19dd6d9b/" class="commit-node commit-node--collapsed" title="Add panning and zooming to SVG map element
@@ -148,7 +148,7 @@
 
 </a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
 
@@ -180,7 +180,7 @@
 
 </a><a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/" class="commit-node commit-node--full">              <p>Switch floors from map</p>
 
-</a><a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--full">              <p>Filter Seats based on their Price</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Filter Seats based on their Price</p>
 
 </a><a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--full">              <p>Implement Server-Side Price Filtering</p>
 
@@ -227,176 +227,166 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="filter-seats-based-on-their-price">Filter Seats based on their Price</h1>
 
-<p>This application is an example of how to develop an interactive web page
-using:</p>
+<p>This commit adds static HTML to render a set of <code>&lt;input type=&quot;radio&quot;&gt;</code>
+buttons styled with <code>&lt;label&gt;</code> elements that wrap <code>&lt;svg&gt;</code> elements.</p>
 
-<ul>
-<li>Rails</li>
-<li>Rails&rsquo; Unobtrustive JavaScript</li>
-<li>Turbolinks</li>
-<li>StimulusJS</li>
-</ul>
+<p>The values of those filters are static for the time being, and the
+selection of a filter does not yet affect the page. The values have been
+chosen as <code>500</code> cents ($5.00), <code>1000</code> cents ($10.00), and <code>1500</code> cents
+($15.00). They&rsquo;re underscored to resemble their price in dollars, and
+are iterated over with <a href="https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-each_cons"><code>Array#each_cons</code></a> to iterate over
+pairs consecutively.</p>
 
-<p>The commit history is intentionally meticulous and verbose.</p>
+<p>Where there is a <code>nil</code> value for <code>next_maximum</code>, that indicates that
+it&rsquo;s the highest possible value, so the <code>&lt;input&gt;</code> should have the
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input/radio#checked"><code>checked</code> attribute</a>.</p>
 
-<p>The intent behind this repository is to:</p>
+<h2 id="desktop">Desktop</h2>
 
-<ul>
-<li>serve as an example of real-world application built in a
-server-rendered monolith</li>
-<li>demonstrate how to iteratively build up a set of features over time,
-starting with boring standards based HTML, then extending that
-behavior with JavaScript</li>
-<li>demonstrate how and when to progressively enhance a feature that works
-outside of a JavaScript-capable browser environment</li>
-</ul>
-
-<p>When creating this repository, deliberate effort was exerted to strike a
-balance between:</p>
-
-<ul>
-<li>explicit and verbose (HTML, model, controller) code  <em>versus</em> &ldquo;clean&rdquo;
-and well-factored Rails code</li>
-<li>newer, terser JavaScript syntax (arrow functions, destructuring, etc)
-<em>versus</em> more familiar, approachable syntax</li>
-<li>small and focussed diffs that represent the minimal amount of changes
-necessary to integrate with newer libraries and concepts <em>versus</em>
-real-world feature-development style commits</li>
-<li>emphasizing outside-in, test-driven developed, production-ready code
-<em>versus</em> emphasizing educational and approachable implementation code</li>
-</ul>
-
-<p>Some other things to note:</p>
-
-<ul>
-<li>The data model is inspired by a real-world application, but simplified
-for the sake of demonstration</li>
-<li>The CSS, while important and worth explaining on its own, is treated
-as a peripheral implementation detail.</li>
-<li>One of the original project&rsquo;s areas of focus was accessibility. For
-the sake of this demonstration, most of the accessibility work
-involved in the original project has been omitted</li>
-<li>The number of both JavaScript and Ruby dependencies is intentionally
-limited</li>
-<li>The project uses Rails defaults as much as possible (i.e. MiniTest
-instead of RSpec, <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html"><code>CurrentAttributes</code></a>,
-<code>form_with</code> instead of <code>simple_form</code>, etc).</li>
-</ul>
+<p><img src="https://user-images.githubusercontent.com/2575027/77386361-03217100-6d61-11ea-9115-9c69a33308f3.png" alt="price filtering form" /></p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
+  id="app/assets/images/icons/check-circle.svg"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/assets/images/icons/check-circle.svg</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/assets/images/icons/check-circle.svg</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/assets/images/icons/check-circle.svg
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..047c617 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,69 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Select Your Own Seat
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+This application is an example of how to develop an interactive web page using:
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+* Rails
-+* Rails' Unobtrustive JavaScript
-+* Turbolinks
-+* StimulusJS
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+The commit history is intentionally meticulous and verbose. 
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+The intent behind this repository is to:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+* serve as an example of real-world application built in a server-rendered
-+  monolith
-+* demonstrate how to iteratively build up a set of features over time, starting
-+  with boring standards based HTML, then extending that behavior with JavaScript
-+* demonstrate how and when to progressively enhance a feature that works outside
-+  of a JavaScript-capable browser environment
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+When creating this repository, deliberate effort was exerted to strike a balance
-+between:
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+* explicit and verbose (HTML, model, controller) code  *versus* "clean" and
-+  well-factored Rails code
-+* newer, terser JavaScript syntax (arrow functions, destructuring, etc) *versus*
-+  more familiar, approachable syntax
-+* small and focussed diffs that represent the minimal amount of changes
-+  necessary to integrate with newer libraries and concepts *versus* real-world
-+  feature-development style commits
-+* emphasizing outside-in, test-driven developed, production-ready code *versus*
-+  emphasizing educational and approachable implementation code
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+Some other things to note:
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+* The data model is inspired by a real-world application, but simplified for the
-+  sake of demonstration
-+* The CSS, while important and worth explaining on its own, is treated as a
-+  peripheral implementation detail
-+* One of the original project's areas of focus was accessibility. For the sake
-+  of this demonstration, most of the accessibility work involved in the original
-+  project has been omitted
-+* The number of both JavaScript and Ruby dependencies is intentionally limited
-+* The project uses Rails defaults as much as possible (i.e. MiniTest instead of
-+  RSpec, [`CurrentAttributes`][CurrentAttributes], `form_with` instead of
-+`simple_form`, etc)
-+* There is no internationalization. Page's copy and labels are hard-coded
-+  directly into the HTML
-+* There are additional optimizations that could be made for the sake of
-+  performance. Those optimizations have been omitted from this repository
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+[CurrentAttributes]: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+Development
-+---
-+
-+To develop the application locally, check it out with `git` then run the setup
-+script:
-+
-+```bash
-+$ git clone git@github.com:seanpdoyle/select-your-own-seat.git
-+$ cd select-your-own-seat
-+$ bin/setup
-+$ rails server
-+```
-+
-+Once the `rails server` command is running, visit the page at
-+&lt;http://localhost:3000&gt;.
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/check-circle.svg b/app/assets/images/icons/check-circle.svg
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..b29ec55
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/assets/images/icons/check-circle.svg
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"&gt;&lt;/path&gt;&lt;polyline points="22 4 12 14.01 9 11.01"&gt;&lt;/polyline&gt;&lt;/svg&gt;
 </span></code></pre></div></details>
+
+              <details
+  id="app/assets/images/icons/circle.svg"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/assets/images/icons/circle.svg</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/assets/images/icons/circle.svg</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/assets/images/icons/circle.svg
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/assets/images/icons/circle.svg b/app/assets/images/icons/circle.svg
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..e5c5512
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/assets/images/icons/circle.svg
+</span><span class="p">@@ -0,0 +1 @@</span>
+<span class="gi">+&lt;svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;&lt;/svg&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index efbc1b4..d290f97 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -135,6 +135,50 @@</span>
+     &lt;/div&gt;
+ 
+     &lt;div class="syos-frame__sidebar"&gt;
+<span class="gi">+      &lt;form&gt;
++        &lt;fieldset class="syos-u-margin-bottom-6"&gt;
++          &lt;legend class="syos-u-margin-bottom-2 syos-inline-stack"&gt;
++            &lt;h2 class="syos-inline-stack__item"&gt;
++              Filter by max price
++            &lt;/h2&gt;
++
++            &lt;input class="syos-button syos-button--transparent" type="reset" value="Clear Filters"&gt;
++          &lt;/legend&gt;
++
++          &lt;div class="syos-tile-controls"&gt;
++            &lt;% [5_00, 10_00, 15_00, nil].each_cons(2) do |maximum, next_maximum| %&gt;
++              &lt;input
++                id="filter-&lt;%= maximum %&gt;"
++                class="syos-tile-controls__input"
++                type="radio"
++                name="maximum"
++                value="&lt;%= maximum %&gt;"
++                &lt;% if next_maximum.nil? %&gt;
++                  checked
++                &lt;% end %&gt;
++              &gt;
++              &lt;label class="syos-tile-controls__control" for="filter-&lt;%= maximum %&gt;"&gt;
++                &lt;%= inline_svg_tag(
++                  "icons/circle.svg",
++                  aria_hidden: true,
++                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--unselected",
++                ) %&gt;
++
++                &lt;%= inline_svg_tag(
++                  "icons/check-circle.svg",
++                  aria_hidden: true,
++                  class: "syos-icon syos-tile-controls__icon syos-tile-controls__icon--selected",
++                ) %&gt;
++
++                &lt;%= number_to_currency(maximum / 100.0) %&gt;
++              &lt;/label&gt;
++            &lt;% end %&gt;
++          &lt;/div&gt;
++
++          &lt;input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters"&gt;
++        &lt;/fieldset&gt;
++      &lt;/form&gt;
++
+</span>       &lt;div id="cart-summary"&gt;
+         &lt;h2 class="syos-u-margin-bottom-2"&gt;
+           Your seat selections
+</code></pre></div></details>
 
           </aside>
       </article>

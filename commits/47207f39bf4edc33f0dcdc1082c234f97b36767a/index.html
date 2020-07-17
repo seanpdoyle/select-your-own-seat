@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Unselect a Seat to remove it from visitor's Cart
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              &#8592; Previous
+<a href="../f456146e689ac3edd2a004a8058649fc455b6772/">              &#8592; Previous
 </a>
-<a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              Next &#8594;
+<a href="../a2a9c07a545ef34932374c10247d415d068bc891/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
 "></a>
                 <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
@@ -60,8 +60,8 @@
 "></a>
                 <a href="../f456146e689ac3edd2a004a8058649fc455b6772/" class="commit-node commit-node--collapsed" title="Add a Seat Selection to Shopping Cart
 "></a>
-                <a href="../47207f39bf4edc33f0dcdc1082c234f97b36767a/" class="commit-node commit-node--collapsed" title="Unselect a Seat to remove it from visitor's Cart
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Unselect a Seat to remove it from visitor's Cart
+" aria-current="page"></a>
                 <a href="../a2a9c07a545ef34932374c10247d415d068bc891/" class="commit-node commit-node--collapsed" title="Unselect a Seat from the `&lt;dialog&gt;`
 "></a>
                 <a href="../871450cc44e1d571443fb3bd85114ff0ab7a1424/" class="commit-node commit-node--collapsed" title="Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
@@ -148,7 +148,7 @@
 
 </a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
 
@@ -168,7 +168,7 @@
 
 </a><a href="../f456146e689ac3edd2a004a8058649fc455b6772/" class="commit-node commit-node--full">              <p>Add a Seat Selection to Shopping Cart</p>
 
-</a><a href="../47207f39bf4edc33f0dcdc1082c234f97b36767a/" class="commit-node commit-node--full">              <p>Unselect a Seat to remove it from visitor&#39;s Cart</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Unselect a Seat to remove it from visitor&#39;s Cart</p>
 
 </a><a href="../a2a9c07a545ef34932374c10247d415d068bc891/" class="commit-node commit-node--full">              <p>Unselect a Seat from the <code>&lt;dialog&gt;</code></p>
 
@@ -227,175 +227,242 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="unselect-a-seat-to-remove-it-from-visitors-cart">Unselect a Seat to remove it from visitor&rsquo;s Cart</h1>
 
-<p>This application is an example of how to develop an interactive web page
-using:</p>
+<p>Change the cart summary&rsquo;s <code>&lt;button&gt;</code> element to be rendered with a
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/UrlHelper.html#method-i-button_to"><code>button_to</code></a> helper, transforming its underlying element to
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form"><code>&lt;form&gt;</code> element</a> with its <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-method"><code>method</code> attribute</a> set to
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE"><code>DELETE</code></a>.</p>
 
-<ul>
-<li>Rails</li>
-<li>Rails&rsquo; Unobtrustive JavaScript</li>
-<li>Turbolinks</li>
-<li>StimulusJS</li>
-</ul>
+<p>This commit also introduces the <code>SelectionsController#destroy</code> action to
+handle requests made from the <code>&lt;form&gt;</code> generated by the <code>button_to</code>
+call.</p>
 
-<p>The commit history is intentionally meticulous and verbose.</p>
+<p>In order to route requests to the <code>selections#destroy</code> method <em>without</em>
+a <code>SeatSelection</code> record identifier, declare the route as a <a href="https://guides.rubyonrails.org/v6.0/routing.html#singular-resources">singular
+resource route</a>. To access this action, the page&rsquo;s
+<code>&lt;form&gt;</code> element must declare its <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/form#attr-action"><code>action</code> attribute</a> to the
+<code>/seats/:seat_id/selections</code> route, and ensure that its method is
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/DELETE"><code>DELETE</code></a>.</p>
 
-<p>The intent behind this repository is to:</p>
+<h2 id="desktop">Desktop</h2>
 
-<ul>
-<li>serve as an example of real-world application built in a
-server-rendered monolith</li>
-<li>demonstrate how to iteratively build up a set of features over time,
-starting with boring standards based HTML, then extending that
-behavior with JavaScript</li>
-<li>demonstrate how and when to progressively enhance a feature that works
-outside of a JavaScript-capable browser environment</li>
-</ul>
-
-<p>When creating this repository, deliberate effort was exerted to strike a
-balance between:</p>
-
-<ul>
-<li>explicit and verbose (HTML, model, controller) code  <em>versus</em> &ldquo;clean&rdquo;
-and well-factored Rails code</li>
-<li>newer, terser JavaScript syntax (arrow functions, destructuring, etc)
-<em>versus</em> more familiar, approachable syntax</li>
-<li>small and focussed diffs that represent the minimal amount of changes
-necessary to integrate with newer libraries and concepts <em>versus</em>
-real-world feature-development style commits</li>
-<li>emphasizing outside-in, test-driven developed, production-ready code
-<em>versus</em> emphasizing educational and approachable implementation code</li>
-</ul>
-
-<p>Some other things to note:</p>
-
-<ul>
-<li>The data model is inspired by a real-world application, but simplified
-for the sake of demonstration</li>
-<li>The CSS, while important and worth explaining on its own, is treated
-as a peripheral implementation detail.</li>
-<li>One of the original project&rsquo;s areas of focus was accessibility. For
-the sake of this demonstration, most of the accessibility work
-involved in the original project has been omitted</li>
-<li>The number of both JavaScript and Ruby dependencies is intentionally
-limited</li>
-<li>The project uses Rails defaults as much as possible (i.e. MiniTest
-instead of RSpec, <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html"><code>CurrentAttributes</code></a>,
-<code>form_with</code> instead of <code>simple_form</code>, etc).</li>
-</ul>
+<p><img src="https://user-images.githubusercontent.com/2575027/77386365-03ba0780-6d61-11ea-9b37-e4266abab99d.gif" alt="unselect from cart" /></p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
+  id="app/controllers/selections_controller.rb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/selections_controller.rb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/selections_controller.rb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/controllers/selections_controller.rb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..047c617 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,69 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Select Your Own Seat
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+This application is an example of how to develop an interactive web page using:
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+* Rails
-+* Rails' Unobtrustive JavaScript
-+* Turbolinks
-+* StimulusJS
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+The commit history is intentionally meticulous and verbose. 
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+The intent behind this repository is to:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+* serve as an example of real-world application built in a server-rendered
-+  monolith
-+* demonstrate how to iteratively build up a set of features over time, starting
-+  with boring standards based HTML, then extending that behavior with JavaScript
-+* demonstrate how and when to progressively enhance a feature that works outside
-+  of a JavaScript-capable browser environment
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+When creating this repository, deliberate effort was exerted to strike a balance
-+between:
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+* explicit and verbose (HTML, model, controller) code  *versus* "clean" and
-+  well-factored Rails code
-+* newer, terser JavaScript syntax (arrow functions, destructuring, etc) *versus*
-+  more familiar, approachable syntax
-+* small and focussed diffs that represent the minimal amount of changes
-+  necessary to integrate with newer libraries and concepts *versus* real-world
-+  feature-development style commits
-+* emphasizing outside-in, test-driven developed, production-ready code *versus*
-+  emphasizing educational and approachable implementation code
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+Some other things to note:
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+* The data model is inspired by a real-world application, but simplified for the
-+  sake of demonstration
-+* The CSS, while important and worth explaining on its own, is treated as a
-+  peripheral implementation detail
-+* One of the original project's areas of focus was accessibility. For the sake
-+  of this demonstration, most of the accessibility work involved in the original
-+  project has been omitted
-+* The number of both JavaScript and Ruby dependencies is intentionally limited
-+* The project uses Rails defaults as much as possible (i.e. MiniTest instead of
-+  RSpec, [`CurrentAttributes`][CurrentAttributes], `form_with` instead of
-+`simple_form`, etc)
-+* There is no internationalization. Page's copy and labels are hard-coded
-+  directly into the HTML
-+* There are additional optimizations that could be made for the sake of
-+  performance. Those optimizations have been omitted from this repository
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+[CurrentAttributes]: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+Development
-+---
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/selections_controller.rb b/app/controllers/selections_controller.rb
+index 2d6f971..a00c873 100644
+</span><span class="gd">--- a/app/controllers/selections_controller.rb
+</span><span class="gi">+++ b/app/controllers/selections_controller.rb
+</span><span class="p">@@ -6,4 +6,12 @@</span> class SelectionsController &lt; ApplicationController
+ 
+     redirect_to venue_floor_seats_url(seat.venue, seat.floor)
+   end
+<span class="gi">+
++  def destroy
++    seat = Seat.find(params[:seat_id])
 +
-+To develop the application locally, check it out with `git` then run the setup
-+script:
++    Current.cart.seat_selections.where(seat_id: seat).destroy_all
 +
-+```bash
-+$ git clone git@github.com:seanpdoyle/select-your-own-seat.git
-+$ cd select-your-own-seat
-+$ bin/setup
-+$ rails server
-+```
++    redirect_to venue_floor_seats_url(seat.venue, seat.floor)
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 1fa0c41..8da5260 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -80,14 +80,18 @@</span>
+                   &lt;%= number_to_currency(seat.section.price / 100.0) %&gt;
+                 &lt;/td&gt;
+                 &lt;td class="syos-u-text-align-right"&gt;
+<span class="gd">-                  &lt;button class="syos-button syos-button--transparent"&gt;
+</span><span class="gi">+                  &lt;%= button_to(
++                    seat_selection_path(seat),
++                    class: "syos-button syos-button--transparent",
++                    method: :delete,
++                  ) do %&gt;
+</span>                     &lt;%= inline_svg_tag(
+                       "icons/x-circle.svg",
+                       aria: true,
+                       class: "syos-icon",
+                       title: "Remove",
+                     ) %&gt;
+<span class="gd">-                  &lt;/button&gt;
+</span><span class="gi">+                  &lt;% end %&gt;
+</span>                 &lt;/td&gt;
+               &lt;/tr&gt;
+             &lt;% end %&gt;
+</code></pre></div></details>
+
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index 1f8d5ed..8ff545e 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -8,6 +8,7 @@</span> Rails.application.routes.draw do
+ 
+   resources :seats, only: [] do
+     resources :selections, only: [:create]
+<span class="gi">+    resource :selection, only: [:destroy]
+</span>   end
+ 
+   root to: redirect("/venues/benedum_center/floors/orchestra/seats")
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/selections_controller_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/selections_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/selections_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/controllers/selections_controller_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/selections_controller_test.rb b/test/controllers/selections_controller_test.rb
+index f4a817d..76b31c9 100644
+</span><span class="gd">--- a/test/controllers/selections_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/selections_controller_test.rb
+</span><span class="p">@@ -19,4 +19,15 @@</span> class SelectionsControllerTest &lt; ActionDispatch::IntegrationTest
+ 
+     assert_equal cart.seats.ids, [seat.id]
+   end
+<span class="gi">+
++  test "#destroy when a Seat is already selected" do
++    seat_selection = create(:seat_selection)
++    cart = seat_selection.cart
++    seat = seat_selection.seat
++    cookies[:cart_token] = cart.token
 +
-+Once the `rails server` command is running, visit the page at
-+&lt;http://localhost:3000&gt;.
++    delete seat_selection_path(seat, seat_selection)
++
++    assert_equal cart.seats.ids, []
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/system/visitor_unselects_seat_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/visitor_unselects_seat_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/visitor_unselects_seat_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/system/visitor_unselects_seat_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_unselects_seat_test.rb b/test/system/visitor_unselects_seat_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..bfb6a23
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/system/visitor_unselects_seat_test.rb
+</span><span class="p">@@ -0,0 +1,18 @@</span>
+<span class="gi">+require "application_system_test_case"
++
++class VisitorUnselectsSeatTest &lt; ApplicationSystemTestCase
++  test "visiting the seat page" do
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    section = create(:section, floor: floor, price: 10_00)
++    seat = create(:seat, row: "AA", number: "101", section: section)
++
++    visit "/venues/benedum_center/floors/orchestra/seats/AA-101"
++    click_on "Select"
++    click_on "Remove"
++
++    within "#cart-summary" do
++      assert_no_text "$10.00"
++    end
++  end
++end
 </span></code></pre></div></details>
 
           </aside>

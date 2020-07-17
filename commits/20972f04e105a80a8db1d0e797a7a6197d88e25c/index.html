@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Persist map across page loads
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              &#8592; Previous
+<a href="../afb32c2ecf2a95a8e31972d04caae622cbbcc128/">              &#8592; Previous
 </a>
-<a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              Next &#8594;
+<a href="../7553073344dd87ec0bb0e4b46710935e19a49665/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
 "></a>
                 <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
@@ -82,8 +82,8 @@
 "></a>
                 <a href="../afb32c2ecf2a95a8e31972d04caae622cbbcc128/" class="commit-node commit-node--collapsed" title="Add behavior to Zoom In and Zoom Out buttons
 "></a>
-                <a href="../20972f04e105a80a8db1d0e797a7a6197d88e25c/" class="commit-node commit-node--collapsed" title="Persist map across page loads
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Persist map across page loads
+" aria-current="page"></a>
                 <a href="../7553073344dd87ec0bb0e4b46710935e19a49665/" class="commit-node commit-node--collapsed" title="Introduce a Loading Indicator
 "></a>
                 <a href="../3ab417d2ac7f112078d467a52bf6fe63a6c466bf/" class="commit-node commit-node--collapsed" title="Dynamically Hide and Show Loading Spinner
@@ -148,7 +148,7 @@
 
 </a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
 
@@ -190,7 +190,7 @@
 
 </a><a href="../afb32c2ecf2a95a8e31972d04caae622cbbcc128/" class="commit-node commit-node--full">              <p>Add behavior to Zoom In and Zoom Out buttons</p>
 
-</a><a href="../20972f04e105a80a8db1d0e797a7a6197d88e25c/" class="commit-node commit-node--full">              <p>Persist map across page loads</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Persist map across page loads</p>
 
 </a><a href="../7553073344dd87ec0bb0e4b46710935e19a49665/" class="commit-node commit-node--full">              <p>Introduce a Loading Indicator</p>
 
@@ -227,176 +227,136 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="persist-map-across-page-loads">Persist map across page loads</h1>
 
-<p>This application is an example of how to develop an interactive web page
-using:</p>
+<p>The <code>&lt;svg&gt;</code> element that serves as the <code>seats#index</code> and <code>seats#show</code>
+seat map includes more than 1,000 elements per floor. Parsing,
+rendering, and discarding the DOM Nodes that represent the map takes
+time and could be wasteful.</p>
 
-<ul>
-<li>Rails</li>
-<li>Rails&rsquo; Unobtrustive JavaScript</li>
-<li>Turbolinks</li>
-<li>StimulusJS</li>
-</ul>
+<p>Additionally, now that the application is capable of panning and
+zooming, it&rsquo;s important to preserve that state as our users interact
+with the map, so that they&rsquo;re not surprised or disrupted.</p>
 
-<p>The commit history is intentionally meticulous and verbose.</p>
+<p>This commit annotates the <code>&lt;svg&gt;</code> element that includes the page&rsquo;s seat
+map elements with <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#persisting-elements-across-page-loads"><code>data-turbolinks-permanent</code></a> to persist it
+across page loads. In order to persist the element across page loads, it
+requires an <code>id</code> attribute, so declare it as <code>&quot;map&quot;</code>.</p>
 
-<p>The intent behind this repository is to:</p>
+<p>There is an exception to this optimization: navigating between the
+floors of our venue. When switching floors, preserving the map&rsquo;s current
+zoom and pan <em>would be a surprise</em>.</p>
 
-<ul>
-<li>serve as an example of real-world application built in a
-server-rendered monolith</li>
-<li>demonstrate how to iteratively build up a set of features over time,
-starting with boring standards based HTML, then extending that
-behavior with JavaScript</li>
-<li>demonstrate how and when to progressively enhance a feature that works
-outside of a JavaScript-capable browser environment</li>
-</ul>
+<p>When navigating to a separate <code>Floor</code> in a <code>Venue</code>,
+the clicked <code>&lt;a&gt;</code> element will fire a <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#full-list-of-events"><code>turbolinks:click</code></a> event.</p>
 
-<p>When creating this repository, deliberate effort was exerted to strike a
-balance between:</p>
+<p>This commit decorates the <code>&lt;a&gt;</code> elements with <a href="https://stimulusjs.org/reference/actions"><code>data-action</code>
+attributes</a> that route the events to the <code>seats#discardMap</code>
+function. The <code>discardMap</code> function removes the
+<code>data-turbolinks-permanent</code> attribute, preventing it from being retained
+during the imminent page transition.</p>
 
-<ul>
-<li>explicit and verbose (HTML, model, controller) code  <em>versus</em> &ldquo;clean&rdquo;
-and well-factored Rails code</li>
-<li>newer, terser JavaScript syntax (arrow functions, destructuring, etc)
-<em>versus</em> more familiar, approachable syntax</li>
-<li>small and focussed diffs that represent the minimal amount of changes
-necessary to integrate with newer libraries and concepts <em>versus</em>
-real-world feature-development style commits</li>
-<li>emphasizing outside-in, test-driven developed, production-ready code
-<em>versus</em> emphasizing educational and approachable implementation code</li>
-</ul>
+<p>The presence or absence of the <code>data-turbolinks-permanent</code> attribute
+represents whether or not the <code>seats</code> controller should discard the map.</p>
 
-<p>Some other things to note:</p>
-
-<ul>
-<li>The data model is inspired by a real-world application, but simplified
-for the sake of demonstration</li>
-<li>The CSS, while important and worth explaining on its own, is treated
-as a peripheral implementation detail.</li>
-<li>One of the original project&rsquo;s areas of focus was accessibility. For
-the sake of this demonstration, most of the accessibility work
-involved in the original project has been omitted</li>
-<li>The number of both JavaScript and Ruby dependencies is intentionally
-limited</li>
-<li>The project uses Rails defaults as much as possible (i.e. MiniTest
-instead of RSpec, <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html"><code>CurrentAttributes</code></a>,
-<code>form_with</code> instead of <code>simple_form</code>, etc).</li>
-</ul>
+<p>Therefore <em>do not</em> destroy the map when navigating between pages <em>while
+the map is being retained</em>.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
+  id="app/javascript/controllers/seats_controller.js"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/javascript/controllers/seats_controller.js</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/javascript/controllers/seats_controller.js</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/javascript/controllers/seats_controller.js
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..047c617 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,69 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Select Your Own Seat
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+This application is an example of how to develop an interactive web page using:
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+* Rails
-+* Rails' Unobtrustive JavaScript
-+* Turbolinks
-+* StimulusJS
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+The commit history is intentionally meticulous and verbose. 
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+The intent behind this repository is to:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+* serve as an example of real-world application built in a server-rendered
-+  monolith
-+* demonstrate how to iteratively build up a set of features over time, starting
-+  with boring standards based HTML, then extending that behavior with JavaScript
-+* demonstrate how and when to progressively enhance a feature that works outside
-+  of a JavaScript-capable browser environment
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+When creating this repository, deliberate effort was exerted to strike a balance
-+between:
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+* explicit and verbose (HTML, model, controller) code  *versus* "clean" and
-+  well-factored Rails code
-+* newer, terser JavaScript syntax (arrow functions, destructuring, etc) *versus*
-+  more familiar, approachable syntax
-+* small and focussed diffs that represent the minimal amount of changes
-+  necessary to integrate with newer libraries and concepts *versus* real-world
-+  feature-development style commits
-+* emphasizing outside-in, test-driven developed, production-ready code *versus*
-+  emphasizing educational and approachable implementation code
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+Some other things to note:
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+* The data model is inspired by a real-world application, but simplified for the
-+  sake of demonstration
-+* The CSS, while important and worth explaining on its own, is treated as a
-+  peripheral implementation detail
-+* One of the original project's areas of focus was accessibility. For the sake
-+  of this demonstration, most of the accessibility work involved in the original
-+  project has been omitted
-+* The number of both JavaScript and Ruby dependencies is intentionally limited
-+* The project uses Rails defaults as much as possible (i.e. MiniTest instead of
-+  RSpec, [`CurrentAttributes`][CurrentAttributes], `form_with` instead of
-+`simple_form`, etc)
-+* There is no internationalization. Page's copy and labels are hard-coded
-+  directly into the HTML
-+* There are additional optimizations that could be made for the sake of
-+  performance. Those optimizations have been omitted from this repository
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+[CurrentAttributes]: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+Development
-+---
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index 4d78851..d953e65 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -18,7 +18,13 @@</span> export default class extends Controller {
+   }
+ 
+   disconnect() {
+<span class="gd">-    this.map.destroy()
+</span><span class="gi">+    if (!this.mapTarget.hasAttribute("data-turbolinks-permanent")) {
++      this.map.destroy()
++    }
++  }
 +
-+To develop the application locally, check it out with `git` then run the setup
-+script:
-+
-+```bash
-+$ git clone git@github.com:seanpdoyle/select-your-own-seat.git
-+$ cd select-your-own-seat
-+$ bin/setup
-+$ rails server
-+```
-+
-+Once the `rails server` command is running, visit the page at
-+&lt;http://localhost:3000&gt;.
-</span></code></pre></div></details>
++  discardMap() {
++    this.mapTarget.removeAttribute("data-turbolinks-permanent")
+</span>   }
+ 
+   zoomIn() {
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index d0428cb..96eb878 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -23,6 +23,7 @@</span>
+               &lt;li class="syos-block-stack__item"&gt;
+                 &lt;%= active_link_to(
+                   venue_floor_seats_path(venue, floor),
+<span class="gi">+                  "data-action" =&gt; "turbolinks:click-&gt;seats#discardMap",
+</span>                 ) do %&gt;
+                   &lt;%= floor.name %&gt;
+                 &lt;% end %&gt;
+<span class="p">@@ -79,6 +80,7 @@</span>
+       &lt;/div&gt;
+ 
+       &lt;svg
+<span class="gi">+        id="map"
+</span>         xmlns="http://www.w3.org/2000/svg"
+         xmlns:xlink="http://www.w3.org/1999/xlink"
+         class="syos-seat-map"
+<span class="p">@@ -86,6 +88,7 @@</span>
+         height="1600px"
+         viewBox="0 0 1600 1600"
+         data-target="seats.map"
+<span class="gi">+        data-turbolinks-permanent
+</span>       &gt;
+         &lt;rect fill="none" x="0" y="0" width="1600" height="1600"&gt;&lt;/rect&gt;
+ 
+</code></pre></div></details>
 
           </aside>
       </article>

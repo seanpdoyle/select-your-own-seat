@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Implement Server-Side Price Filtering
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              &#8592; Previous
+<a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/">              &#8592; Previous
 </a>
-<a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              Next &#8594;
+<a href="../9b4a4f6dc0a6b83ec6d77e68a692b8eb19dd6d9b/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
 "></a>
                 <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
@@ -74,8 +74,8 @@
 "></a>
                 <a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--collapsed" title="Filter Seats based on their Price
 "></a>
-                <a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--collapsed" title="Implement Server-Side Price Filtering
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Implement Server-Side Price Filtering
+" aria-current="page"></a>
                 <a href="../9b4a4f6dc0a6b83ec6d77e68a692b8eb19dd6d9b/" class="commit-node commit-node--collapsed" title="Add panning and zooming to SVG map element
 "></a>
                 <a href="../5f9f219f1c63037cda835b4244ff6307e9518a8e/" class="commit-node commit-node--collapsed" title="Add map zoom controls to `seats/index`
@@ -148,7 +148,7 @@
 
 </a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
 
@@ -182,7 +182,7 @@
 
 </a><a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--full">              <p>Filter Seats based on their Price</p>
 
-</a><a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--full">              <p>Implement Server-Side Price Filtering</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Implement Server-Side Price Filtering</p>
 
 </a><a href="../9b4a4f6dc0a6b83ec6d77e68a692b8eb19dd6d9b/" class="commit-node commit-node--full">              <p>Add panning and zooming to SVG map element</p>
 
@@ -227,176 +227,205 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="implement-server-side-price-filtering">Implement Server-Side Price Filtering</h1>
 
-<p>This application is an example of how to develop an interactive web page
-using:</p>
+<p>This commit modifies the <code>seats#index</code> HTML to take the <code>?maximum</code> query
+parameter into account when deciding which <code>Seat</code> records are emphasized
+or de-emphasized based on their section&rsquo;s price.</p>
 
-<ul>
-<li>Rails</li>
-<li>Rails&rsquo; Unobtrustive JavaScript</li>
-<li>Turbolinks</li>
-<li>StimulusJS</li>
-</ul>
+<p>First, extend the price filtering <code>&lt;form&gt;</code> element to declare the
+[<code>action</code> attribute] to the current page, and the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods/GET"><code>method</code> attribute to
+<code>GET</code></a>. To declare these methods, and to integrate with Rails&rsquo; CSRF
+protection, declare the <code>&lt;form&gt;</code> using the <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code>
+helper</a>.</p>
 
-<p>The commit history is intentionally meticulous and verbose.</p>
+<p>Unfortunately, Turbolinks does not support <code>&lt;form&gt;</code> submission redirects
+for <code>GET</code> requests:</p>
 
-<p>The intent behind this repository is to:</p>
+<blockquote>
+<p>The Turbolinks Rails engine performs this optimization automatically
+for non-GET XHR requests that redirect with the <code>redirect_to</code> helper.</p>
+</blockquote>
 
-<ul>
-<li>serve as an example of real-world application built in a
-server-rendered monolith</li>
-<li>demonstrate how to iteratively build up a set of features over time,
-starting with boring standards based HTML, then extending that
-behavior with JavaScript</li>
-<li>demonstrate how and when to progressively enhance a feature that works
-outside of a JavaScript-capable browser environment</li>
-</ul>
+<p>To counteract that constraint, this commit passes the <code>local: true</code>
+option to the <code>form_with</code> call, <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with-label-form_with+options">opting-out of remote form submission
+through unobtrusive JavaScript</a> and (transitively) Turbolinks.</p>
 
-<p>When creating this repository, deliberate effort was exerted to strike a
-balance between:</p>
+<p>Next, determine which <code>&lt;input type=&quot;radio&quot;&gt;</code> element to denote as
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/Input/radio#checked"><code>checked</code></a> based on whether or not its <code>value</code> attribute
+matches the value of the <code>maximum</code> query parameter. If no query
+parameter is provided, ensure that the last <code>&lt;input type=&quot;radio&quot;&gt;</code>
+element is <code>checked</code>.</p>
 
-<ul>
-<li>explicit and verbose (HTML, model, controller) code  <em>versus</em> &ldquo;clean&rdquo;
-and well-factored Rails code</li>
-<li>newer, terser JavaScript syntax (arrow functions, destructuring, etc)
-<em>versus</em> more familiar, approachable syntax</li>
-<li>small and focussed diffs that represent the minimal amount of changes
-necessary to integrate with newer libraries and concepts <em>versus</em>
-real-world feature-development style commits</li>
-<li>emphasizing outside-in, test-driven developed, production-ready code
-<em>versus</em> emphasizing educational and approachable implementation code</li>
-</ul>
+<p>Render the <code>Section</code> records as a <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/g"><code>&lt;g&gt;</code></a> element to group them
+together. When rendering the <code>&lt;g&gt;</code> element, declare its
+<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/opacity"><code>opacity</code></a> based on whether its <code>price</code> is within the bounds
+of the price filter.</p>
 
-<p>Some other things to note:</p>
+<p>Additionally, set <a href="https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA/ARIA_Techniques#States_and_properties"><code>aria-hidden=&quot;true&quot;</code></a> for <code>&lt;g&gt;</code>
+elements that do not match the filter criteria, so that we can exclude
+them from the accessibility tree.</p>
 
-<ul>
-<li>The data model is inspired by a real-world application, but simplified
-for the sake of demonstration</li>
-<li>The CSS, while important and worth explaining on its own, is treated
-as a peripheral implementation detail.</li>
-<li>One of the original project&rsquo;s areas of focus was accessibility. For
-the sake of this demonstration, most of the accessibility work
-involved in the original project has been omitted</li>
-<li>The number of both JavaScript and Ruby dependencies is intentionally
-limited</li>
-<li>The project uses Rails defaults as much as possible (i.e. MiniTest
-instead of RSpec, <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html"><code>CurrentAttributes</code></a>,
-<code>form_with</code> instead of <code>simple_form</code>, etc).</li>
-</ul>
+<h2 id="desktop">Desktop</h2>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77386348-fb61cc80-6d60-11ea-95bd-4dee86e68e0e.gif" alt="price filtering from the server" /></p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
+  id="app/views/seats/index.html.erb"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/views/seats/index.html.erb
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..047c617 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,69 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Select Your Own Seat
-+===
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index d290f97..5e31d3c 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -109,7 +109,14 @@</span>
+         &lt;/svg&gt;
+ 
+         &lt;% sections.each do |section| %&gt;
+<span class="gd">-          &lt;g&gt;
+</span><span class="gi">+          &lt;g
++            &lt;% if params.fetch(:maximum, Float::INFINITY).to_f &gt;= section.price %&gt;
++              opacity="1.0"
++            &lt;% else %&gt;
++              opacity="0.3"
++              aria-hidden="true"
++            &lt;% end %&gt;
++          &gt;
+</span>             &lt;% section.seats.each do |seat| %&gt;
+               &lt;a
+                 href="&lt;%= venue_floor_seat_path(venue, floor, seat.row_number) %&gt;"
+<span class="p">@@ -135,7 +142,11 @@</span>
+     &lt;/div&gt;
+ 
+     &lt;div class="syos-frame__sidebar"&gt;
+<span class="gd">-      &lt;form&gt;
+</span><span class="gi">+      &lt;%= form_with(
++        url: venue_floor_seats_path(venue, floor),
++        method: :get,
++        local: true,
++      ) do |form| %&gt;
+</span>         &lt;fieldset class="syos-u-margin-bottom-6"&gt;
+           &lt;legend class="syos-u-margin-bottom-2 syos-inline-stack"&gt;
+             &lt;h2 class="syos-inline-stack__item"&gt;
+<span class="p">@@ -153,7 +164,8 @@</span>
+                 type="radio"
+                 name="maximum"
+                 value="&lt;%= maximum %&gt;"
+<span class="gd">-                &lt;% if next_maximum.nil? %&gt;
+</span><span class="gi">+                &lt;% if params[:maximum].to_i == maximum ||
++                    [params[:maximum], next_maximum].none? %&gt;
+</span>                   checked
+                 &lt;% end %&gt;
+               &gt;
+<span class="p">@@ -177,7 +189,7 @@</span>
+ 
+           &lt;input type="submit" class="syos-button syos-u-margin-top-2" value="Apply Filters"&gt;
+         &lt;/fieldset&gt;
+<span class="gd">-      &lt;/form&gt;
+</span><span class="gi">+      &lt;% end %&gt;
 </span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+This application is an example of how to develop an interactive web page using:
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+* Rails
-+* Rails' Unobtrustive JavaScript
-+* Turbolinks
-+* StimulusJS
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+The commit history is intentionally meticulous and verbose. 
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+The intent behind this repository is to:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+* serve as an example of real-world application built in a server-rendered
-+  monolith
-+* demonstrate how to iteratively build up a set of features over time, starting
-+  with boring standards based HTML, then extending that behavior with JavaScript
-+* demonstrate how and when to progressively enhance a feature that works outside
-+  of a JavaScript-capable browser environment
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+When creating this repository, deliberate effort was exerted to strike a balance
-+between:
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+* explicit and verbose (HTML, model, controller) code  *versus* "clean" and
-+  well-factored Rails code
-+* newer, terser JavaScript syntax (arrow functions, destructuring, etc) *versus*
-+  more familiar, approachable syntax
-+* small and focussed diffs that represent the minimal amount of changes
-+  necessary to integrate with newer libraries and concepts *versus* real-world
-+  feature-development style commits
-+* emphasizing outside-in, test-driven developed, production-ready code *versus*
-+  emphasizing educational and approachable implementation code
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+Some other things to note:
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+* The data model is inspired by a real-world application, but simplified for the
-+  sake of demonstration
-+* The CSS, while important and worth explaining on its own, is treated as a
-+  peripheral implementation detail
-+* One of the original project's areas of focus was accessibility. For the sake
-+  of this demonstration, most of the accessibility work involved in the original
-+  project has been omitted
-+* The number of both JavaScript and Ruby dependencies is intentionally limited
-+* The project uses Rails defaults as much as possible (i.e. MiniTest instead of
-+  RSpec, [`CurrentAttributes`][CurrentAttributes], `form_with` instead of
-+`simple_form`, etc)
-+* There is no internationalization. Page's copy and labels are hard-coded
-+  directly into the HTML
-+* There are additional optimizations that could be made for the sake of
-+  performance. Those optimizations have been omitted from this repository
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+[CurrentAttributes]: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+Development
-+---
+       &lt;div id="cart-summary"&gt;
+         &lt;h2 class="syos-u-margin-bottom-2"&gt;
+</code></pre></div></details>
+
+              <details
+  id="test/controllers/seats_controller_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/controllers/seats_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/controllers/seats_controller_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/controllers/seats_controller_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/controllers/seats_controller_test.rb b/test/controllers/seats_controller_test.rb
+index 67e9ce7..814707a 100644
+</span><span class="gd">--- a/test/controllers/seats_controller_test.rb
+</span><span class="gi">+++ b/test/controllers/seats_controller_test.rb
+</span><span class="p">@@ -21,4 +21,51 @@</span> class SeatsControllerTest &lt; ActionDispatch::IntegrationTest
+ 
+     assert_equal Cart.last.token, cookies[:cart_token]
+   end
+<span class="gi">+
++  test "#index when including sections when filtering by price" do
++    maximum = 10_00
++    price = maximum
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    section = create(:section, floor: floor, price: price)
++    create(:seat, section: section)
 +
-+To develop the application locally, check it out with `git` then run the setup
-+script:
++    get venue_floor_seats_path(venue, floor, maximum: maximum)
 +
-+```bash
-+$ git clone git@github.com:seanpdoyle/select-your-own-seat.git
-+$ cd select-your-own-seat
-+$ bin/setup
-+$ rails server
-+```
++    assert_select %{g[opacity="1.0"]}
++    assert_select %{g:not([aria-hidden])}
++  end
 +
-+Once the `rails server` command is running, visit the page at
-+&lt;http://localhost:3000&gt;.
-</span></code></pre></div></details>
++  test "#index when excluding sections when filtering by price" do
++    maximum = 5_00
++    price = 10_00
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    section = create(:section, floor: floor, price: price)
++    create(:seat, section: section)
++
++    get venue_floor_seats_path(venue, floor, maximum: maximum)
++
++    assert_select %{g[opacity="0.3"]}
++    assert_select %{g[aria-hidden="true"]}
++  end
++
++  test "#index with a ?maximum query parameter" do
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++    maximum = 10_00
++
++    get venue_floor_seats_path(venue, floor, maximum: maximum)
++
++    assert_select %{input[type="radio"][value="#{maximum}"][checked]}
++  end
++
++  test "#index without a ?maximum query parameter" do
++    venue = create(:benedum_center)
++    floor = create(:orchestra, venue: venue)
++
++    get venue_floor_seats_path(venue, floor)
++
++    assert_select %{input[type="radio"][value="1500"][checked]}
++  end
+</span> end
+</code></pre></div></details>
 
           </aside>
       </article>

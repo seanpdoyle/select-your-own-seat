@@ -1,0 +1,872 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Use the title from a page's frontmatter if it has one -->
+    <title>Add `seats#show` route and action
+</title>
+    <link href="../../stylesheets/site.css" rel="stylesheet" />
+    <script src="../../javascripts/site.js"></script>
+  </head>
+  <body class="page">
+    <header class="header">
+      <h1 class="header__name">
+<a href="../../">          select-your-own-seat
+</a>      </h1>
+
+
+      <nav class="
+        header__navigation
+        navigation
+        
+      ">
+<a href="../0c14b563babecab70c6a4d2d5e14fb87d7938ec3/">              &#8592; Previous
+</a>
+<a href="../75ddce880ecefdafd7ede9a0ca602fa6189940d3/">              Next &#8594;
+</a>      </nav>
+    </header>
+
+    <main class="content">
+      <details class="accordion content__item">
+        <summary class="accordion__summary">
+          <div class="accordion__closed">
+            <nav class="
+              commit-history
+              u-db-overflow-y--auto
+              u-mb-overflow-x--scroll
+            ">
+                <a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/" class="commit-node commit-node--collapsed" title="[GENERATED] Initial Commit
+"></a>
+                <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
+"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
+                <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
+"></a>
+                <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
+"></a>
+                <a href="../5b2d6c293f899aaae4daf916643948091485a11c/" class="commit-node commit-node--collapsed" title="[GENERATED] Copies CSS Rules from Source Project"></a>
+                <a href="../45284af1edadf2003e5aa5f89484d5c87d4e5820/" class="commit-node commit-node--collapsed" title="Render the application's layout
+"></a>
+                <a href="../53276a7fda5d3bbe0cb32301592fd0fe5b3334f9/" class="commit-node commit-node--collapsed" title="Render Seats for a Venue with SVG elements
+"></a>
+                <a href="../0c14b563babecab70c6a4d2d5e14fb87d7938ec3/" class="commit-node commit-node--collapsed" title="Add System Test for viewing a Seat's details
+"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Add `seats#show` route and action
+" aria-current="page"></a>
+                <a href="../75ddce880ecefdafd7ede9a0ca602fa6189940d3/" class="commit-node commit-node--collapsed" title="Add `inline_svg` gem
+"></a>
+                <a href="../f456146e689ac3edd2a004a8058649fc455b6772/" class="commit-node commit-node--collapsed" title="Add a Seat Selection to Shopping Cart
+"></a>
+                <a href="../47207f39bf4edc33f0dcdc1082c234f97b36767a/" class="commit-node commit-node--collapsed" title="Unselect a Seat to remove it from visitor's Cart
+"></a>
+                <a href="../a2a9c07a545ef34932374c10247d415d068bc891/" class="commit-node commit-node--collapsed" title="Unselect a Seat from the `&lt;dialog&gt;`
+"></a>
+                <a href="../871450cc44e1d571443fb3bd85114ff0ab7a1424/" class="commit-node commit-node--collapsed" title="Replace Seat `&lt;svg&gt;` elements with `&lt;use&gt;`
+"></a>
+                <a href="../5dc0a292ae0eb741ed41f4dd4c06d3877f4271db/" class="commit-node commit-node--collapsed" title="Add `&lt;symbol&gt;` for a selected seat
+"></a>
+                <a href="../a84e4752e085a7fab4a588e569ef32b96e365681/" class="commit-node commit-node--collapsed" title="Explain the map's symbols with a legend
+"></a>
+                <a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/" class="commit-node commit-node--collapsed" title="Switch floors from map
+"></a>
+                <a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--collapsed" title="Filter Seats based on their Price
+"></a>
+                <a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--collapsed" title="Implement Server-Side Price Filtering
+"></a>
+                <a href="../9b4a4f6dc0a6b83ec6d77e68a692b8eb19dd6d9b/" class="commit-node commit-node--collapsed" title="Add panning and zooming to SVG map element
+"></a>
+                <a href="../5f9f219f1c63037cda835b4244ff6307e9518a8e/" class="commit-node commit-node--collapsed" title="Add map zoom controls to `seats/index`
+"></a>
+                <a href="../afb32c2ecf2a95a8e31972d04caae622cbbcc128/" class="commit-node commit-node--collapsed" title="Add behavior to Zoom In and Zoom Out buttons
+"></a>
+                <a href="../20972f04e105a80a8db1d0e797a7a6197d88e25c/" class="commit-node commit-node--collapsed" title="Persist map across page loads
+"></a>
+                <a href="../7553073344dd87ec0bb0e4b46710935e19a49665/" class="commit-node commit-node--collapsed" title="Introduce a Loading Indicator
+"></a>
+                <a href="../3ab417d2ac7f112078d467a52bf6fe63a6c466bf/" class="commit-node commit-node--collapsed" title="Dynamically Hide and Show Loading Spinner
+"></a>
+                <a href="../6bb88e5823bad10fcab98736918678db4ebee56b/" class="commit-node commit-node--collapsed" title="Opt out of preview caching
+"></a>
+                <a href="../a7ddb22c839307e191c638f894545331b55cf3b0/" class="commit-node commit-node--collapsed" title="Progressively enhance navigating to `seats#show`
+"></a>
+                <a href="../ce32bcc8de27b189b390b684b784302432773da0/" class="commit-node commit-node--collapsed" title="Progressively enhance Selection State
+"></a>
+                <a href="../c3b6d8528ff226cbc9f85c9d7bc4c2e8777ad792/" class="commit-node commit-node--collapsed" title="Progressively enhance price filtering
+"></a>
+                <a href="../923ca1fe1547437fd3d2cc4fdbf6b7f106a4f2ac/" class="commit-node commit-node--collapsed" title="Handle Price Filtering `&lt;form&gt;` reset events
+"></a>
+                <a href="../35fcc46b7b873433c2971bd760ae85e469312c13/" class="commit-node commit-node--collapsed" title="Manage filter query parameters with push state
+"></a>
+                <a href="../bf1954079dbea925cae8f7a67883bde4140607c3/" class="commit-node commit-node--collapsed" title="Navigate when `&lt;dialog&gt;` element closes
+"></a>
+                <a href="../eb52b2f8f8ce0c8331249eeed2d6441ff7a3c547/" class="commit-node commit-node--collapsed" title="Hide elements that require JavaScript
+"></a>
+                <a href="../fd9bf305d3124fa955ee6b507c89d2a415b14e20/" class="commit-node commit-node--collapsed" title="Execute System Tests without JavaScript
+"></a>
+                <a href="../eee6635e98804f95270b638b182e628bc3f361da/" class="commit-node commit-node--collapsed" title="Create `git-read` GitHub Action
+"></a>
+            </nav>
+
+            <div class="accordion__toggle">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="accordion--desktop"><title>Expand History</title>
+  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 01.708 0l6 6a.5.5 0 010 .708l-6 6a.5.5 0 01-.708-.708L10.293 8 4.646 2.354a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="accordion--mobile"><title>Expand History</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+            </div>
+          </div>
+
+          <div class="accordion__opened">
+            <div class="accordion__toggle accordion__toggle--fill">
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="accordion--desktop"><title>Collapse History</title>
+  <path fill-rule="evenodd" d="M11.354 1.646a.5.5 0 010 .708L5.707 8l5.647 5.646a.5.5 0 01-.708.708l-6-6a.5.5 0 010-.708l6-6a.5.5 0 01.708 0z" clip-rule="evenodd"></path>
+</svg>
+
+
+              <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="accordion--mobile"><title>Collapse History</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+            </div>
+          </div>
+        </summary>
+
+        <nav class="
+          commit-history
+          commit-history--full
+          u-db-overflow-y--auto
+          u-mb-overflow-x--scroll
+        ">
+<a href="../0b879067ad4d62bc1414bcabaa61f9e8599a7aed/" class="commit-node commit-node--full">              <p>[GENERATED] Initial Commit</p>
+
+</a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
+
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
+
+</a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
+
+</a><a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--full">              <p>Establish Database Records</p>
+
+</a><a href="../5b2d6c293f899aaae4daf916643948091485a11c/" class="commit-node commit-node--full">              <p>[GENERATED] Copies CSS Rules from Source Project</p>
+
+</a><a href="../45284af1edadf2003e5aa5f89484d5c87d4e5820/" class="commit-node commit-node--full">              <p>Render the application&#39;s layout</p>
+
+</a><a href="../53276a7fda5d3bbe0cb32301592fd0fe5b3334f9/" class="commit-node commit-node--full">              <p>Render Seats for a Venue with SVG elements</p>
+
+</a><a href="../0c14b563babecab70c6a4d2d5e14fb87d7938ec3/" class="commit-node commit-node--full">              <p>Add System Test for viewing a Seat&#39;s details</p>
+
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Add <code>seats#show</code> route and action</p>
+
+</a><a href="../75ddce880ecefdafd7ede9a0ca602fa6189940d3/" class="commit-node commit-node--full">              <p>Add <code>inline_svg</code> gem</p>
+
+</a><a href="../f456146e689ac3edd2a004a8058649fc455b6772/" class="commit-node commit-node--full">              <p>Add a Seat Selection to Shopping Cart</p>
+
+</a><a href="../47207f39bf4edc33f0dcdc1082c234f97b36767a/" class="commit-node commit-node--full">              <p>Unselect a Seat to remove it from visitor&#39;s Cart</p>
+
+</a><a href="../a2a9c07a545ef34932374c10247d415d068bc891/" class="commit-node commit-node--full">              <p>Unselect a Seat from the <code>&lt;dialog&gt;</code></p>
+
+</a><a href="../871450cc44e1d571443fb3bd85114ff0ab7a1424/" class="commit-node commit-node--full">              <p>Replace Seat <code>&lt;svg&gt;</code> elements with <code>&lt;use&gt;</code></p>
+
+</a><a href="../5dc0a292ae0eb741ed41f4dd4c06d3877f4271db/" class="commit-node commit-node--full">              <p>Add <code>&lt;symbol&gt;</code> for a selected seat</p>
+
+</a><a href="../a84e4752e085a7fab4a588e569ef32b96e365681/" class="commit-node commit-node--full">              <p>Explain the map&#39;s symbols with a legend</p>
+
+</a><a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/" class="commit-node commit-node--full">              <p>Switch floors from map</p>
+
+</a><a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--full">              <p>Filter Seats based on their Price</p>
+
+</a><a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--full">              <p>Implement Server-Side Price Filtering</p>
+
+</a><a href="../9b4a4f6dc0a6b83ec6d77e68a692b8eb19dd6d9b/" class="commit-node commit-node--full">              <p>Add panning and zooming to SVG map element</p>
+
+</a><a href="../5f9f219f1c63037cda835b4244ff6307e9518a8e/" class="commit-node commit-node--full">              <p>Add map zoom controls to <code>seats/index</code></p>
+
+</a><a href="../afb32c2ecf2a95a8e31972d04caae622cbbcc128/" class="commit-node commit-node--full">              <p>Add behavior to Zoom In and Zoom Out buttons</p>
+
+</a><a href="../20972f04e105a80a8db1d0e797a7a6197d88e25c/" class="commit-node commit-node--full">              <p>Persist map across page loads</p>
+
+</a><a href="../7553073344dd87ec0bb0e4b46710935e19a49665/" class="commit-node commit-node--full">              <p>Introduce a Loading Indicator</p>
+
+</a><a href="../3ab417d2ac7f112078d467a52bf6fe63a6c466bf/" class="commit-node commit-node--full">              <p>Dynamically Hide and Show Loading Spinner</p>
+
+</a><a href="../6bb88e5823bad10fcab98736918678db4ebee56b/" class="commit-node commit-node--full">              <p>Opt out of preview caching</p>
+
+</a><a href="../a7ddb22c839307e191c638f894545331b55cf3b0/" class="commit-node commit-node--full">              <p>Progressively enhance navigating to <code>seats#show</code></p>
+
+</a><a href="../ce32bcc8de27b189b390b684b784302432773da0/" class="commit-node commit-node--full">              <p>Progressively enhance Selection State</p>
+
+</a><a href="../c3b6d8528ff226cbc9f85c9d7bc4c2e8777ad792/" class="commit-node commit-node--full">              <p>Progressively enhance price filtering</p>
+
+</a><a href="../923ca1fe1547437fd3d2cc4fdbf6b7f106a4f2ac/" class="commit-node commit-node--full">              <p>Handle Price Filtering <code>&lt;form&gt;</code> reset events</p>
+
+</a><a href="../35fcc46b7b873433c2971bd760ae85e469312c13/" class="commit-node commit-node--full">              <p>Manage filter query parameters with push state</p>
+
+</a><a href="../bf1954079dbea925cae8f7a67883bde4140607c3/" class="commit-node commit-node--full">              <p>Navigate when <code>&lt;dialog&gt;</code> element closes</p>
+
+</a><a href="../eb52b2f8f8ce0c8331249eeed2d6441ff7a3c547/" class="commit-node commit-node--full">              <p>Hide elements that require JavaScript</p>
+
+</a><a href="../fd9bf305d3124fa955ee6b507c89d2a415b14e20/" class="commit-node commit-node--full">              <p>Execute System Tests without JavaScript</p>
+
+</a><a href="../eee6635e98804f95270b638b182e628bc3f361da/" class="commit-node commit-node--full">              <p>Create <code>git-read</code> GitHub Action</p>
+
+</a>        </nav>
+      </details>
+
+      <article class="
+        commit-content
+        commit-content--double
+        content__item
+        content__item--grow
+      ">
+        <section class="commit commit--message">
+
+          <h1 id="add-seats-show-route-and-action">Add <code>seats#show</code> route and action</h1>
+
+<p>Render the contents of the <code>seats#show</code> controller action into the same
+template as <code>seats#index</code>, then embedded the template within a block
+wrapped by a browser-native <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>&lt;dialog&gt;</code> element</a> declared
+as a sibling to the <code>seats#index</code> elements.</p>
+
+<p>To achieve this, pass <a href="https://guides.rubyonrails.org/v6.0/layouts_and_rendering.html#rendering-an-action-s-template-from-another-controller"><code>template: &quot;seats/index&quot;</code></a>, along with
+<a href="https://api.rubyonrails.org/v6.0/classes/ActionView/Template.html#method-i-local_assigns">the template&rsquo;s <code>local_assigns</code></a> into a call to <code>render</code>
+from within
+<a href="#app/views/seats/show.html.erb"><code>app/views/seats/show.html.erb</code></a>.</p>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77251202-7624cd80-6c23-11ea-8227-e4f483a8cb67.png" alt="seat show page" /></p>
+
+<h2 id="the-modal-dialog-element">The modal <code>&lt;dialog&gt;</code> element</h2>
+
+<p>When rendering the <code>seats#show</code> template, specify that the wrapping
+<a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>&lt;dialog&gt;</code> element</a> has the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#Attributes"><code>open</code></a> attribute.</p>
+
+<p>When initially rendered (and in environments with JavaScript disabled),
+the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog"><code>&lt;dialog&gt;</code> element</a> will be overlaid on top of the rest of
+the page.</p>
+
+<p>In JavaScript-capable environments, within <a href="https://github.com/turbolinks/turbolinks/tree/v5.2.0#full-list-of-events"><code>turbolinks:load</code>
+events</a>, find <code>&lt;dialog&gt;</code> elements and ensure their
+browser compatibility by wrapping them in calls to the
+<a href="https://github.com/GoogleChrome/dialog-polyfill"><code>dialog-polyfill</code>-provided <code>registerDialog</code></a>.</p>
+
+<p>Then, for elements that specify the <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog#Attributes"><code>open</code> attribute</a>, re-set
+them to be closed, then manually invoke
+<a href="https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/showModal"><code>dialog.showModal()</code></a> to render the dialog modally.</p>
+
+<p><img src="https://user-images.githubusercontent.com/2575027/77251203-76bd6400-6c23-11ea-844e-7e3868214404.gif" alt="opening and closing the modal" /></p>
+
+        </section>
+
+          <aside class="commit commit--diff commit--long-content">
+              <details
+  id="app/controllers/seats_controller.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/controllers/seats_controller.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/controllers/seats_controller.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/controllers/seats_controller.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/controllers/seats_controller.rb b/app/controllers/seats_controller.rb
+index 376f7b2..e0f7494 100644
+</span><span class="gd">--- a/app/controllers/seats_controller.rb
+</span><span class="gi">+++ b/app/controllers/seats_controller.rb
+</span><span class="p">@@ -10,4 +10,18 @@</span> class SeatsController &lt; ApplicationController
+       sections: sections,
+     })
+   end
+<span class="gi">+
++  def show
++    venue = Venue.find_by!(slug: params[:venue_id])
++    floor = venue.floors.find_by!(slug: params[:floor_id])
++    sections = floor.sections.includes(:seats)
++    seat = floor.seats.find_by_row_number!(params[:id])
++
++    render(locals: {
++      venue: venue,
++      floor: floor,
++      sections: sections,
++      seat: seat,
++    })
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/javascript/packs/application.js"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/javascript/packs/application.js</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/javascript/packs/application.js</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/javascript/packs/application.js
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/packs/application.js b/app/javascript/packs/application.js
+index 28dc6eb..1c4f3d0 100644
+</span><span class="gd">--- a/app/javascript/packs/application.js
+</span><span class="gi">+++ b/app/javascript/packs/application.js
+</span><span class="p">@@ -15,3 +15,16 @@</span> require("turbolinks").start()
+ // const imagePath = (name) =&gt; images(name, true)
+ 
+ import "controllers"
+<span class="gi">+
++import dialogPolyfill from "dialog-polyfill"
++
++document.addEventListener("turbolinks:load", () =&gt; {
++  for (const dialog of document.querySelectorAll("dialog")) {
++    dialogPolyfill.registerDialog(dialog)
++
++    if (dialog.hasAttribute("open")) {
++      dialog.open = false
++      dialog.showModal()
++    }
++  }
++})
+</span></code></pre></div></details>
+
+              <details
+  id="app/models/floor.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/models/floor.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/models/floor.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/models/floor.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/floor.rb b/app/models/floor.rb
+index 9c9fe5f..8194910 100644
+</span><span class="gd">--- a/app/models/floor.rb
+</span><span class="gi">+++ b/app/models/floor.rb
+</span><span class="p">@@ -3,4 +3,8 @@</span> class Floor &lt; ApplicationRecord
+ 
+   has_many :sections
+   has_many :seats, through: :sections
+<span class="gi">+
++  def to_param
++    slug
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/models/seat.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/models/seat.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/models/seat.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/models/seat.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/seat.rb b/app/models/seat.rb
+index ee2368c..64992de 100644
+</span><span class="gd">--- a/app/models/seat.rb
+</span><span class="gi">+++ b/app/models/seat.rb
+</span><span class="p">@@ -1,3 +1,13 @@</span>
+ class Seat &lt; ApplicationRecord
+   belongs_to :section
+<span class="gi">+
++  def self.find_by_row_number!(row_number)
++    row, number = row_number.split("-")
++
++    find_by!(row: row, number: number)
++  end
++
++  def row_number
++    "#{row}-#{number}"
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/models/venue.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/models/venue.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/models/venue.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/models/venue.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/models/venue.rb b/app/models/venue.rb
+index 4a7a6a3..cc2de9e 100644
+</span><span class="gd">--- a/app/models/venue.rb
+</span><span class="gi">+++ b/app/models/venue.rb
+</span><span class="p">@@ -1,3 +1,7 @@</span>
+ class Venue &lt; ApplicationRecord
+   has_many :floors
+<span class="gi">+
++  def to_param
++    slug
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/_dialog.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/_dialog.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/_dialog.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/_dialog.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/_dialog.html.erb b/app/views/seats/_dialog.html.erb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..585d935
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/views/seats/_dialog.html.erb
+</span><span class="p">@@ -0,0 +1,6 @@</span>
+<span class="gi">+&lt;%= tag.dialog(
++  class: "syos-dialog",
++  open: true,
++) do %&gt;
++  &lt;%= yield %&gt;
++&lt;% end %&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 06a06e7..b88ad58 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -22,16 +22,21 @@</span>
+         &lt;% sections.each do |section| %&gt;
+           &lt;g&gt;
+             &lt;% section.seats.each do |seat| %&gt;
+<span class="gd">-              &lt;svg
+-                width="12px"
+-                height="12px"
+-                viewBox="0 0 24 24"
+-                x="&lt;%= seat.x %&gt;"
+-                y="&lt;%= seat.y %&gt;"
+</span><span class="gi">+              &lt;a
++                href="&lt;%= venue_floor_seat_path(venue, floor, seat.row_number) %&gt;"
++                aria-label="&lt;%= seat.row_number %&gt;"
+</span>               &gt;
+<span class="gd">-                &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
+-                &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
+-              &lt;/svg&gt;
+</span><span class="gi">+                &lt;svg
++                  width="12px"
++                  height="12px"
++                  viewBox="0 0 24 24"
++                  x="&lt;%= seat.x %&gt;"
++                  y="&lt;%= seat.y %&gt;"
++                &gt;
++                  &lt;circle fill="#37b24d" r="12" cx="12" cy="12"&gt;&lt;/circle&gt;
++                  &lt;circle fill="#ffffff" r="6" cx="12" cy="12"&gt;&lt;/circle&gt;
++                &lt;/svg&gt;
++              &lt;/a&gt;
+</span>             &lt;% end %&gt;
+           &lt;/g&gt;
+         &lt;% end %&gt;
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/show.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/show.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/show.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/show.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..0bc456b
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/app/views/seats/show.html.erb
+</span><span class="p">@@ -0,0 +1,81 @@</span>
+<span class="gi">+&lt;%= render(template: "seats/index", locals: local_assigns) %&gt;
++
++&lt;%= render("seats/dialog") do %&gt;
++  &lt;header class="syos-dialog__header"&gt;
++    &lt;h2 class="syos-dialog__title"&gt;
++      Confirm seat selection
++    &lt;/h2&gt;
++
++    &lt;form method="dialog"&gt;
++      &lt;button
++        class="syos-button syos-button--transparent"
++      &gt;
++        &lt;svg
++          xmlns="http://www.w3.org/2000/svg"
++          viewBox="0 0 24 24"
++          width="24"
++          height="24"
++          class="syos-icon syos-icon--large"
++          title="Close modal"
++          fill="none"
++          stroke="currentColor"
++          stroke-width="2"
++          stroke-linecap="round"
++          stroke-linejoin="round"
++        &gt;
++          &lt;circle cx="12" cy="12" r="10"&gt;&lt;/circle&gt;
++          &lt;line x1="15" y1="9" x2="9" y2="15"&gt;&lt;/line&gt;
++          &lt;line x1="9" y1="9" x2="15" y2="15"&gt;&lt;/line&gt;
++        &lt;/svg&gt;
++      &lt;/button&gt;
++    &lt;/form&gt;
++  &lt;/header&gt;
++
++  &lt;section class="syos-dialog__body"&gt;
++    &lt;dl class="syos-grid syos-grid--2"&gt;
++      &lt;div&gt;
++        &lt;dt&gt;
++          Section
++        &lt;/dt&gt;
++
++        &lt;dd class="syos-u-font-size-large"&gt;
++          &lt;%= seat.section.name %&gt;
++        &lt;/dd&gt;
++      &lt;/div&gt;
++
++      &lt;div&gt;
++        &lt;dt&gt;
++          Seat
++        &lt;/dt&gt;
++
++        &lt;dd class="syos-u-font-size-large"&gt;
++          &lt;%= seat.row_number %&gt;
++        &lt;/dd&gt;
++      &lt;/div&gt;
++    &lt;/dl&gt;
++  &lt;/section&gt;
++
++  &lt;footer class="syos-dialog__footer syos-block-stack syos-block-stack--bordered syos-block-stack--large"&gt;
++    &lt;div class="syos-inline-stack syos-inline-stack--inline syos-block-stack__item"&gt;
++      &lt;div class="syos-inline-stack__item"&gt;
++        &lt;p class="syos-u-margin-bottom-0"&gt;
++          &lt;%= seat.section.name %&gt;
++        &lt;/p&gt;
++      &lt;/div&gt;
++
++      &lt;div class="syos-inline-stack__item syos-inline-stack__item--push-start"&gt;
++        &lt;p class="syos-u-margin-bottom-0"&gt;
++          &lt;strong&gt;&lt;%= number_to_currency(seat.section.price / 100.0) %&gt;&lt;/strong&gt;
++        &lt;/p&gt;
++      &lt;/div&gt;
++
++      &lt;div class="syos-inline-stack__item"&gt;
++        &lt;button
++          class="syos-button"
++        &gt;
++          Select
++        &lt;/button&gt;
++      &lt;/div&gt;
++    &lt;/div&gt;
++  &lt;/footer&gt;
++&lt;% end %&gt;
+</span></code></pre></div></details>
+
+              <details
+  id="config/routes.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse config/routes.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand config/routes.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      config/routes.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/config/routes.rb b/config/routes.rb
+index 2b9f710..384d8e3 100644
+</span><span class="gd">--- a/config/routes.rb
+</span><span class="gi">+++ b/config/routes.rb
+</span><span class="p">@@ -2,7 +2,7 @@</span> Rails.application.routes.draw do
+   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+   resources :venues, only: [] do
+     resources :floors, only: [] do
+<span class="gd">-      resources :seats, only: [:index]
+</span><span class="gi">+      resources :seats, only: [:index, :show]
+</span>     end
+   end
+ 
+</code></pre></div></details>
+
+              <details
+  id="package.json"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse package.json</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand package.json</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      package.json
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/package.json b/package.json
+index 6d2ab8d..8dbf528 100644
+</span><span class="gd">--- a/package.json
+</span><span class="gi">+++ b/package.json
+</span><span class="p">@@ -5,6 +5,7 @@</span>
+     "@rails/ujs": "^6.0.0",
+     "@rails/webpacker": "4.2.2",
+     "breakpoint-sass": "2.7.1",
+<span class="gi">+    "dialog-polyfill": "^0.5.0",
+</span>     "stimulus": "^1.1.1",
+     "turbolinks": "^5.2.0"
+   },
+</code></pre></div></details>
+
+              <details
+  id="test/models/floor_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/models/floor_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/models/floor_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/models/floor_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/floor_test.rb b/test/models/floor_test.rb
+index 65c5512..87042cb 100644
+</span><span class="gd">--- a/test/models/floor_test.rb
+</span><span class="gi">+++ b/test/models/floor_test.rb
+</span><span class="p">@@ -1,7 +1,12 @@</span>
+ require 'test_helper'
+ 
+ class FloorTest &lt; ActiveSupport::TestCase
+<span class="gd">-  # test "the truth" do
+-  #   assert true
+-  # end
+</span><span class="gi">+  test "#to_param returns the slug" do
++    slug = "the-slug"
++    floor = Floor.new(slug: slug)
++
++    to_param = floor.to_param
++
++    assert_equal(slug, to_param)
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="test/models/venue_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/models/venue_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/models/venue_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/models/venue_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/models/venue_test.rb b/test/models/venue_test.rb
+index bf495c6..bd260b7 100644
+</span><span class="gd">--- a/test/models/venue_test.rb
+</span><span class="gi">+++ b/test/models/venue_test.rb
+</span><span class="p">@@ -1,7 +1,12 @@</span>
+ require 'test_helper'
+ 
+ class VenueTest &lt; ActiveSupport::TestCase
+<span class="gd">-  # test "the truth" do
+-  #   assert true
+-  # end
+</span><span class="gi">+  test "#to_param returns the slug" do
++    slug = "the-venue"
++    venue = Venue.new(slug: slug)
++
++    to_param = venue.to_param
++
++    assert_equal(slug, to_param)
++  end
+</span> end
+</code></pre></div></details>
+
+              <details
+  id="yarn.lock"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse yarn.lock</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand yarn.lock</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      yarn.lock
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/yarn.lock b/yarn.lock
+index 807787e..c3c792f 100644
+</span><span class="gd">--- a/yarn.lock
+</span><span class="gi">+++ b/yarn.lock
+</span><span class="p">@@ -2401,6 +2401,11 @@</span> detect-node@^2.0.4:
+   resolved "https://registry.yarnpkg.com/detect-node/-/detect-node-2.0.4.tgz#014ee8f8f669c5c58023da64b8179c083a28c46c"
+   integrity sha512-ZIzRpLJrOj7jjP2miAtgqIfmzbxa4ZOr5jJc601zklsfEx9oTzmmj2nVpIPRpNlRTIh8lc1kyViIY7BWSGNmKw==
+ 
+<span class="gi">+dialog-polyfill@^0.5.0:
++  version "0.5.0"
++  resolved "https://registry.yarnpkg.com/dialog-polyfill/-/dialog-polyfill-0.5.0.tgz#bf67bc67abaf538e44fff80f2f71ff132befadd7"
++  integrity sha512-fOj68T8KB6UIsDFmK7zYbmORJMLYkRmtsLM1W6wbCVUWu4Hdcud5bqbvuueTxO84JXtK9HcpCHV9vNwlWUdCIw==
++
+</span> diffie-hellman@^5.0.0:
+   version "5.0.3"
+   resolved "https://registry.yarnpkg.com/diffie-hellman/-/diffie-hellman-5.0.3.tgz#40e8ee98f55a2149607146921c63e1ae5f3d2875"
+</code></pre></div></details>
+
+          </aside>
+      </article>
+    </main>
+  </body>
+</html>

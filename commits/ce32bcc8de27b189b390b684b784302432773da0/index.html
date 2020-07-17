@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Progressively enhance Selection State
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              &#8592; Previous
+<a href="../a7ddb22c839307e191c638f894545331b55cf3b0/">              &#8592; Previous
 </a>
-<a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              Next &#8594;
+<a href="../c3b6d8528ff226cbc9f85c9d7bc4c2e8777ad792/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
 "></a>
                 <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
@@ -92,8 +92,8 @@
 "></a>
                 <a href="../a7ddb22c839307e191c638f894545331b55cf3b0/" class="commit-node commit-node--collapsed" title="Progressively enhance navigating to `seats#show`
 "></a>
-                <a href="../ce32bcc8de27b189b390b684b784302432773da0/" class="commit-node commit-node--collapsed" title="Progressively enhance Selection State
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Progressively enhance Selection State
+" aria-current="page"></a>
                 <a href="../c3b6d8528ff226cbc9f85c9d7bc4c2e8777ad792/" class="commit-node commit-node--collapsed" title="Progressively enhance price filtering
 "></a>
                 <a href="../923ca1fe1547437fd3d2cc4fdbf6b7f106a4f2ac/" class="commit-node commit-node--collapsed" title="Handle Price Filtering `&lt;form&gt;` reset events
@@ -148,7 +148,7 @@
 
 </a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
 
@@ -200,7 +200,7 @@
 
 </a><a href="../a7ddb22c839307e191c638f894545331b55cf3b0/" class="commit-node commit-node--full">              <p>Progressively enhance navigating to <code>seats#show</code></p>
 
-</a><a href="../ce32bcc8de27b189b390b684b784302432773da0/" class="commit-node commit-node--full">              <p>Progressively enhance Selection State</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Progressively enhance Selection State</p>
 
 </a><a href="../c3b6d8528ff226cbc9f85c9d7bc4c2e8777ad792/" class="commit-node commit-node--full">              <p>Progressively enhance price filtering</p>
 
@@ -227,176 +227,234 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="progressively-enhance-selection-state">Progressively enhance Selection State</h1>
 
-<p>This application is an example of how to develop an interactive web page
-using:</p>
+<p>Our server already renders Seat elements with their selection state for
+full page reloads, but now that the <code>&lt;svg id=&quot;map&quot;&gt;</code> element is
+annotated with <code>data-turbolinks-permanent</code>, the element will persist
+across Turbolinks-initiated visits.</p>
 
-<ul>
-<li>Rails</li>
-<li>Rails&rsquo; Unobtrustive JavaScript</li>
-<li>Turbolinks</li>
-<li>StimulusJS</li>
-</ul>
+<p>Due to this persistence, our client is now responsible for managing some
+long-lived state. When a Seat is selected, a full-page visit modifies
+the HTML for the entire page, replacing the <code>&lt;body&gt;</code> element and its
+contents &ndash; except for the map.</p>
 
-<p>The commit history is intentionally meticulous and verbose.</p>
+<p>This commit extends our client-side code to progressively enhance the
+application to manage changes in Seat selection state by managing the
+<code>&lt;use&gt;</code> element&rsquo;s <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use#attr-cx"><code>xlink:href</code></a> attribute with Client-side
+logic.</p>
 
-<p>The intent behind this repository is to:</p>
+<p>In addition to checking setting the correct <code>xlink:href</code> at render-time,
+the server transmits additional information for each Seat (represented
+by <code>data-</code> attributes declared on its <code>&lt;use&gt;</code> element).</p>
 
-<ul>
-<li>serve as an example of real-world application built in a
-server-rendered monolith</li>
-<li>demonstrate how to iteratively build up a set of features over time,
-starting with boring standards based HTML, then extending that
-behavior with JavaScript</li>
-<li>demonstrate how and when to progressively enhance a feature that works
-outside of a JavaScript-capable browser environment</li>
-</ul>
+<p>By reading <code>data-seat-id</code> values from the page&rsquo;s Cart Summary, the Seats
+Stimulus controller modifies the <code>&lt;use&gt;</code> elements&rsquo;
+<a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/use#attr-cx"><code>xlink:href</code></a> attributes that represents the seats&rsquo;
+possible states.</p>
 
-<p>When creating this repository, deliberate effort was exerted to strike a
-balance between:</p>
+<p>The map of possible transitions is encoded as <code>data-selected-icon</code> and
+<code>data-unselected-icon</code>, which is made accessible through accessing
+<code>element.dataset.selectedIcon</code> and <code>element.dataset.unselectedIcon</code>.</p>
 
-<ul>
-<li>explicit and verbose (HTML, model, controller) code  <em>versus</em> &ldquo;clean&rdquo;
-and well-factored Rails code</li>
-<li>newer, terser JavaScript syntax (arrow functions, destructuring, etc)
-<em>versus</em> more familiar, approachable syntax</li>
-<li>small and focussed diffs that represent the minimal amount of changes
-necessary to integrate with newer libraries and concepts <em>versus</em>
-real-world feature-development style commits</li>
-<li>emphasizing outside-in, test-driven developed, production-ready code
-<em>versus</em> emphasizing educational and approachable implementation code</li>
-</ul>
+<p>When the <code>xlink:href</code> attribute is assigned to a new value, the browser
+will render the Seat that is referenced.</p>
 
-<p>Some other things to note:</p>
+<p>This state is managed by the <code>seats#selectSeats</code> function. That function
+must be run:</p>
 
-<ul>
-<li>The data model is inspired by a real-world application, but simplified
-for the sake of demonstration</li>
-<li>The CSS, while important and worth explaining on its own, is treated
-as a peripheral implementation detail.</li>
-<li>One of the original project&rsquo;s areas of focus was accessibility. For
-the sake of this demonstration, most of the accessibility work
-involved in the original project has been omitted</li>
-<li>The number of both JavaScript and Ruby dependencies is intentionally
-limited</li>
-<li>The project uses Rails defaults as much as possible (i.e. MiniTest
-instead of RSpec, <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html"><code>CurrentAttributes</code></a>,
-<code>form_with</code> instead of <code>simple_form</code>, etc).</li>
-</ul>
+<ol>
+<li>When the page is loaded</li>
+<li>When a Seat is added to the Cart Summary</li>
+<li>When a Seat is removed from the Cart Summary</li>
+</ol>
+
+<p>The first case can be covered by a direct invocation in the
+<code>seats#connect</code> life cycle hook. The second and third depend on how our
+users interact with the page&rsquo;s <code>&lt;form&gt;</code> elements.</p>
+
+<p>This commit passes the <a href="https://guides.rubyonrails.org/v5.2/working_with_javascript_in_rails.html#remote-elements"><code>remote: true</code></a> option to
+<a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/UrlHelper.html#method-i-button_to"><code>button_to</code></a> and <a href="https://api.rubyonrails.org/v5.2/classes/ActionView/Helpers/FormHelper.html#method-i-form_with"><code>form_with</code></a> helper method
+calls. This results in a <code>data-remote=&quot;true&quot;</code> attribute on the resulting
+<code>&lt;form&gt;</code> element, which integrates with Rails&rsquo; Unobtrusive JavaScript.</p>
+
+<p>During the life cycle of a UJS-initiated AJAX request, there are several
+events fired.</p>
+
+<p>This commit extends the <code>&lt;form&gt;</code> elements interested in adding and
+removing Seats from the page&rsquo;s cart summary by declaring
+<code>data-action=&quot;ajax:complete-&gt;seats#selectSeats&quot;</code>. This attribute
+routes the <code>&lt;form&gt;</code> element&rsquo;s <a href="https://guides.rubyonrails.org/v5.2/working_with_javascript_in_rails.html#rails-ujs-event-handlers"><code>ajax:complete</code> events</a> to
+the <code>seats#selectSeats</code> action.</p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
+  id="app/javascript/controllers/seats_controller.js"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/javascript/controllers/seats_controller.js</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/javascript/controllers/seats_controller.js</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      app/javascript/controllers/seats_controller.js
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..047c617 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,69 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Select Your Own Seat
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+This application is an example of how to develop an interactive web page using:
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+* Rails
-+* Rails' Unobtrustive JavaScript
-+* Turbolinks
-+* StimulusJS
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+The commit history is intentionally meticulous and verbose. 
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+The intent behind this repository is to:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+* serve as an example of real-world application built in a server-rendered
-+  monolith
-+* demonstrate how to iteratively build up a set of features over time, starting
-+  with boring standards based HTML, then extending that behavior with JavaScript
-+* demonstrate how and when to progressively enhance a feature that works outside
-+  of a JavaScript-capable browser environment
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+When creating this repository, deliberate effort was exerted to strike a balance
-+between:
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+* explicit and verbose (HTML, model, controller) code  *versus* "clean" and
-+  well-factored Rails code
-+* newer, terser JavaScript syntax (arrow functions, destructuring, etc) *versus*
-+  more familiar, approachable syntax
-+* small and focussed diffs that represent the minimal amount of changes
-+  necessary to integrate with newer libraries and concepts *versus* real-world
-+  feature-development style commits
-+* emphasizing outside-in, test-driven developed, production-ready code *versus*
-+  emphasizing educational and approachable implementation code
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+Some other things to note:
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+* The data model is inspired by a real-world application, but simplified for the
-+  sake of demonstration
-+* The CSS, while important and worth explaining on its own, is treated as a
-+  peripheral implementation detail
-+* One of the original project's areas of focus was accessibility. For the sake
-+  of this demonstration, most of the accessibility work involved in the original
-+  project has been omitted
-+* The number of both JavaScript and Ruby dependencies is intentionally limited
-+* The project uses Rails defaults as much as possible (i.e. MiniTest instead of
-+  RSpec, [`CurrentAttributes`][CurrentAttributes], `form_with` instead of
-+`simple_form`, etc)
-+* There is no internationalization. Page's copy and labels are hard-coded
-+  directly into the HTML
-+* There are additional optimizations that could be made for the sake of
-+  performance. Those optimizations have been omitted from this repository
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+[CurrentAttributes]: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+Development
-+---
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/javascript/controllers/seats_controller.js b/app/javascript/controllers/seats_controller.js
+index abddaf1..267efed 100644
+</span><span class="gd">--- a/app/javascript/controllers/seats_controller.js
+</span><span class="gi">+++ b/app/javascript/controllers/seats_controller.js
+</span><span class="p">@@ -5,6 +5,8 @@</span> export default class extends Controller {
+   static targets = [
+     "loadingOverlay",
+     "map",
+<span class="gi">+    "seat",
++    "selection",
+</span>   ]
+ 
+   connect() {
+<span class="p">@@ -16,6 +18,7 @@</span> export default class extends Controller {
+       minZoom: 1.0,
+       maxZoom: 8,
+     })
+<span class="gi">+    this.selectSeats()
+</span>   }
+ 
+   disconnect() {
+<span class="p">@@ -49,4 +52,18 @@</span> export default class extends Controller {
+   loadingFinished() {
+     this.loadingOverlayTarget.classList.remove(this.data.get("loadingClass"))
+   }
+<span class="gi">+
++  selectSeats() {
++    const selectedIds = this.selectionTargets.map(seat =&gt; seat.dataset.seatId)
 +
-+To develop the application locally, check it out with `git` then run the setup
-+script:
++    this.seatTargets.forEach(seat =&gt; {
++      const { seatId, selectedIcon, unselectedIcon } = seat.dataset
 +
-+```bash
-+$ git clone git@github.com:seanpdoyle/select-your-own-seat.git
-+$ cd select-your-own-seat
-+$ bin/setup
-+$ rails server
-+```
-+
-+Once the `rails server` command is running, visit the page at
-+&lt;http://localhost:3000&gt;.
-</span></code></pre></div></details>
++      if (selectedIds.includes(seatId)) {
++        seat.setAttribute("xlink:href", selectedIcon)
++      } else {
++        seat.setAttribute("xlink:href", unselectedIcon)
++      }
++    })
++  }
+</span> }
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index da853c5..135ef4f 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -154,6 +154,10 @@</span>
+                   height="12px"
+                   x="&lt;%= seat.x %&gt;"
+                   y="&lt;%= seat.y %&gt;"
+<span class="gi">+                  data-target="seats.seat"
++                  data-seat-id="&lt;%= seat.id %&gt;"
++                  data-selected-icon="#seat-icon-selected"
++                  data-unselected-icon="#seat-icon-unselected"
+</span>                 &gt;
+                 &lt;/use&gt;
+               &lt;/a&gt;
+<span class="p">@@ -269,7 +273,10 @@</span>
+ 
+           &lt;tbody&gt;
+             &lt;% Current.cart.seats.each do |seat| %&gt;
+<span class="gd">-              &lt;tr&gt;
+</span><span class="gi">+              &lt;tr
++                data-target="seats.selection"
++                data-seat-id="&lt;%= seat.id %&gt;"
++              &gt;
+</span>                 &lt;td&gt;
+                   &lt;%= seat.section.name %&gt;, &lt;%= seat.row_number %&gt;
+                 &lt;/td&gt;
+<span class="p">@@ -281,6 +288,8 @@</span>
+                     seat_selection_path(seat),
+                     class: "syos-button syos-button--transparent",
+                     method: :delete,
+<span class="gi">+                    remote: true,
++                    form: { "data-action" =&gt; "ajax:complete-&gt;seats#selectSeats" },
+</span>                   ) do %&gt;
+                     &lt;%= inline_svg_tag(
+                       "icons/x-circle.svg",
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/show.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/show.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/show.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/show.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/show.html.erb b/app/views/seats/show.html.erb
+index ad6783c..49c8fda 100644
+</span><span class="gd">--- a/app/views/seats/show.html.erb
+</span><span class="gi">+++ b/app/views/seats/show.html.erb
+</span><span class="p">@@ -67,12 +67,16 @@</span>
+             seat_selection_path(seat),
+             method: :delete,
+             class: "syos-button",
+<span class="gi">+            remote: true,
++            form: { "data-action" =&gt; "ajax:complete-&gt;seats#selectSeats" },
+</span>           ) %&gt;
+         &lt;% else %&gt;
+           &lt;%= button_to(
+             "Select",
+             seat_selections_path(seat),
+             class: "syos-button",
+<span class="gi">+            remote: true,
++            form: { "data-action" =&gt; "ajax:complete-&gt;seats#selectSeats" },
+</span>           ) %&gt;
+         &lt;% end %&gt;
+       &lt;/div&gt;
+</code></pre></div></details>
 
           </aside>
       </article>

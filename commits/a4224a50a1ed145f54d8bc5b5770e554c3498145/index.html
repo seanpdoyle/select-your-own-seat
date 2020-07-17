@@ -5,7 +5,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Use the title from a page's frontmatter if it has one -->
-    <title>Elaborate on the project's goals in the README
+    <title>Switch floors from map
 </title>
     <link href="../../stylesheets/site.css" rel="stylesheet" />
     <script src="../../javascripts/site.js"></script>
@@ -22,9 +22,9 @@
         navigation
         
       ">
-<a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/">              &#8592; Previous
+<a href="../a84e4752e085a7fab4a588e569ef32b96e365681/">              &#8592; Previous
 </a>
-<a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/">              Next &#8594;
+<a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/">              Next &#8594;
 </a>      </nav>
     </header>
 
@@ -41,8 +41,8 @@
 "></a>
                 <a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--collapsed" title="Install JavaScript dependencies during setup
 "></a>
-                <a href="./" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
-" aria-current="page"></a>
+                <a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--collapsed" title="Elaborate on the project's goals in the README
+"></a>
                 <a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--collapsed" title="Add Database Models
 "></a>
                 <a href="../b45d73cf7d2ee22b3cca50e6f6146009930185f7/" class="commit-node commit-node--collapsed" title="Establish Database Records
@@ -70,8 +70,8 @@
 "></a>
                 <a href="../a84e4752e085a7fab4a588e569ef32b96e365681/" class="commit-node commit-node--collapsed" title="Explain the map's symbols with a legend
 "></a>
-                <a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/" class="commit-node commit-node--collapsed" title="Switch floors from map
-"></a>
+                <a href="./" class="commit-node commit-node--collapsed" title="Switch floors from map
+" aria-current="page"></a>
                 <a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--collapsed" title="Filter Seats based on their Price
 "></a>
                 <a href="../aef89e10fb409f1385db59cdf27b838ab19ee7a6/" class="commit-node commit-node--collapsed" title="Implement Server-Side Price Filtering
@@ -148,7 +148,7 @@
 
 </a><a href="../6da2da59e3ce13e7eaf47bc94c53eb4257e414d2/" class="commit-node commit-node--full">              <p>Install JavaScript dependencies during setup</p>
 
-</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Elaborate on the project&#39;s goals in the README</p>
+</a><a href="../502e084538f5d3698c73e258b1364bbfc52bf316/" class="commit-node commit-node--full">              <p>Elaborate on the project&#39;s goals in the README</p>
 
 </a><a href="../1170115dabe557722c5bfa0a93f57c706328a1a0/" class="commit-node commit-node--full">              <p>Add Database Models</p>
 
@@ -178,7 +178,7 @@
 
 </a><a href="../a84e4752e085a7fab4a588e569ef32b96e365681/" class="commit-node commit-node--full">              <p>Explain the map&#39;s symbols with a legend</p>
 
-</a><a href="../a4224a50a1ed145f54d8bc5b5770e554c3498145/" class="commit-node commit-node--full">              <p>Switch floors from map</p>
+</a><a href="./" class="commit-node commit-node--full" aria-current="page">              <p>Switch floors from map</p>
 
 </a><a href="../2af75541f8508719af4bdbaeb9e1ee53b5d9b90b/" class="commit-node commit-node--full">              <p>Filter Seats based on their Price</p>
 
@@ -227,176 +227,304 @@
       ">
         <section class="commit commit--message">
 
-          <h1 id="elaborate-on-the-projects-goals-in-the-readme">Elaborate on the project&rsquo;s goals in the README</h1>
+          <h1 id="switch-floors-from-map">Switch floors from map</h1>
 
-<p>This application is an example of how to develop an interactive web page
-using:</p>
+<p>Add a list of <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a"><code>&lt;a&gt;</code> elements</a> based on a Venue record&rsquo;s
+associated <code>Floor</code> records.</p>
 
-<ul>
-<li>Rails</li>
-<li>Rails&rsquo; Unobtrustive JavaScript</li>
-<li>Turbolinks</li>
-<li>StimulusJS</li>
-</ul>
+<p>Introduce the <a href="https://github.com/comfy/active_link_to/tree/v1.0.5#super-simple-example"><code>active_link_to</code> gem</a> so that <code>&lt;a&gt;</code>
+elements that link to the current page are styled differently.</p>
 
-<p>The commit history is intentionally meticulous and verbose.</p>
+<p>Additionally, now that Seats can be selected from different floors,
+embed the <code>Seat</code> record&rsquo;s <code>Section</code> name in the <code>Cart</code> once selected.</p>
 
-<p>The intent behind this repository is to:</p>
+<h2 id="desktop">Desktop</h2>
 
-<ul>
-<li>serve as an example of real-world application built in a
-server-rendered monolith</li>
-<li>demonstrate how to iteratively build up a set of features over time,
-starting with boring standards based HTML, then extending that
-behavior with JavaScript</li>
-<li>demonstrate how and when to progressively enhance a feature that works
-outside of a JavaScript-capable browser environment</li>
-</ul>
-
-<p>When creating this repository, deliberate effort was exerted to strike a
-balance between:</p>
-
-<ul>
-<li>explicit and verbose (HTML, model, controller) code  <em>versus</em> &ldquo;clean&rdquo;
-and well-factored Rails code</li>
-<li>newer, terser JavaScript syntax (arrow functions, destructuring, etc)
-<em>versus</em> more familiar, approachable syntax</li>
-<li>small and focussed diffs that represent the minimal amount of changes
-necessary to integrate with newer libraries and concepts <em>versus</em>
-real-world feature-development style commits</li>
-<li>emphasizing outside-in, test-driven developed, production-ready code
-<em>versus</em> emphasizing educational and approachable implementation code</li>
-</ul>
-
-<p>Some other things to note:</p>
-
-<ul>
-<li>The data model is inspired by a real-world application, but simplified
-for the sake of demonstration</li>
-<li>The CSS, while important and worth explaining on its own, is treated
-as a peripheral implementation detail.</li>
-<li>One of the original project&rsquo;s areas of focus was accessibility. For
-the sake of this demonstration, most of the accessibility work
-involved in the original project has been omitted</li>
-<li>The number of both JavaScript and Ruby dependencies is intentionally
-limited</li>
-<li>The project uses Rails defaults as much as possible (i.e. MiniTest
-instead of RSpec, <a href="https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html"><code>CurrentAttributes</code></a>,
-<code>form_with</code> instead of <code>simple_form</code>, etc).</li>
-</ul>
+<p><img src="https://user-images.githubusercontent.com/2575027/77386337-f8ff7280-6d60-11ea-8833-db1fa4c33b68.gif" alt="floor-switch" /></p>
 
         </section>
 
           <aside class="commit commit--diff commit--long-content">
               <details
-  id="README.md"
+  id="Gemfile"
   open
   class="file"
 >
   <summary class="file__name">
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile</title>
   <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
 </svg>
 
 
-    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand README.md</title>
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile</title>
   <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
 </svg>
 
 
     <code>
-      README.md
+      Gemfile
     </code>
   </summary>
 
-<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/README.md b/README.md
-index 7db80e4..047c617 100644
-</span><span class="gd">--- a/README.md
-</span><span class="gi">+++ b/README.md
-</span><span class="p">@@ -1,24 +1,69 @@</span>
-<span class="gd">-# README
-</span><span class="gi">+Select Your Own Seat
-+===
-</span> 
-<span class="gd">-This README would normally document whatever steps are necessary to get the
--application up and running.
-</span><span class="gi">+This application is an example of how to develop an interactive web page using:
-</span> 
-<span class="gd">-Things you may want to cover:
-</span><span class="gi">+* Rails
-+* Rails' Unobtrustive JavaScript
-+* Turbolinks
-+* StimulusJS
-</span> 
-<span class="gd">-* Ruby version
-</span><span class="gi">+The commit history is intentionally meticulous and verbose. 
-</span> 
-<span class="gd">-* System dependencies
-</span><span class="gi">+The intent behind this repository is to:
-</span> 
-<span class="gd">-* Configuration
-</span><span class="gi">+* serve as an example of real-world application built in a server-rendered
-+  monolith
-+* demonstrate how to iteratively build up a set of features over time, starting
-+  with boring standards based HTML, then extending that behavior with JavaScript
-+* demonstrate how and when to progressively enhance a feature that works outside
-+  of a JavaScript-capable browser environment
-</span> 
-<span class="gd">-* Database creation
-</span><span class="gi">+When creating this repository, deliberate effort was exerted to strike a balance
-+between:
-</span> 
-<span class="gd">-* Database initialization
-</span><span class="gi">+* explicit and verbose (HTML, model, controller) code  *versus* "clean" and
-+  well-factored Rails code
-+* newer, terser JavaScript syntax (arrow functions, destructuring, etc) *versus*
-+  more familiar, approachable syntax
-+* small and focussed diffs that represent the minimal amount of changes
-+  necessary to integrate with newer libraries and concepts *versus* real-world
-+  feature-development style commits
-+* emphasizing outside-in, test-driven developed, production-ready code *versus*
-+  emphasizing educational and approachable implementation code
-</span> 
-<span class="gd">-* How to run the test suite
-</span><span class="gi">+Some other things to note:
-</span> 
-<span class="gd">-* Services (job queues, cache servers, search engines, etc.)
-</span><span class="gi">+* The data model is inspired by a real-world application, but simplified for the
-+  sake of demonstration
-+* The CSS, while important and worth explaining on its own, is treated as a
-+  peripheral implementation detail
-+* One of the original project's areas of focus was accessibility. For the sake
-+  of this demonstration, most of the accessibility work involved in the original
-+  project has been omitted
-+* The number of both JavaScript and Ruby dependencies is intentionally limited
-+* The project uses Rails defaults as much as possible (i.e. MiniTest instead of
-+  RSpec, [`CurrentAttributes`][CurrentAttributes], `form_with` instead of
-+`simple_form`, etc)
-+* There is no internationalization. Page's copy and labels are hard-coded
-+  directly into the HTML
-+* There are additional optimizations that could be made for the sake of
-+  performance. Those optimizations have been omitted from this repository
-</span> 
-<span class="gd">-* Deployment instructions
-</span><span class="gi">+[CurrentAttributes]: https://api.rubyonrails.org/classes/ActiveSupport/CurrentAttributes.html
-</span> 
-<span class="gd">-* ...
-</span><span class="gi">+Development
-+---
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile b/Gemfile
+index b1127cd..2a3a71a 100644
+</span><span class="gd">--- a/Gemfile
+</span><span class="gi">+++ b/Gemfile
+</span><span class="p">@@ -19,6 +19,7 @@</span> gem 'turbolinks', '~&gt; 5'
+ gem 'jbuilder', '~&gt; 2.7'
+ # Use Active Model has_secure_password
+ # gem 'bcrypt', '~&gt; 3.1.7'
+<span class="gi">+gem 'active_link_to'
+</span> gem 'inline_svg'
+ 
+ # Reduces boot times through caching; required in config/boot.rb
+</code></pre></div></details>
+
+              <details
+  id="Gemfile.lock"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse Gemfile.lock</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand Gemfile.lock</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      Gemfile.lock
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/Gemfile.lock b/Gemfile.lock
+index 810305a..75ddd7a 100644
+</span><span class="gd">--- a/Gemfile.lock
+</span><span class="gi">+++ b/Gemfile.lock
+</span><span class="p">@@ -37,6 +37,9 @@</span> GEM
+       erubi (~&gt; 1.4)
+       rails-dom-testing (~&gt; 2.0)
+       rails-html-sanitizer (~&gt; 1.1, &gt;= 1.2.0)
+<span class="gi">+    active_link_to (1.0.5)
++      actionpack
++      addressable
+</span>     activejob (6.0.2.2)
+       activesupport (= 6.0.2.2)
+       globalid (&gt;= 0.3.6)
+<span class="p">@@ -205,6 +208,7 @@</span> PLATFORMS
+   ruby
+ 
+ DEPENDENCIES
+<span class="gi">+  active_link_to
+</span>   bootsnap (&gt;= 1.4.2)
+   byebug
+   capybara (&gt;= 2.15)
+</code></pre></div></details>
+
+              <details
+  id="app/views/seats/index.html.erb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand app/views/seats/index.html.erb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      app/views/seats/index.html.erb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/app/views/seats/index.html.erb b/app/views/seats/index.html.erb
+index 6156a09..efbc1b4 100644
+</span><span class="gd">--- a/app/views/seats/index.html.erb
+</span><span class="gi">+++ b/app/views/seats/index.html.erb
+</span><span class="p">@@ -9,6 +9,28 @@</span>
+     class="syos-frame"
+   &gt;
+     &lt;div class="syos-frame__map"&gt;
+<span class="gi">+      &lt;nav class="syos-frame__floor-nav syos-floor-nav"&gt;
++        &lt;div class="syos-floor-nav__header"&gt;
++          &lt;p class="syos-u-margin-bottom-3 syos-u-font-weight-bold"&gt;
++            Floors
++          &lt;/p&gt;
++        &lt;/div&gt;
 +
-+To develop the application locally, check it out with `git` then run the setup
-+script:
++        &lt;div class="syos-floor-nav__diagram-wrapper"&gt;
++          &lt;ul class="syos-block-stack"&gt;
++            &lt;% venue.floors.each do |floor| %&gt;
++              &lt;li class="syos-block-stack__item"&gt;
++                &lt;%= active_link_to(
++                  venue_floor_seats_path(venue, floor),
++                ) do %&gt;
++                  &lt;%= floor.name %&gt;
++                &lt;% end %&gt;
++              &lt;/li&gt;
++            &lt;% end %&gt;
++          &lt;/ul&gt;
++        &lt;/div&gt;
++      &lt;/nav&gt;
 +
-+```bash
-+$ git clone git@github.com:seanpdoyle/select-your-own-seat.git
-+$ cd select-your-own-seat
-+$ bin/setup
-+$ rails server
-+```
+</span>       &lt;div class="syos-frame__legend" aria-hidden="true"&gt;
+         &lt;p class="syos-u-margin-bottom-3 syos-u-font-weight-bold"&gt;
+         Legend
+<span class="p">@@ -143,7 +165,7 @@</span>
+             &lt;% Current.cart.seats.each do |seat| %&gt;
+               &lt;tr&gt;
+                 &lt;td&gt;
+<span class="gd">-                  &lt;%= seat.row_number %&gt;
+</span><span class="gi">+                  &lt;%= seat.section.name %&gt;, &lt;%= seat.row_number %&gt;
+</span>                 &lt;/td&gt;
+                 &lt;td class="syos-table__cell--numerals"&gt;
+                   &lt;%= number_to_currency(seat.section.price / 100.0) %&gt;
+</code></pre></div></details>
+
+              <details
+  id="test/factories.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/factories.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/factories.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/factories.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/factories.rb b/test/factories.rb
+index 44cf93c..9d6fad2 100644
+</span><span class="gd">--- a/test/factories.rb
+</span><span class="gi">+++ b/test/factories.rb
+</span><span class="p">@@ -4,11 +4,18 @@</span> FactoryBot.define do
+     slug { "benedum_center" }
+   end
+ 
+<span class="gd">-  factory :orchestra, class: "Floor" do
+</span><span class="gi">+  factory :floor do
+</span>     association :venue, factory: [:benedum_center]
+ 
+<span class="gd">-    name { "Orchestra" }
+-    slug { "orchestra" }
+</span><span class="gi">+    factory :balcony do
++      name { "Balcony" }
++      slug { "balcony" }
++    end
 +
-+Once the `rails server` command is running, visit the page at
-+&lt;http://localhost:3000&gt;.
++    factory :orchestra do
++      name { "Orchestra" }
++      slug { "orchestra" }
++    end
+</span>   end
+ 
+   factory :section do
+</code></pre></div></details>
+
+              <details
+  id="test/system/visitor_changes_floor_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/visitor_changes_floor_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/visitor_changes_floor_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/system/visitor_changes_floor_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_changes_floor_test.rb b/test/system/visitor_changes_floor_test.rb
+</span><span class="p">new file mode 100644
+</span><span class="gh">index 0000000..c1c4e32
+</span><span class="gd">--- /dev/null
+</span><span class="gi">+++ b/test/system/visitor_changes_floor_test.rb
+</span><span class="p">@@ -0,0 +1,23 @@</span>
+<span class="gi">+require "application_system_test_case"
++
++class VisitorChangesFloorTest &lt; ApplicationSystemTestCase
++  test "visiting the balcony from the orchestra" do
++    benedum_center = create(:benedum_center)
++    orchestra = create(:orchestra, venue: benedum_center)
++    balcony = create(:balcony, venue: benedum_center)
++    front = create(:section, floor: orchestra)
++    back = create(:section, floor: balcony)
++    orchestra_seat = create(:seat, section: front, row: "AA", number: "1")
++    balcony_seat = create(:seat, section: back, row: "ZZ", number: "1")
++
++    visit "/venues/benedum_center/floors/orchestra/seats"
++    click_on balcony.name
++
++    assert_selector seat_selector(balcony_seat)
++    refute_selector seat_selector(orchestra_seat)
++  end
++
++  def seat_selector(seat)
++    %{a[aria-label="#{seat.row_number}"]}
++  end
++end
 </span></code></pre></div></details>
+
+              <details
+  id="test/system/visitor_selects_seat_test.rb"
+  open
+  class="file"
+>
+  <summary class="file__name">
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--close"><title>Collapse test/system/visitor_selects_seat_test.rb</title>
+  <path fill-rule="evenodd" d="M7.646 4.646a.5.5 0 01.708 0l6 6a.5.5 0 01-.708.708L8 5.707l-5.646 5.647a.5.5 0 01-.708-.708l6-6z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" role="img" class="file__toggle file__toggle--open"><title>Expand test/system/visitor_selects_seat_test.rb</title>
+  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 01.708 0L8 10.293l5.646-5.647a.5.5 0 01.708.708l-6 6a.5.5 0 01-.708 0l-6-6a.5.5 0 010-.708z" clip-rule="evenodd"></path>
+</svg>
+
+
+    <code>
+      test/system/visitor_selects_seat_test.rb
+    </code>
+  </summary>
+
+<div class="highlight"><pre class="highlight diff"><code><span class="gh">diff --git a/test/system/visitor_selects_seat_test.rb b/test/system/visitor_selects_seat_test.rb
+index db805d2..a24e454 100644
+</span><span class="gd">--- a/test/system/visitor_selects_seat_test.rb
+</span><span class="gi">+++ b/test/system/visitor_selects_seat_test.rb
+</span><span class="p">@@ -12,6 +12,7 @@</span> class VisitorSelectsSeatTest &lt; ApplicationSystemTestCase
+ 
+     within("#cart-summary") do
+       assert_text "$10.00"
+<span class="gi">+      assert_text section.name
+</span>     end
+   end
+ end
+</code></pre></div></details>
 
           </aside>
       </article>
